@@ -1,0 +1,33 @@
+  .navbar-default {
+    background-color: rgb(70, 97, 216);
+    border-color: #E7E7E7;
+  }
+  
+  .formulario {
+    margin-top: 30px;
+  }
+
+  .form-check {
+    margin-top: -10px;
+  }
+
+  .btn {
+    margin-top: 15px;
+  }
+
+  nav.navbar.navbar-default a {
+    color: white;
+  }
+  
+  footer.footer {
+    background-color: #7EA1C0;
+    border-color:  #7EA1C0;
+    margin-top: 55px;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  footer.footer p {
+    padding: 10px;
+  }
+

@@ -6,10 +6,6 @@ npm-debug.log
 composer.lock
 .env.save
 package-lock.json
-/public/js
-/public/css
-/public/fonts
-/public/images
 
 
 # Laravel 4 specific
