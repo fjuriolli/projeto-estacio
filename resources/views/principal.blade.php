@@ -20,11 +20,11 @@
           Cadastro
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Anel</a>
-          <a class="dropdown-item" href="#">Itinerário</a>
-          <a class="dropdown-item" href="#">Linha</a>
+          <a class="dropdown-item" href="/cadastro-anel">Anel</a>
+          <a class="dropdown-item" href="/cadastro-itinerario">Itinerário</a>
+          <a class="dropdown-item" href="/cadastro-linha">Linha</a>
           <a class="dropdown-item" href="#">Ônibus</a>
-          <a class="dropdown-item" href="#">Parada</a>
+          <a class="dropdown-item" href="/cadastro-parada">Parada</a>
         </div>
       </li>
       <li class="nav-item">

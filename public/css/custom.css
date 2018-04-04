@@ -11,6 +11,15 @@
     margin-top: -10px;
   }
 
+  .cad-itinerario {
+    margin-top: 40px;
+  }
+
+  .titulo-itinerario {
+    margin-top: -20px;
+    text-align: center;
+  }
+
   .btn {
     margin-top: 15px;
   }

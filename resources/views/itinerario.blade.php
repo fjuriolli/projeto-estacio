@@ -48,7 +48,7 @@
         </label>
     </div>
 
-    <button type="submit" class="btn btn-dark">Confirmar</button>
+    <button type="submit" class="btn btn-primary">Confirmar</button>
 
 
 </div>
