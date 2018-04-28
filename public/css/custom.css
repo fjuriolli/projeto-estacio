@@ -1,42 +1,61 @@
-  .navbar-default {
-    background-color: rgb(70, 97, 216);
-    border-color: #E7E7E7;
-  }
-  
-  .formulario {
-    margin-top: 30px;
-  }
+.w3-sidebar {
+  background-color: #C33C54;
+  z-index: 3;
+  width:300px;
+  font-weight:bold;
+  color: white
+}
 
-  .form-check {
-    margin-top: -10px;
-  }
+#section-anel {
+  margin-top: -50px
+}
 
-  .cad-itinerario {
-    margin-top: 40px;
-  }
+.w3-btn {
+  margin-top: 20px
+}
 
-  .titulo-itinerario {
-    margin-top: -20px;
-    text-align: center;
-  }
+#top-anel {
+  margin-top:-10px;
+  color: #4c6a92;
+}
 
-  .btn {
-    margin-top: 15px;
-  }
+.form-anel .w3-text {
+  color: #4c6a92;
+}
 
-  nav.navbar.navbar-default a {
-    color: white;
-  }
-  
-  footer.footer {
-    background-color: #7EA1C0;
-    border-color:  #7EA1C0;
-    margin-top: 55px;
-    color: white;
-    border-radius: 5px;
-  }
-  
-  footer.footer p {
-    padding: 10px;
-  }
+.form-anel .w3-input {
+  width: 30%
+}
 
+.form-anel .form-group {
+  margin-top: 20px
+}
+
+.form-anel .w3-container {
+  margin-top: 15px
+}
+
+.w3-container .container-anel {
+  margin-top: 80px
+}
+
+.w3-light-grey {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+
+.w3-round {
+  margin-top: -5px;
+  width: 50px;
+  border: 5px solid #4c6a92;
+}
+
+#btn-anel {
+  background-color: #4c6a92;
+  color: white
+}
