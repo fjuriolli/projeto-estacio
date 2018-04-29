@@ -10,28 +10,33 @@
 
 
 <!-- Header -->
-<div class="w3-container container-anel" id="showcase">
+<div class="w3-container container-top-page" id="showcase">
   <h1 class="w3-x-jumbo"><b>Cadastro</b></h1>
-  <h1 class="w3-xxlarge w3-text" id="top-anel"><b>Anel</b></h1>
+  <h1 class="w3-xxlarge w3-text" id="top-page"><b>Anel</b></h1>
   <hr class="w3-round">
 </div>
 
-<div class="form-anel">
-  <form class="w3-container" action="/adiciona-cliente" method="post">
+<!-- Form -->
+<div class="form-page">
+  <form class="w3-container" action="/adiciona-anel" method="post">
+
+    <input name="_token" type="hidden" value=" {{ csrf_token() }}"/>
+
     <div class="form-group">
       <label class="w3-text"><b>Nome</b></label>
-      <input class="w3-input w3-border w3-animate-input" type="text">
+      <input name="nome" class="w3-input w3-border w3-animate-input" type="text">
     </div>
 
     <div class="form-group">
       <label class="w3-text"><b>Tarifa</b></label>
-      <input class="w3-input w3-border w3-animate-input" type="text">
+      <input name="tarifa" class="w3-input w3-border w3-animate-input" type="text">
     </div>
 
-    <button class="w3-btn" id="btn-anel">Cadastrar</button>
+    <button class="w3-btn w3-blue" id="btn-page" type="submit">Cadastrar</button>
   </form>
 </div>
 
-<div class="w3-light-grey w3-container w3-padding-24"><p class="w3-right">Powered by Wizzle™</p></div>
+<!-- Padding -->
+<div class="w3-light-grey w3-container w3-padding-24"><p class="w3-right">Powered by Wizzle &copy</p></div>
 
 @stop

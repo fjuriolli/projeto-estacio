@@ -1,3 +1,20 @@
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+
+body {font-size:16px;}
+
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+
+.w3-half img:hover{opacity:1}
+
+.w3-main {
+  margin-left: 340px;
+  margin-right: 40px
+}
+
+.w3-padding-64 {
+  color:white
+}
+
 .w3-sidebar {
   background-color: #C33C54;
   z-index: 3;
@@ -14,28 +31,28 @@
   margin-top: 20px
 }
 
-#top-anel {
+#top-page {
   margin-top:-10px;
-  color: #4c6a92;
+  color: #C33C54;
 }
 
-.form-anel .w3-text {
-  color: #4c6a92;
+.form-page .w3-text {
+  color: #C33C54;
 }
 
-.form-anel .w3-input {
+.form-page .w3-input {
   width: 30%
 }
 
-.form-anel .form-group {
+.form-page .form-group {
   margin-top: 20px
 }
 
-.form-anel .w3-container {
+.form-page .w3-container {
   margin-top: 15px
 }
 
-.w3-container .container-anel {
+.w3-container .container-top-page {
   margin-top: 80px
 }
 
@@ -52,10 +69,10 @@
 .w3-round {
   margin-top: -5px;
   width: 50px;
-  border: 5px solid #4c6a92;
+  border: 5px solid #C33C54;
 }
 
 #btn-anel {
-  background-color: #4c6a92;
+  background-color: #C33C54;
   color: white
 }

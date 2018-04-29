@@ -7,20 +7,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 <link href="/css/custom.css" rel="stylesheet">
+
 @yield ('titulo')
-<style>
-body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
-body {font-size:16px;}
-.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
-.w3-half img:hover{opacity:1}
-</style>
 
 <body>
-"#E6E6FA"
+  
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-collapse w3-top w3-large w3-padding" id="mySidebar"><br>
   <div class="w3-container">
-    <h3 class="w3-padding-64" style="color:white"><b>Wizzle</b></h3>
+    <h3 class="w3-padding-64"><b>Wizzle</b></h3>
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-hover-white">Home</a> 
@@ -35,17 +30,14 @@ body {font-size:16px;}
       <a class="w3-bar-item w3-button w3-hover" href="/cadastro-anel">Anel</a>
       <a class="w3-bar-item w3-button w3-hover" href="/cadastro-itinerario">Itinerário</a>
       <a class="w3-bar-item w3-button w3-hover" href="/cadastro-linha">Linha</a>
-      <a class="w3-bar-item w3-button w3-hover" href="/cadastro-onibus">Ônibus</a>
       <a class="w3-bar-item w3-button w3-hover" href="/cadastro-parada">Parada</a>
+      <a class="w3-bar-item w3-button w3-hover" href="/cadastro-parada">Onibus</a>
     </div>
   </div>
 </nav>
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:340px;margin-right:40px">
+<div class="w3-main">
 
 @yield('conteudo')
 
