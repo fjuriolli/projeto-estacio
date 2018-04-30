@@ -24,8 +24,8 @@
     <input name="_token" type="hidden" value=" {{ csrf_token() }}"/>
 
     <div class="form-group">
-      <label class="w3-text"><b>Logradouro</b></label>
-      <input name="logradouro" class="w3-input w3-border w3-animate-input" type="text">
+      <label class="w3-text"><b>Nome</b></label>
+      <input name="nome" class="w3-input w3-border w3-animate-input" type="text">
     </div>
 
     <div class="form-group">
@@ -46,7 +46,7 @@
         <option value="2">AGUAS COMPRIDAS</option>
         <option value="3">BRASILIA TEIMOSA</option>
         <option value="4">MANGUEIRA</option>
-      </select>
+    </select>
     </div>
 
     <button class="w3-btn w3-blue" id="btn-page" type="submit">Cadastrar</button>
