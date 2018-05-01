@@ -15,15 +15,20 @@ class CreateLinhasTable extends Migration
     {
         Schema::create('linhas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('parada_id')->unsigned();
+            $table->integer('anel_id')->unsigned();
+            $table->integer('evento_id')->unsigned();
             $table->string('nome');
             $table->integer('qtd_onibus');
             $table->string('classificacao');
             $table->time('horario_saida');
             $table->time('horario_retorno');
 
-            $table->foreign('parada_id')->references('id')
-                ->on('paradas')
+            $table->foreign('anel_id')->references('id')
+                ->on('aneis')
+                ->onDelete('cascade');
+
+                $table->foreign('evento_id')->references('id')
+                ->on('eventos')
                 ->onDelete('cascade');
 
             $table->timestamps();

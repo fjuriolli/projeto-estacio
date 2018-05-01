@@ -15,14 +15,8 @@ class CreateAneisTable extends Migration
     {
         Schema::create('aneis', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('linha_id')->unsigned();
             $table->string('nome');
             $table->float('tarifa');
-
-            $table->foreign('linha_id')->references('id')
-                ->on('linhas')
-                ->onDelete('cascade');
-                
             $table->timestamps();
         });
     }

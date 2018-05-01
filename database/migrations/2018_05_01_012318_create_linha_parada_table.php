@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParadasTable extends Migration
+class CreateLinhaParadaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateParadasTable extends Migration
      */
     public function up()
     {
-        Schema::create('paradas', function (Blueprint $table) {
+        Schema::create('linha_parada', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cod_identificacao');
-            $table->string('nome');
-            $table->string('endereco_completo');
+            $table->integer('linha_id')->unsigned();
+            $table->integer('parada_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateParadasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paradas');
+        Schema::dropIfExists('linha_parada');
     }
 }

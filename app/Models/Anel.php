@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Anel extends Model
 {
     protected $table = 'aneis';
+
     protected $fillable = [
-        'linha_id',
         'nome',
         'tarifa'
     ];
+
+    public function linhas()
+    {
+        return $this->belongsTo('App\Models\Linha');
+    }
 }
