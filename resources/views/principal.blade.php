@@ -18,10 +18,10 @@
     <h3 class="w3-padding-64"><b>Wizzle</b></h3>
   </div>
   <div class="w3-bar-block">
-    <a href="#" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-    <a href="#" class="w3-bar-item w3-button w3-hover-white">Ônibus Agora!</a> 
-    <a href="#" class="w3-bar-item w3-button w3-hover-white">Ônibus p/ Itinerário</a> 
-    <a href="#" class="w3-bar-item w3-button w3-hover-white">Ônibus Trajetos</a> 
+    <a class="w3-bar-item w3-button w3-hover-white" href="#">Home</a> 
+    <a class="w3-bar-item w3-button w3-hover-white" href="onibus-agora">Ônibus Agora!</a> 
+    <a class="w3-bar-item w3-button w3-hover-white" href="onibus-itinerario">Ônibus p/ Itinerário</a> 
+    <a class="w3-bar-item w3-button w3-hover-white" href="onibus-trajeto">Ônibus Trajetos</a> 
   </div>
 
   <div class="w3-dropdown-hover">
@@ -30,8 +30,8 @@
       <a class="w3-bar-item w3-button w3-hover" href="/cadastro-anel">Anel</a>
       <a class="w3-bar-item w3-button w3-hover" href="/cadastro-itinerario">Itinerário</a>
       <a class="w3-bar-item w3-button w3-hover" href="/cadastro-linha">Linha</a>
+      <a class="w3-bar-item w3-button w3-hover" href="/cadastro-logradouro">Logradouro</a>
       <a class="w3-bar-item w3-button w3-hover" href="/cadastro-parada">Parada</a>
-      <a class="w3-bar-item w3-button w3-hover" href="/cadastro-parada">Onibus</a>
     </div>
   </div>
 </nav>

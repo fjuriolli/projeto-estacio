@@ -37,7 +37,21 @@ Route::get('cadastro-linha', function () {
     return view('cadastro.cadastro-linha');
 });
 
+Route::get('cadastro-logradouro', function () {
+    return view('cadastro.cadastro-logradouro');
+});
 
+Route::get('onibus-agora', function() {
+    return view('negocio.onibus-agora');
+});
+
+Route::get('onibus-itinerario', function() {
+    return view('negocio.onibus-itinerario');
+});
+
+Route::get('onibus-trajeto', function() {
+    return view('negocio.onibus-trajeto');
+});
 
 
 Auth::routes();

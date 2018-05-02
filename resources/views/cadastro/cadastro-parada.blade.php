@@ -8,7 +8,6 @@
 
 @section('conteudo')
 
-
 <!-- Header -->
 <div class="w3-container container-top-page" id="showcase">
   <h1 class="w3-x-jumbo"><b>Cadastro</b></h1>
@@ -20,7 +19,7 @@
 <div class="form-page">
   <form class="w3-container" action="/adiciona-anel" method="post">
 
-    <input name="_token" type="hidden" value=" {{ csrf_token() }}"/>
+    <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
 
     <div class="form-group">
       <label class="w3-text"><b>Código de Identificação</b></label>
@@ -35,11 +34,6 @@
     <div class="form-group">
       <label class="w3-text"><b>Endereço</b></label>
       <input name="endereco" class="w3-input w3-border w3-animate-input" type="text">
-    </div>
-
-    <div class="form-group">
-      <label class="w3-text"><b>Referência Endereço</b></label>
-      <input name="referencia" class="w3-input w3-border w3-animate-input" type="text">
     </div>
 
     <button class="w3-btn w3-blue" id="btn-page" type="submit">Cadastrar</button>
