@@ -53,7 +53,7 @@
   </div>
 
   <div class="custom-select" style="width:200px;">
-    <label class="w3-text"><b>Selecione uma itinerário:</b></label>
+    <label class="w3-text"><b>Selecione um Itinerário:</b></label>
     <select>
       <option value="0">Principal</option>
       <option value="1">Via Cohab</option>
@@ -64,7 +64,7 @@
   <button class="w3-btn w3-blue" id="btn-page" type="text">Localizar</button>
 
   <div class="help-tip">
-    <p>Localizar o ônibus em tempo real, pelo itinerário e informando a parada na qual o usuário está atualmente. O resultado será a previsão de chegada do ônibus de acordo com os parâmetros passados.</p>
+    <p>Localizar o ônibus em tempo real pelo itinerário, de acordo com a parada na qual o usuário está atualmente. O resultado será a parada atual onde o ônibus se encontra e a previsão de chegada na parada selecionada pelo usuário.</p>
   </div>
 
   <br><br><br>
@@ -73,7 +73,7 @@
   <br><br>
   • A previsão de chegada na sua localidade é de 2:49min
   <br>
-  Clique no botão abaixo para atualizar o andamento
+  Clique no botão abaixo para atualizar as informações da previsão
 
   </form>
 </div>

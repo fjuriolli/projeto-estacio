@@ -59,7 +59,7 @@
   <button class="w3-btn w3-blue" id="btn-page" type="text">Confirmar</button>
 
   <div class="help-tip">
-    <p>Localizar o ônibus em tempo real, basta selecionar a linha no qual o mesmo pertence. O resultado será a parada onde o mesmo está atualmente e sua previsão de retorno.</p>
+    <p>Localizar o ônibus pelo seu trajeto, passando como referência duas paradas. O resultado será as linhas que passam pelo trajeto selecionado.</p>
   </div>
 
   <br>

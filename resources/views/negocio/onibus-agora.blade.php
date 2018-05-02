@@ -11,7 +11,7 @@
 
 <!-- Header -->
 <div class="w3-container container-top-page" id="showcase">
-  <h1 class="w3-x-jumbo"><b>Localizar</b></h1>
+  <h1 class="w3-x-jumbo"><b>Controle de Frota</b></h1>
   <h1 class="w3-xxlarge w3-text" id="top-page"><b>Ônibus</b></h1>
   <hr class="w3-round">
 </div>
@@ -38,7 +38,7 @@
     <button class="w3-btn w3-blue" id="btn-page" type="text">Localizar</button>
 
     <div class="help-tip">
-    <p>Localizar o ônibus em tempo real, basta selecionar a linha no qual o mesmo pertence. O resultado será a parada onde o mesmo está atualmente e sua previsão de retorno.</p>
+    <p>Localizar a parada na qual o ônibus está atualmente, basta selecionar a linha que o mesmo pertence. O resultado será a parada onde o mesmo está atualmente e sua previsão de retorno para a garagem.</p>
     </div>
 
   <br>
