@@ -18,18 +18,18 @@
 
 <!-- Form -->
 <div class="form-page">
-  <form class="w3-container" action="/adiciona-anel" method="post">
+  <form class="w3-container" action="{{route ('anel.store')}}" method="post">
 
     <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
 
     <div class="form-group">
       <label class="w3-text"><b>Nome</b></label>
-      <input name="nome" class="w3-input w3-border w3-animate-input" type="text">
+      <input name="nome" class="w3-input w3-border" type="text">
     </div>
 
     <div class="form-group">
       <label class="w3-text"><b>Tarifa</b></label>
-      <input name="tarifa" class="w3-input w3-border w3-animate-input" type="text">
+      <input name="tarifa" class="w3-input w3-border" type="text">
     </div>
 
     <button class="w3-btn w3-blue" id="btn-page" type="submit">Cadastrar</button>

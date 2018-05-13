@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateItinerariosTable extends Migration
+class CreateLinhaOnibusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,12 @@ class CreateItinerariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('itinerarios', function (Blueprint $table) {
+        Schema::create('linha_onibus', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('linha_id')->unsigned();
-            $table->string('nome');
-            $table->string('bairro');
-            $table->string('municipio');
-
-            $table->foreign('linha_id')->references('id')
-                ->on('linhas')
-                ->onDelete('cascade');
-                
+            $table->integer('onibus_id')->unsigned();
+            $table->foreign('linha_id')->references('id')->on('linhas');
+            $table->foreign('onibus_id')->references('id')->on('onibus');
             $table->timestamps();
         });
     }
@@ -35,6 +30,6 @@ class CreateItinerariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('itinerarios');
+        Schema::dropIfExists('linha_onibus');
     }
 }

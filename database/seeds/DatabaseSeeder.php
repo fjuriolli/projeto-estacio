@@ -5,6 +5,8 @@ use App\Models\Onibus;
 use App\Models\Anel;
 use App\Models\Evento;
 use App\Models\Parada;
+use App\Models\Logradouro;
+use App\Models\Linha;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call('AnelSeeder');
         $this->call('EventoSeeder');
         $this->call('ParadaSeeder');
+        $this->call('LogradouroSeeder');
+        $this->call('LinhaSeeder');
     }
 }
 
@@ -75,5 +79,38 @@ class ParadaSeeder extends Seeder
         Parada::create(['cod_identificacao' => '0003', 'nome' => 'Parada 3', 'endereco_completo' => 'Teste']);
         Parada::create(['cod_identificacao' => '0004', 'nome' => 'Parada 4', 'endereco_completo' => 'Teste']);
         Parada::create(['cod_identificacao' => '0005', 'nome' => 'Parada 5', 'endereco_completo' => 'Teste']);
+    }
+}
+
+class LogradouroSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('logradouros')->delete();
+
+        Logradouro::create(['nome' => 'Túnel da Abolição', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'Praça Agamenon Salazar', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'Rua Bruno Veloso', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'Rua da Aurora', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'Rua São Bento', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'Largo da Bica', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'Rua Macaíba', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife']);
+    }
+}
+
+class LinhaSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('linhas')->delete();
+
+        Linha::create(['nome' => 'Linha Teste 01', 'classificacao' => 'Circular']);
+        Linha::create(['nome' => 'Linha Teste 02', 'classificacao' => 'Circular']);
+        Linha::create(['nome' => 'Linha Teste 03', 'classificacao' => 'Circular']);
+        Linha::create(['nome' => 'Linha Teste 05', 'classificacao' => 'Circular']);
+        Linha::create(['nome' => 'Linha Teste 06', 'classificacao' => 'Circular']);
+        Linha::create(['nome' => 'Linha Teste 07', 'classificacao' => 'Circular']);
+        Linha::create(['nome' => 'Linha Teste 08', 'classificacao' => 'Circular']);
+
     }
 }

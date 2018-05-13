@@ -23,49 +23,41 @@
 
 <!-- Form -->
 <div class="form-page">
-  <form class="w3-container" action="/adiciona-itinerario" method="post">
+  <form class="w3-container" action="{{route ('linha.store')}}" method="post">
 
   <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
 
   <div class="form-group">
     <label class="w3-text"><b>Nome</b></label>
-    <input name="nome" class="w3-input w3-border w3-animate-input" type="text">
-  </div>
-
-  <div class="form-group">
-    <label class="w3-text"><b>Ônibus que fazem parte desta Linha:</b></label>
-    <input name="qtd_onibus" class="w3-input w3-border w3-animate-input" type="text">
+    <input name="nome" class="w3-input w3-border" type="text">
   </div>
 
   <div class="form-group">
     <label class="w3-text"><b>Classificação</b></label>
-    <input name="classificacao" class="w3-input w3-border w3-animate-input" type="text">
+    <input name="classificacao" class="w3-input w3-border" type="text">
   </div>
 
   <div class="multi-select">
-  <label class="w3-text"><b>Selecione os Ônibus que fazem parte desta Linha:</b></label>
-  <div class="inside-select">
-    <select id="control_1" name="control_1[]" multiple="multiple" size="5">
-    <option value="0">Ônibus 1</option>
-    <option value="1">Ônibus 2</option>
-    <option value="2">Ônibus 3</option>
-    <option value="3">Ônibus 4</option>
-    <option value="4">Ônibus 5</option>
-    <option value="5">Ônibus 6</option>
-    <option value="6">Ônibus 7</option>
-    </select>
+    <label for="onibus_id" class="w3-text"><b>Selecione os Ônibus que fazem parte desta Linha:</b></label>
+    <div class="inside-select">
+      <select name="onibus_id[]" multiple="multiple" size="5">
+      @foreach($onibus as $onibus)
+      <option value="{{ $onibus->id }}">
+        {{ $onibus->nome }}</option> 
+      @endforeach
+      </select>
+    </div>
   </div>
-</div>
 
   <div class="form-parada">
     <label class="w3-text"><b>Selecione o Anel</b></label>
     <div class="form-group-select">
       <div class="custom-select">
-        <select>
-        <option value="0">A - R$3,20</option>
-        <option value="1">B - R$4,40</option>
-        <option value="2">D - R$3,45</option>
-        <option value="3">G - R$2,10</option>
+        <select name="anel_id">
+        @foreach($aneis as $anel)
+        <option value="{{ $anel->id }}">
+        {{ $anel->nome }}</option>
+        @endforeach
         </select>
       </div>
     </div>

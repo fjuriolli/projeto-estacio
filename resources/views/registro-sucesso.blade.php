@@ -17,8 +17,8 @@
 
 <div class="w3-container">
   <div style="margin-top: 15px;background-color: #E0F0D7" class="w3-panel w3-round-large">
-    <h3>Sucesso!</h3>
-    <p>Seu cadastro foi salvo.</p>
+    <h3 style="color: #457D46">Sucesso!</h3>
+    <p style="color: #629361">Seu cadastro foi salvo.</p>
   </div>
 </div>
 

@@ -31,6 +31,7 @@
       <a class="w3-bar-item w3-button w3-hover" href="/cadastro-itinerario">Itinerário</a>
       <a class="w3-bar-item w3-button w3-hover" href="/cadastro-linha">Linha</a>
       <a class="w3-bar-item w3-button w3-hover" href="/cadastro-logradouro">Logradouro</a>
+      <a class="w3-bar-item w3-button w3-hover" href="/cadastro-onibus">Ônibus</a>
       <a class="w3-bar-item w3-button w3-hover" href="/cadastro-parada">Parada</a>
     </div>
   </div>

@@ -10,7 +10,6 @@ class Linha extends Model
     protected $fillable = [
         'anel_id',
         'evento_id',
-        'onibus_id',
         'nome',
         'classificacao',
     ];
@@ -28,5 +27,10 @@ class Linha extends Model
     public function itinerarios()
     {
         return $this->belongsTo('App\Models\Itinerario');
+    }
+
+    public function onibus()
+    {
+        return $this->belongsToMany('App\Models\Onibus');
     }
 }

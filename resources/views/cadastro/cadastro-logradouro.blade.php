@@ -23,17 +23,17 @@
 
   <div class="form-group">
     <label class="w3-text"><b>Nome</b></label>
-    <input name="nome" class="w3-input w3-border w3-animate-input" type="text">
+    <input name="nome" class="w3-input w3-border" type="text">
   </div>
 
   <div class="form-group">
     <label class="w3-text"><b>Bairro</b></label>
-    <input name="bairro" class="w3-input w3-border w3-animate-input" type="text">
+    <input name="bairro" class="w3-input w3-border" type="text">
   </div>
 
   <div class="form-group">
     <label class="w3-text"><b>Município</b></label>
-    <input name="municipio" class="w3-input w3-border w3-animate-input" type="text">
+    <input name="municipio" class="w3-input w3-border" type="text">
   </div>
 
   <div class="multi-select">

@@ -15,9 +15,8 @@ class CreateLinhasTable extends Migration
     {
         Schema::create('linhas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('anel_id')->unsigned();
-            $table->integer('evento_id')->unsigned();
-            $table->integer('onibus_id')->unsigned();
+            $table->integer('anel_id')->unsigned()->nullable();
+            $table->integer('evento_id')->unsigned()->nullable();
             $table->string('nome');
             $table->string('classificacao');
 
@@ -27,10 +26,6 @@ class CreateLinhasTable extends Migration
 
                 $table->foreign('evento_id')->references('id')
                 ->on('eventos')
-                ->onDelete('cascade');
-
-                $table->foreign('onibus_id')->references('id')
-                ->on('onibus')
                 ->onDelete('cascade');
 
             $table->timestamps();

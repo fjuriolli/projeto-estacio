@@ -23,55 +23,51 @@
 
 <!-- Form -->
 <div class="form-page">
-  <form class="w3-container" action="/adiciona-itinerario" method="post">
+  <form class="w3-container" action="{{route ('itinerario.store')}}" method="post">
 
     <input name="_token" type="hidden" value=" {{ csrf_token() }}"/>
 
     <div class="form-group">
       <label class="w3-text"><b>Nome</b></label>
-      <input name="nome" class="w3-input w3-border w3-animate-input" type="text">
+      <input name="nome" class="w3-input w3-border" type="text">
     </div>
 
     <div class="form-group">
       <label class="w3-text"><b>Bairro</b></label>
-      <input name="bairro" class="w3-input w3-border w3-animate-input" type="text">
+      <input name="bairro" class="w3-input w3-border" type="text">
     </div>
 
     <div class="form-group">
       <label class="w3-text"><b>Município</b></label>
-      <input name="municipio" class="w3-input w3-border w3-animate-input" type="text">
+      <input name="municipio" class="w3-input w3-border" type="text">
     </div>
 
-    <div class="custom-select" style="width:200px;">
-      <label class="w3-text"><b>Seleciona a Linha:</b></label>
-      <select>
-        <option value="0">AEROPORTO</option>
-        <option value="1">AEROPORTO (OPCIONAL)</option>
-        <option value="2">AGUAS COMPRIDAS</option>
-        <option value="3">BRASILIA TEIMOSA</option>
-        <option value="4">SETÚBAL</option>
-        <option value="4">VILA DO IPSEP</option>
-        <option value="4">JORDÃO ALTO</option>
-      </select>
+  <div class="form-parada">
+    <label class="w3-text"><b>Selecione a Linha:</b></label>
+    <div class="form-group-select">
+      <div class="custom-select">
+        <select name="linha_id">
+        @foreach($linhas as $linha)
+        <option value="{{ $linha->id }}">
+        {{ $linha->nome }}</option>
+        @endforeach
+        </select>
+      </div>
     </div>
+  </div>
 
   <div class="multi-select">
-    <label class="w3-text"><b>Selecione os Logradouros:</b></label>
+    <label for=logradouro_id" class="w3-text"><b>Selecione os Logradouros que fazem parte deste Itinerário</b></label>
     <div class="inside-select">
-        <select id="" name="" multiple="multiple" size="7">
-          <option value="option_1">Túnel da Abolição</option>
-          <option value="option_2">Praça Agamenon Salazar</option>
-          <option value="option_3">Rua Bruno Veloso</option>
-          <option value="option_4">Rua da Aurora</option>
-          <option value="option_5">Rua São Bento</option>
-          <option value="option_6">Largo da Bica</option>
-          <option value="option_7">Rua Macaíba</option>
-          <option value="option_8">Rua Nova Morada</option>
-          <option value="option_9">Praça Sete de Setembro</option>
-          <option value="option_10">Largo de Água Fria</option>
-        </select>
+      <select name=logradouro_id[]" multiple="multiple" size="5">
+      @foreach($logradouros as $logradouro)
+      <option value="{{ $logradouro->id }}">
+        {{ $logradouro->nome }}</option> 
+      @endforeach
+      </select>
     </div>
-</div>
+  </div>
+
     <button class="w3-btn w3-blue" id="btn-page" type="submit">Cadastrar</button>
   </form>
 </div>
