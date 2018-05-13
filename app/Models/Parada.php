@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,4 +13,9 @@ class Parada extends Model
         'nome',
         'endereco_completo'
     ];
+
+    public function logradouros()
+    {
+        return $this->belongsTo('App\Models\Logradouro');
+    }
 }

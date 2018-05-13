@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +12,8 @@ class Itinerario extends Model
         'linha_id',
         'logradouro',
         'bairro',
-        'municipio'
+        'municipio',
+        'nome'
     ];
 
     public function linhas()

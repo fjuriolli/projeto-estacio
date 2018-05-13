@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Onibus;
 
-class Anel extends Controller
+class OnibusController extends Controller
 {
-    //
+
 }

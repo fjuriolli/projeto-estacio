@@ -17,11 +17,9 @@ class CreateLinhasTable extends Migration
             $table->increments('id');
             $table->integer('anel_id')->unsigned();
             $table->integer('evento_id')->unsigned();
+            $table->integer('onibus_id')->unsigned();
             $table->string('nome');
-            $table->integer('qtd_onibus');
             $table->string('classificacao');
-            $table->time('horario_saida');
-            $table->time('horario_retorno');
 
             $table->foreign('anel_id')->references('id')
                 ->on('aneis')
@@ -29,6 +27,10 @@ class CreateLinhasTable extends Migration
 
                 $table->foreign('evento_id')->references('id')
                 ->on('eventos')
+                ->onDelete('cascade');
+
+                $table->foreign('onibus_id')->references('id')
+                ->on('onibus')
                 ->onDelete('cascade');
 
             $table->timestamps();

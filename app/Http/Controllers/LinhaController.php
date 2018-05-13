@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Itinerario extends Controller
+class LinhaController extends Controller
 {
     //
 }

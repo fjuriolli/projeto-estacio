@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,5 +14,13 @@ class Logradouro extends Model
         'municipio'
     ];
 
-    //TO DO RELACIONAMENTOS
+    public function paradas()
+    {
+        return $this->hasMany('App\Models\Parada'); 
+    }
+
+    public function itinerarios()
+    {
+        return $this->belongsTo('App\Models\Itinerario');
+    }
 }

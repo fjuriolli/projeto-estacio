@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,17 +10,10 @@ class Linha extends Model
     protected $fillable = [
         'anel_id',
         'evento_id',
+        'onibus_id',
         'nome',
-        'qtd_onibus',
         'classificacao',
-        'horario_saida',
-        'horario_retorno'
     ];
-
-    public function paradas()
-    {
-        return $this->belongsToMany('App\Models\Linha');
-    }
 
     public function eventos()
     {

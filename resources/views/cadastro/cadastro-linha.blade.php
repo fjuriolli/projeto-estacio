@@ -33,7 +33,7 @@
   </div>
 
   <div class="form-group">
-    <label class="w3-text"><b>Quantidade de Ônibus</b></label>
+    <label class="w3-text"><b>Ônibus que fazem parte desta Linha:</b></label>
     <input name="qtd_onibus" class="w3-input w3-border w3-animate-input" type="text">
   </div>
 
@@ -41,6 +41,21 @@
     <label class="w3-text"><b>Classificação</b></label>
     <input name="classificacao" class="w3-input w3-border w3-animate-input" type="text">
   </div>
+
+  <div class="multi-select">
+  <label class="w3-text"><b>Selecione os Ônibus que fazem parte desta Linha:</b></label>
+  <div class="inside-select">
+    <select id="control_1" name="control_1[]" multiple="multiple" size="5">
+    <option value="0">Ônibus 1</option>
+    <option value="1">Ônibus 2</option>
+    <option value="2">Ônibus 3</option>
+    <option value="3">Ônibus 4</option>
+    <option value="4">Ônibus 5</option>
+    <option value="5">Ônibus 6</option>
+    <option value="6">Ônibus 7</option>
+    </select>
+  </div>
+</div>
 
   <div class="form-parada">
     <label class="w3-text"><b>Selecione o Anel</b></label>
@@ -55,61 +70,6 @@
       </div>
     </div>
   </div>
-
-  <div class="multi-select">
-    <label class="w3-text"><b>Selecione as Paradas que fazem parte dessa Linha:</b></label>
-    <div class="inside-select">
-      <select id="control_1" name="control_1[]" multiple="multiple" size="5">
-      <option value="0">010089 - Jequitinhonha - Boa Viagem</option>
-      <option value="1">010056 - Domingos Ferreira - Pina</option>
-      <option value="2">010043 - Jacy - Imbiribeira</option>
-      <option value="3">010078 - Domingos Ferreira - Boa Viagem</option>
-      <option value="4">010001 - Herculano Bandeira - Pina</option>
-      <option value="5">010012 - Castelo Branco - Candeias</option>
-      <option value="6">010023 - Morais - Pina</option>
-      <option value="7">010001 - Herculano Bandeira - Pina</option>
-      <option value="8">010012 - Castelo Branco - Candeias</option>
-      <option value="9">010023 - Morais - Pina</option>
-      <option value="10">010089 - Jequitinhonha - Boa Viagem</option>
-      <option value="11">010056 - Domingos Ferreira - Pina</option>
-      <option value="12">010043 - Jacy - Imbiribeira</option>
-      </select>
-    </div>
-</div>
-
-  <div class="form-parada">
-    <label class="w3-text"><b>Parada de Saída</b></label>
-    <div class="form-group-select">
-      <div class="custom-select">
-        <select>
-        <option value="0">010089 - Jequitinhonha - Boa Viagem</option>
-        <option value="1">010056 - Domingos Ferreira - Pina</option>
-        <option value="2">010043 - Jacy - Imbiribeira</option>
-        <option value="3">010078 - Domingos Ferreira - Boa Viagem</option>
-        <option value="4">010001 - Herculano Bandeira - Pina</option>
-        <option value="5">010012 - Castelo Branco - Candeias</option>
-        <option value="6">010023 - Morais - Pina</option>
-        </select>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-parada">
-  <label class="w3-text"><b>Parada de Retorno</b></label>
-  <div class="form-group-select">
-      <div class="custom-select">
-      <select>
-      <option value="0">010001 - Herculano Bandeira - Pina</option>
-      <option value="1">010056 - Domingos Ferreira - Pina</option>
-      <option value="2">010043 - Jacy - Imbiribeira</option>
-      <option value="3">010078 - Domingos Ferreira - Boa Viagem</option>
-      <option value="4">010089 - Jequitinhonha - Boa Viagem</option>
-      <option value="5">010012 - Castelo Branco - Candeias</option>
-      <option value="6">010023 - Morais - Pina</option>
-      </select>
-    </div>
-  </div>
-</div>
 
   <button class="w3-btn w3-blue" id="btn-page" type="submit">Cadastrar</button>
   </form>

@@ -41,6 +41,10 @@ Route::get('cadastro-logradouro', function () {
     return view('cadastro.cadastro-logradouro');
 });
 
+Route::get('cadastro-onibus', function () {
+    return view('cadastro.cadastro-onibus');
+});
+
 Route::get('onibus-agora', function() {
     return view('negocio.onibus-agora');
 });
@@ -52,6 +56,8 @@ Route::get('onibus-itinerario', function() {
 Route::get('onibus-trajeto', function() {
     return view('negocio.onibus-trajeto');
 });
+
+Route::get('/teste-seeders-view', 'TesteController@get');
 
 
 Auth::routes();

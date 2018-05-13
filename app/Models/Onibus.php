@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Evento extends Model
+class Onibus extends Model
 {
-    protected $table = 'eventos';
+    protected $table = 'onibus';
     
     protected $fillable = [
         'nome',
-        'duracao'
+        'marca'
     ];
 
     public function linhas()
