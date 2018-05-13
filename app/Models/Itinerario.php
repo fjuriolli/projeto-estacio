@@ -23,8 +23,6 @@ class Itinerario extends Model
 
     public function logradouros()
     {
-        return $this->hasMany('App\Models\Logradouro'); 
+        return $this->belongsToMany('App\Models\Logradouro', 'itinerario_logradouro'); 
     }
-
-    //TO DO RELACIONAMENTO LOGRADOURO
 }

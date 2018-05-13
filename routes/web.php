@@ -37,9 +37,9 @@ Route::get('cadastro-linha', function () {
     return view('cadastro.cadastro-linha');
 });
 
-Route::get('cadastro-logradouro', function () {
-    return view('cadastro.cadastro-logradouro');
-});
+Route::get('/cadastro-logradouro', 'LogradouroController@create');
+Route::post('/registro-sucesso', 'LogradouroController@store');
+Route::resource('logradouro', 'LogradouroController');
 
 Route::get('cadastro-onibus', function () {
     return view('cadastro.cadastro-onibus');
@@ -58,7 +58,6 @@ Route::get('onibus-trajeto', function() {
 });
 
 Route::get('/teste-seeders-view', 'TesteController@get');
-
 
 Auth::routes();
 

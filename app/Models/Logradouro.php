@@ -16,11 +16,11 @@ class Logradouro extends Model
 
     public function paradas()
     {
-        return $this->hasMany('App\Models\Parada'); 
+        return $this->belongsToMany('App\Models\Parada', 'logradouro_parada'); 
     }
 
     public function itinerarios()
     {
-        return $this->belongsTo('App\Models\Itinerario');
+        return $this->belongsToMany('App\Models\Itinerario', 'itinerario_logradouro');
     }
 }

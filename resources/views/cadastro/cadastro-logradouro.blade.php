@@ -17,7 +17,7 @@
 
 <!-- Form -->
 <div class="form-page">
-  <form class="w3-container" action="/adiciona-logradouro" method="post">
+  <form class="w3-container" action="{{route ('logradouro.store')}}" method="post">
 
   <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
 
@@ -37,22 +37,13 @@
   </div>
 
   <div class="multi-select">
-    <label class="w3-text"><b>Selecione as Paradas que fazem parte deste Logradouro:</b></label>
+    <label for="parada_id" class="w3-text"><b>Selecione as Paradas que fazem parte deste Logradouro:</b></label>
     <div class="inside-select">
-      <select id="control_1" name="control_1[]" multiple="multiple" size="5">
-      <option value="0">010089 - Jequitinhonha - Boa Viagem</option>
-      <option value="1">010056 - Domingos Ferreira - Pina</option>
-      <option value="2">010043 - Jacy - Imbiribeira</option>
-      <option value="3">010078 - Domingos Ferreira - Boa Viagem</option>
-      <option value="4">010001 - Herculano Bandeira - Pina</option>
-      <option value="5">010012 - Castelo Branco - Candeias</option>
-      <option value="6">010023 - Morais - Pina</option>
-      <option value="7">010001 - Herculano Bandeira - Pina</option>
-      <option value="8">010012 - Castelo Branco - Candeias</option>
-      <option value="9">010023 - Morais - Pina</option>
-      <option value="10">010089 - Jequitinhonha - Boa Viagem</option>
-      <option value="11">010056 - Domingos Ferreira - Pina</option>
-      <option value="12">010043 - Jacy - Imbiribeira</option>
+      <select name="parada_id[]" multiple="multiple" size="5">
+      @foreach($paradas as $parada)
+      <option value="{{ $parada->id }}">
+        {{ $parada->nome }}</option> 
+      @endforeach
       </select>
     </div>
   </div>

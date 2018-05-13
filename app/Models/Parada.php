@@ -16,6 +16,6 @@ class Parada extends Model
 
     public function logradouros()
     {
-        return $this->belongsTo('App\Models\Logradouro');
+        return $this->belongsToMany('App\Models\Logradouro', 'logradouro_parada');
     }
 }
