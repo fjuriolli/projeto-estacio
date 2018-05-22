@@ -39,6 +39,10 @@ Route::get('cadastro-onibus', 'OnibusController@create');
 Route::post('/registro-sucesso', 'OnibusController@store');
 Route::resource('onibus', 'OnibusController');
 
+Route::get('onibus-trajeto', 'OnibusTrajetoController@create');
+Route::get('/registro-sucesso', 'OnibusController@store');
+Route::resource('trajeto', 'OnibusTrajetoController');
+
 
 Route::get('onibus-agora', function() {
     return view('negocio.onibus-agora');
@@ -46,10 +50,6 @@ Route::get('onibus-agora', function() {
 
 Route::get('onibus-itinerario', function() {
     return view('negocio.onibus-itinerario');
-});
-
-Route::get('onibus-trajeto', function() {
-    return view('negocio.onibus-trajeto');
 });
 
 Route::get('/teste-seeders-view', 'TesteController@get');

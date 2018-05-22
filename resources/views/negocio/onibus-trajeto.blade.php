@@ -18,22 +18,19 @@
 
 <!-- Form -->
 <div class="form-page">
-  <form class="w3-container" action="/adiciona-anel" method="post">
+  <form class="w3-container" action="{{route ('trajeto.store')}}" method="post">
 
     <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
 
-  <div class="form-parada">
+    <div class="form-parada">
     <label class="w3-text"><b>Selecione a Parada A</b></label>
     <div class="form-group-select">
       <div class="custom-select">
-        <select>
-        <option value="0">010089 - Jequitinhonha - Boa Viagem</option>
-        <option value="1">010056 - Domingos Ferreira - Pina</option>
-        <option value="2">010043 - Jacy - Imbiribeira</option>
-        <option value="3">010078 - Domingos Ferreira - Boa Viagem</option>
-        <option value="4">010001 - Herculano Bandeira - Pina</option>
-        <option value="5">010012 - Castelo Branco - Candeias</option>
-        <option value="6">010023 - Morais - Pina</option>
+        <select name="paradaA">
+        @foreach($paradas as $parada)
+        <option value="{{ $parada->id }}">
+          {{ $parada->nome }}</option> 
+        @endforeach
         </select>
       </div>
     </div>
@@ -43,14 +40,11 @@
     <label class="w3-text"><b>Selecione a Parada B</b></label>
     <div class="form-group-select">
       <div class="custom-select">
-        <select>
-        <option value="0">010012 - Castelo Branco - Candeias</option>
-        <option value="1">010056 - Domingos Ferreira - Pina</option>
-        <option value="2">010043 - Jacy - Imbiribeira</option>
-        <option value="3">010078 - Domingos Ferreira - Boa Viagem</option>
-        <option value="4">010001 - Herculano Bandeira - Pina</option>
-        <option value="5">010089 - Jequitinhonha - Boa Viagem</option>
-        <option value="6">010023 - Morais - Pina</option>
+      <select name="paradaB">
+        @foreach($paradas as $parada)
+        <option value="{{ $parada->id }}">
+          {{ $parada->nome }}</option> 
+        @endforeach
         </select>
       </div>
     </div>
