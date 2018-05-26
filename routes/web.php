@@ -43,10 +43,9 @@ Route::get('onibus-trajeto', 'OnibusTrajetoController@create');
 Route::get('/registro-sucesso', 'OnibusController@store');
 Route::resource('trajeto', 'OnibusTrajetoController');
 
-
-Route::get('onibus-agora', function() {
-    return view('negocio.onibus-agora');
-});
+Route::get('onibus-agora', 'OnibusAgoraController@create');
+Route::get('/registro-sucesso', 'OnibusAgoraController@store');
+Route::resource('agora', 'OnibusAgoraController');
 
 Route::get('onibus-itinerario', function() {
     return view('negocio.onibus-itinerario');

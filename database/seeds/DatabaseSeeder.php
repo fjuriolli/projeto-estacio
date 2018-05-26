@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call('LogradouroParadaSeeder');
         $this->call('ItinerarioSeeder');
         $this->call('ItinerarioLogradouroSeeder');
+        $this->call('OnibusLinhaSeeder');
     }
 }
 
@@ -40,9 +41,33 @@ class OnibusSeeder extends Seeder
         Onibus::create(['nome' => 'Ônibus 02', 'marca' => 'Volkswagen']);
         Onibus::create(['nome' => 'Ônibus 03', 'marca' => 'Scania']);
         Onibus::create(['nome' => 'Ônibus 04', 'marca' => 'Volkswagen']);
-        Onibus::create(['nome' => 'Ônibus 05', 'marca' => 'Scania']);
-        Onibus::create(['nome' => 'Ônibus 06', 'marca' => 'Volkswagen']);
     }
+}
+
+class LinhaSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('linhas')->delete();
+
+        Linha::create(['nome' => 'Jardim São Paulo (Abdias de Carvalho)', 'classificacao' => 'Circular']);
+        Linha::create(['nome' => 'Aeroporto (Opcional)', 'classificacao' => 'Circular']);
+    }   
+}
+
+class OnibusLinhaSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('linha_onibus')->delete();
+
+        DB::table('linha_onibus')->insert(array(
+            array('linha_id' => 1, 'onibus_id' => 1),
+            array('linha_id' => 1, 'onibus_id' => 2),
+            array('linha_id' => 2, 'onibus_id' => 3),
+            array('linha_id' => 2, 'onibus_id' => 4)
+        ));
+    }   
 }
 
 class AnelSeeder extends Seeder
@@ -259,17 +284,6 @@ class LogradouroParadaSeeder extends Seeder
             array('logradouro_id' => 24, 'parada_id' => 66),
         ));
     }
-}
-
-class LinhaSeeder extends Seeder
-{
-    public function run()
-    {
-        DB::table('linhas')->delete();
-
-        Linha::create(['nome' => 'Jardim São Paulo (Abdias de Carvalho)', 'classificacao' => 'Circular']);
-        Linha::create(['nome' => 'Aeroporto (Opcional)', 'classificacao' => 'Circular']);
-    }   
 }
 
 class ItinerarioSeeder extends Seeder

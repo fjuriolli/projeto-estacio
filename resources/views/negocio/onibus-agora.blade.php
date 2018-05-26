@@ -18,20 +18,17 @@
 
 <!-- Form -->
 <div class="form-page">
-  <form class="w3-container" action="/adiciona-anel" method="post">
+  <form class="w3-container" action="{{route ('agora.store')}}" method="post">
 
     <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
 
     <div class="custom-select" style="width:200px;">
       <label class="w3-text"><b>Seleciona uma Linha:</b></label>
-      <select>
-        <option value="0">AEROPORTO</option>
-        <option value="1">AEROPORTO (OPCIONAL)</option>
-        <option value="2">AGUAS COMPRIDAS</option>
-        <option value="3">BRASILIA TEIMOSA</option>
-        <option value="4">SETÚBAL</option>
-        <option value="4">VILA DO IPSEP</option>
-        <option value="4">JORDÃO ALTO</option>
+      <select name="linha">
+      @foreach($linhas as $linha)
+      <option value="{{ $linha->id }}">
+        {{ $linha->nome }}</option> 
+      @endforeach
       </select>
     </div>
 
