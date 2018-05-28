@@ -18,4 +18,9 @@ class Parada extends Model
     {
         return $this->belongsToMany('App\Models\Logradouro', 'logradouro_parada');
     }
+
+    public function onibus()
+    {
+        return $this->belongsToMany('App\Models\Onibus');
+    }
 }

@@ -10,11 +10,17 @@ class Onibus extends Model
     
     protected $fillable = [
         'nome',
-        'marca'
+        'marca',
+        'parada_atual'
     ];
 
     public function linhas()
     {
         return $this->belongsToMany('App\Models\Linha');
+    }
+
+    public function paradas()
+    {
+        return $this->belongsToMany('App\Models\Parada');
     }
 }
