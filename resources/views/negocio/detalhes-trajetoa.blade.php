@@ -8,8 +8,6 @@
 
 @section('conteudo')
 
-<h1> AAAAAAAAAAAAAAAAAAAAAAAA </h1>
-
 @foreach ($arrayLogradourosA as $logradouroA)
   <p>$logradouroA->nome</p>
   <p>$logradouroA->bairro</p>

@@ -74,38 +74,3 @@ class OnibusAgoraController extends Controller
         return view('negocio.resultado-agora', compact('tempoTotal1', 'tempoTotal2', 'nomeDoOnibus1', 'nomeDoOnibus2', 'paradaInicial1', 'paradaInicial2'));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// dd($arrayParadas[10]['nome']);
-//         $pegarParadaRandomica = array_rand($arrayParadas[0]->id, 1);
-//         dd($arrayParadas[$pegarParadaRandomica]);
-
-
-//         dd($arrayParadas[$pegarParadaRandomica]->nome);
-//         print_r($arrayParadas[$pegarParadaRandomica]);

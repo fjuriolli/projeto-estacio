@@ -64,13 +64,13 @@ class OnibusTrajetoController extends Controller
             // dd($pegarLogradourosB[0]->id);
             array_push($arrayLogradourosB, array("id" => $pegarLogradourosB[0]->id, "nome" => $pegarLogradourosB[0]->nome, "bairro" => $pegarLogradourosB[0]->bairro, "municipio" => $pegarLogradourosB[0]->municipio));
         }
-
+        
         return view('negocio.resultado-trajeto', compact('linhaA', 'linhaB'));
-        return view('negocio.detalhes-trajetoa', compact('arrayLogradourosA', 'arrayLogradourosB'));
-  
+        return $this->detalhesa($arrayLogradourosA, $arrayLogradourosB);
+        
     }
 
-    public function detalhesa () {
+    public function detalhesa($arrayLogradourosA, $arrayLogradourosB) {
         return view('negocio.detalhes-trajetoa', compact('arrayLogradourosA', 'arrayLogradourosB'));
     }
 }
