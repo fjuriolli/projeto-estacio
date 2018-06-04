@@ -30,38 +30,47 @@ class OnibusTrajetoController extends Controller
         $paradaA = DB::table('logradouro_parada')->select('logradouro_id')->where('parada_id', '=', $paradaA)->get()->all();
         $paradaB = DB::table('logradouro_parada')->select('logradouro_id')->where('parada_id', '=', $paradaB)->get()->all();
 
-        //id dos logradouros
-        echo ($paradaA[0]->logradouro_id);
-        echo ($paradaB[0]->logradouro_id);
-
         //pegar id do itinerario passando como parametro o id do logradouro
         $pegarItinerarioA = DB::table('itinerario_logradouro')->where('id', '=', $paradaA[0]->logradouro_id)->get()->all();
         $pegarItinerarioB = DB::table('itinerario_logradouro')->where('id', '=', $paradaB[0]->logradouro_id)->get()->all();
-
-        //id itinerario
-        echo ($pegarItinerarioA[0]->itinerario_id);
-        echo ($pegarItinerarioB[0]->itinerario_id);
-
 
         //pegar id da linha passando como parametro o id do itinerario
         $pegarNomeA = DB::table('itinerarios')->where('id', '=', $pegarItinerarioA[0]->itinerario_id)->get()->all();
         $pegarNomeB = DB::table('itinerarios')->where('id', '=', $pegarItinerarioB[0]->itinerario_id)->get()->all();
 
-        //id linha
-        echo ($pegarNomeA[0]->linha_id);
-        echo ($pegarNomeB[0]->linha_id);
-
         //pegar o nome da linha passando como parametro o id da mesma
-        $pegarItinerarioA = DB::table('linhas')->where('id', '=', $pegarNomeA[0]->linha_id)->get()->all();
-        $pegarItinerarioB = DB::table('linhas')->where('id', '=', $pegarNomeB[0]->linha_id)->get()->all();
+        $pegarLinhaA = DB::table('linhas')->where('id', '=', $pegarNomeA[0]->linha_id)->get()->all();
+        $pegarLinhaB = DB::table('linhas')->where('id', '=', $pegarNomeB[0]->linha_id)->get()->all();
 
-        if ($pegarItinerarioA[0]->nome == $pegarItinerarioB[0]->nome) {
-            echo $pegarItinerarioA[0]->nome;
-        } else {
-            echo $pegarItinerarioA[0]->nome;
-            echo $pegarItinerarioB[0]->nome;
+        $linhaA = $pegarLinhaA[0]->nome;
+        $linhaB = $pegarLinhaB[0]->nome;
+
+
+        $pegarItinerarioA = DB::table('itinerarios')->where('id', '=', $pegarLinhaA[0]->id)->get()->all();
+        $pegarItinerarioB = DB::table('itinerarios')->where('id', '=', $pegarLinhaB[0]->id)->get()->all();
+
+        $pegarIdsLogradourosA = DB::table('itinerario_logradouro')->where('itinerario_id', '=', $pegarItinerarioA[0]->id)->get()->all();
+        $pegarIdsLogradourosB = DB::table('itinerario_logradouro')->where('itinerario_id', '=', $pegarItinerarioB[0]->id)->get()->all();
+
+        $arrayLogradourosA = [];
+        foreach ($pegarIdsLogradourosA as $logradouro) {
+            $pegarLogradourosA = DB::table('logradouros')->where('id', '=', $logradouro->logradouro_id)->get()->all();
+            array_push($arrayLogradourosA, array("id" => $pegarLogradourosA[0]->id, "nome" => $pegarLogradourosA[0]->nome, "bairro" => $pegarLogradourosA[0]->bairro, "municipio" => $pegarLogradourosA[0]->municipio));
         }
 
-        //TO DO jogar os dados na tela
+        $arrayLogradourosB = [];
+        foreach ($pegarIdsLogradourosB as $logradouro) {
+            $pegarLogradourosB = DB::table('logradouros')->where('id', '=', $logradouro->logradouro_id)->get()->all();
+            // dd($pegarLogradourosB[0]->id);
+            array_push($arrayLogradourosB, array("id" => $pegarLogradourosB[0]->id, "nome" => $pegarLogradourosB[0]->nome, "bairro" => $pegarLogradourosB[0]->bairro, "municipio" => $pegarLogradourosB[0]->municipio));
+        }
+
+        return view('negocio.resultado-trajeto', compact('linhaA', 'linhaB'));
+        return view('negocio.detalhes-trajetoa', compact('arrayLogradourosA', 'arrayLogradourosB'));
+  
+    }
+
+    public function detalhesa () {
+        return view('negocio.detalhes-trajetoa', compact('arrayLogradourosA', 'arrayLogradourosB'));
     }
 }

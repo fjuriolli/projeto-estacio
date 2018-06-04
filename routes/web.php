@@ -40,11 +40,12 @@ Route::post('/registro-sucesso', 'OnibusController@store');
 Route::resource('onibus', 'OnibusController');
 
 Route::get('onibus-trajeto', 'OnibusTrajetoController@create');
-Route::get('/registro-sucesso', 'OnibusController@store');
+Route::get('/resultado-trajeto', 'OnibusTrajetoController@store');
+Route::get('/detalhes-trajetoa', 'OnibusTrajetoController@detalhesa');
 Route::resource('trajeto', 'OnibusTrajetoController');
 
 Route::get('onibus-agora', 'OnibusAgoraController@create');
-Route::get('/registro-sucesso', 'OnibusAgoraController@store');
+Route::get('/resultado-agora', 'OnibusAgoraController@store');
 Route::resource('agora', 'OnibusAgoraController');
 
 Route::get('onibus-itinerario', function() {

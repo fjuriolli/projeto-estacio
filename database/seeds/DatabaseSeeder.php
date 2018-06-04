@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call('ItinerarioSeeder');
         $this->call('ItinerarioLogradouroSeeder');
         $this->call('OnibusLinhaSeeder');
-        // $this->call('OnibusParadaSeeder');
     }
 }
 
@@ -43,55 +42,6 @@ class OnibusSeeder extends Seeder
         Onibus::create(['nome' => 'Ônibus 03 - Jardim São Paulo (Abdias de Carvalho)', 'marca' => 'Scania']);
         Onibus::create(['nome' => 'Ônibus 04 - Jardim São Paulo (Abdias de Carvalho)', 'marca' => 'Volkswagen']);
     }
-}
-
-class OnibusParadaSeeder extends Seeder
-{
-    public function run()
-    {
-        DB::table('onibus_parada')->delete();
-
-        // DB::table('onibus_parada')->insert(array(
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-        //     array('onibus_id' => 1, 'parada_id' => ),
-
-        // ));
-    }   
 }
 
 class LinhaSeeder extends Seeder
@@ -112,10 +62,10 @@ class OnibusLinhaSeeder extends Seeder
         DB::table('linha_onibus')->delete();
 
         DB::table('linha_onibus')->insert(array(
-            array('linha_id' => 1, 'onibus_id' => 1),
-            array('linha_id' => 1, 'onibus_id' => 2),
-            array('linha_id' => 2, 'onibus_id' => 3),
-            array('linha_id' => 2, 'onibus_id' => 4)
+            array('linha_id' => 1, 'onibus_id' => 3),
+            array('linha_id' => 1, 'onibus_id' => 4),
+            array('linha_id' => 2, 'onibus_id' => 1),
+            array('linha_id' => 2, 'onibus_id' => 2)
         ));
     }   
 }
@@ -153,73 +103,73 @@ class ParadaSeeder extends Seeder
     {
         DB::table('paradas')->delete();
 
-        Parada::create(['cod_identificacao' => '001', 'nome' => 'Parada 1 - Tejipió', 'endereco_completo' => 'Estação de Metrô Tejipió']);
-        Parada::create(['cod_identificacao' => '002', 'nome' => 'Parada 2 - Tejipió', 'endereco_completo' => 'Estação de Metrô Tejipió']);
-        Parada::create(['cod_identificacao' => '003', 'nome' => 'Parada 3 - Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '004', 'nome' => 'Parada 4 - Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '005', 'nome' => 'Parada 5 - Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '006', 'nome' => 'Parada 6 - Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '007', 'nome' => 'Parada 7 - Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '008', 'nome' => 'Parada 8 - Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '009', 'nome' => 'Parada 9 - Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '010', 'nome' => 'Parada 10 - Liberdade', 'endereco_completo' => 'Avenida Liberdade']);
-        Parada::create(['cod_identificacao' => '011', 'nome' => 'Parada 11 - Liberdade', 'endereco_completo' => 'Avenida Liberdade']);
-        Parada::create(['cod_identificacao' => '012', 'nome' => 'Parada 12 - Leandro Barreto', 'endereco_completo' => 'Avenida Leandro Barreto']);
-        Parada::create(['cod_identificacao' => '013', 'nome' => 'Parada 13 - Leandro Barreto', 'endereco_completo' => 'Avenida Leandro Barreto']);
-        Parada::create(['cod_identificacao' => '014', 'nome' => 'Parada 14 - Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
-        Parada::create(['cod_identificacao' => '015', 'nome' => 'Parada 15 - Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
-        Parada::create(['cod_identificacao' => '016', 'nome' => 'Parada 16 - Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
-        Parada::create(['cod_identificacao' => '017', 'nome' => 'Parada 17 - São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
-        Parada::create(['cod_identificacao' => '018', 'nome' => 'Parada 18 - São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
-        Parada::create(['cod_identificacao' => '019', 'nome' => 'Parada 19 - São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
-        Parada::create(['cod_identificacao' => '020', 'nome' => 'Parada 20 - Aníbal Portela', 'endereco_completo' => 'Rua Aníbal Portela']);
-        Parada::create(['cod_identificacao' => '021', 'nome' => 'Parada 21 - Aníbal Portela', 'endereco_completo' => 'Rua Aníbal Portela']);
-        Parada::create(['cod_identificacao' => '022', 'nome' => 'Parada 22 - Aníbal Portela', 'endereco_completo' => 'Rua Aníbal Portela']);
-        Parada::create(['cod_identificacao' => '023', 'nome' => 'Parada 23 - Aníbal Portela', 'endereco_completo' => 'Rua Aníbal Portela']);
+        Parada::create(['cod_identificacao' => '001', 'nome' => 'Parada 1 - Estação Tejipió', 'endereco_completo' => 'Estação de Metrô Tejipió']);
+        Parada::create(['cod_identificacao' => '002', 'nome' => 'Parada 2 - Estação Tejipió', 'endereco_completo' => 'Estação de Metrô Tejipió']);
+        Parada::create(['cod_identificacao' => '003', 'nome' => 'Parada 3 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '004', 'nome' => 'Parada 4 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '005', 'nome' => 'Parada 5 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '006', 'nome' => 'Parada 6 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '007', 'nome' => 'Parada 7 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '008', 'nome' => 'Parada 8 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '009', 'nome' => 'Parada 9 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '010', 'nome' => 'Parada 10 - Avenida Liberdade', 'endereco_completo' => 'Avenida Liberdade']);
+        Parada::create(['cod_identificacao' => '011', 'nome' => 'Parada 11 - Avenida Liberdade', 'endereco_completo' => 'Avenida Liberdade']);
+        Parada::create(['cod_identificacao' => '012', 'nome' => 'Parada 12 - Avenida Leandro Barreto', 'endereco_completo' => 'Avenida Leandro Barreto']);
+        Parada::create(['cod_identificacao' => '013', 'nome' => 'Parada 13 - Avenida Leandro Barreto', 'endereco_completo' => 'Avenida Leandro Barreto']);
+        Parada::create(['cod_identificacao' => '014', 'nome' => 'Parada 14 - Viaduto Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
+        Parada::create(['cod_identificacao' => '015', 'nome' => 'Parada 15 - Viaduto Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
+        Parada::create(['cod_identificacao' => '016', 'nome' => 'Parada 16 - Viaduto Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
+        Parada::create(['cod_identificacao' => '017', 'nome' => 'Parada 17 - Avenida São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
+        Parada::create(['cod_identificacao' => '018', 'nome' => 'Parada 18 - Avenida São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
+        Parada::create(['cod_identificacao' => '019', 'nome' => 'Parada 19 - Avenida São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
+        Parada::create(['cod_identificacao' => '020', 'nome' => 'Parada 20 - Rua Aníbal Portela', 'endereco_completo' => 'Rua Aníbal Portela']);
+        Parada::create(['cod_identificacao' => '021', 'nome' => 'Parada 21 - Rua Aníbal Portela', 'endereco_completo' => 'Rua Aníbal Portela']);
+        Parada::create(['cod_identificacao' => '022', 'nome' => 'Parada 22 - Rua Aníbal Portela', 'endereco_completo' => 'Rua Aníbal Portela']);
+        Parada::create(['cod_identificacao' => '023', 'nome' => 'Parada 23 - Rua Aníbal Portela', 'endereco_completo' => 'Rua Aníbal Portela']);
         Parada::create(['cod_identificacao' => '024', 'nome' => 'Parada 24 - BR-101', 'endereco_completo' => 'Rodovia BR-101']);
         Parada::create(['cod_identificacao' => '025', 'nome' => 'Parada 25 - BR-101', 'endereco_completo' => 'Rodovia BR-101']);
         Parada::create(['cod_identificacao' => '026', 'nome' => 'Parada 26 - BR-101', 'endereco_completo' => 'Rodovia BR-101']);
         Parada::create(['cod_identificacao' => '027', 'nome' => 'Parada 27 - BR-101', 'endereco_completo' => 'Rodovia BR-101']);
         Parada::create(['cod_identificacao' => '028', 'nome' => 'Parada 28 - VIA DE ACESSO À AVENIDA ABDIAS DE CARVALHO', 'endereco_completo' => 'VIA DE ACESSO À AVENIDA ABDIAS DE CARVALHO']);
         Parada::create(['cod_identificacao' => '029', 'nome' => 'Parada 29 - VIA DE ACESSO À AVENIDA ABDIAS DE CARVALHO', 'endereco_completo' => 'VIA DE ACESSO À AVENIDA ABDIAS DE CARVALHO']);
-        Parada::create(['cod_identificacao' => '030', 'nome' => 'Parada 30 - Engenheiro Abdias de Carvalho', 'endereco_completo' => 'Avenida Engenheiro Abdias de Carvalho']);
-        Parada::create(['cod_identificacao' => '031', 'nome' => 'Parada 31 - Engenheiro Abdias de Carvalho', 'endereco_completo' => 'Avenida Engenheiro Abdias de Carvalho']);
-        Parada::create(['cod_identificacao' => '032', 'nome' => 'Parada 32 - General San Martin', 'endereco_completo' => 'Avenida General San Martin']);
-        Parada::create(['cod_identificacao' => '033', 'nome' => 'Parada 33 - Gomes Taborda', 'endereco_completo' => 'Gomes Taborda']);
-        Parada::create(['cod_identificacao' => '034', 'nome' => 'Parada 34 - Carlos Gomes', 'endereco_completo' => 'Carlos Gomes']);
+        Parada::create(['cod_identificacao' => '030', 'nome' => 'Parada 30 - Av. Engenheiro Abdias de Carvalho', 'endereco_completo' => 'Avenida Engenheiro Abdias de Carvalho']);
+        Parada::create(['cod_identificacao' => '031', 'nome' => 'Parada 31 - Av. Engenheiro Abdias de Carvalho', 'endereco_completo' => 'Avenida Engenheiro Abdias de Carvalho']);
+        Parada::create(['cod_identificacao' => '032', 'nome' => 'Parada 32 - Avenida General San Martin', 'endereco_completo' => 'Avenida General San Martin']);
+        Parada::create(['cod_identificacao' => '033', 'nome' => 'Parada 33 - Rua Gomes Taborda', 'endereco_completo' => 'Rua Gomes Taborda']);
+        Parada::create(['cod_identificacao' => '034', 'nome' => 'Parada 34 - Rua Carlos Gomes', 'endereco_completo' => 'Rua Carlos Gomes']);
 
-        Parada::create(['cod_identificacao' => '035', 'nome' => 'Parada 35 - Copacabana', 'endereco_completo' => 'Rua Copacabana']);
-        Parada::create(['cod_identificacao' => '036', 'nome' => 'Parada 36 - Copacabana', 'endereco_completo' => 'Rua Copacabana']);
-        Parada::create(['cod_identificacao' => '037', 'nome' => 'Parada 37 - Copacabana', 'endereco_completo' => 'Rua Copacabana']);
-        Parada::create(['cod_identificacao' => '038', 'nome' => 'Parada 38 - Boa Viagem', 'endereco_completo' => 'Rua Vinte de Janeiro']);
-        Parada::create(['cod_identificacao' => '039', 'nome' => 'Parada 39 - Boa Viagem', 'endereco_completo' => 'Rua Vinte de Janeiro']);
-        Parada::create(['cod_identificacao' => '040', 'nome' => 'Parada 40 - Boa Viagem', 'endereco_completo' => 'Rua Barão de Souza Leão']);
-        Parada::create(['cod_identificacao' => '041', 'nome' => 'Parada 41 - Boa Viagem', 'endereco_completo' => 'Rua Barão de Souza Leão']);
-        Parada::create(['cod_identificacao' => '042', 'nome' => 'Parada 42 - Boa Viagem', 'endereco_completo' => 'Rua Barão de Souza Leão']);
-        Parada::create(['cod_identificacao' => '043', 'nome' => 'Parada 43 - Boa Viagem', 'endereco_completo' => 'Rua Barão de Souza Leão']);
-        Parada::create(['cod_identificacao' => '044', 'nome' => 'Parada 44 - Boa Viagem', 'endereco_completo' => 'Rua Barão de Souza Leão']);
-        Parada::create(['cod_identificacao' => '045', 'nome' => 'Parada 45 - Mascarenhas de Morais (Leste)', 'endereco_completo' => 'Avenida Mascarenhas de Morais (Leste)']);
-        Parada::create(['cod_identificacao' => '046', 'nome' => 'Parada 46 - Mascarenhas de Morais (Leste)', 'endereco_completo' => 'Avenida Mascarenhas de Morais (Leste)']);
-        Parada::create(['cod_identificacao' => '047', 'nome' => 'Parada 47 - Mascarenhas de Morais (Leste)', 'endereco_completo' => 'Avenida Mascarenhas de Morais (Leste)']);
-        Parada::create(['cod_identificacao' => '048', 'nome' => 'Parada 48 - Mascarenhas de Morais (Leste)', 'endereco_completo' => 'Avenida Mascarenhas de Morais (Leste)']);
-        Parada::create(['cod_identificacao' => '049', 'nome' => 'Parada 49 - Mascarenhas de Morais (Oeste)', 'endereco_completo' => 'Avenida Mascarenhas de Morais (Oeste)']);
-        Parada::create(['cod_identificacao' => '050', 'nome' => 'Parada 50 - Mascarenhas de Morais (Oeste)', 'endereco_completo' => 'Avenida Mascarenhas de Morais (Oeste)']);
-        Parada::create(['cod_identificacao' => '051', 'nome' => 'Parada 51 - Ministro Salgado Filho', 'endereco_completo' => 'Praça Ministro Salgado Filho']);
-        Parada::create(['cod_identificacao' => '052', 'nome' => 'Parada 52 - Ministro Salgado Filho', 'endereco_completo' => 'Praça Ministro Salgado Filho']);
-        Parada::create(['cod_identificacao' => '053', 'nome' => 'Parada 53 - Dez de Julho', 'endereco_completo' => 'Rua Dez de Julho']);
-        Parada::create(['cod_identificacao' => '054', 'nome' => 'Parada 54 - Dez de Julho', 'endereco_completo' => 'Rua Dez de Julho']);
-        Parada::create(['cod_identificacao' => '055', 'nome' => 'Parada 55 - Dez de Julho', 'endereco_completo' => 'Rua Dez de Julho']);
-        Parada::create(['cod_identificacao' => '056', 'nome' => 'Parada 56 - Dez de Julho', 'endereco_completo' => 'Rua Dez de Julho']);
-        Parada::create(['cod_identificacao' => '057', 'nome' => 'Parada 57 - Dez de Julho', 'endereco_completo' => 'Rua Dez de Julho']);
-        Parada::create(['cod_identificacao' => '058', 'nome' => 'Parada 58 - Vinte de Janeiro', 'endereco_completo' => 'Avenida Vinte de Janeiro']);
-        Parada::create(['cod_identificacao' => '059', 'nome' => 'Parada 59 - Vinte de Janeiro', 'endereco_completo' => 'Avenida Vinte de Janeiro']);
-        Parada::create(['cod_identificacao' => '060', 'nome' => 'Parada 60 - João Cardoso Ayres', 'endereco_completo' => 'Avenida João Cardoso Ayres']);
-        Parada::create(['cod_identificacao' => '061', 'nome' => 'Parada 61 - João Cardoso Ayres', 'endereco_completo' => 'Avenida João Cardoso Ayres']);
-        Parada::create(['cod_identificacao' => '062', 'nome' => 'Parada 62 - João Cardoso Ayres', 'endereco_completo' => 'Avenida João Cardoso Ayres']);
-        Parada::create(['cod_identificacao' => '063', 'nome' => 'Parada 63 - Sá e Souza', 'endereco_completo' => 'Rua Sá e Souza']);
-        Parada::create(['cod_identificacao' => '064', 'nome' => 'Parada 64 - Sá e Souza', 'endereco_completo' => 'Rua Sá e Souza']);
-        Parada::create(['cod_identificacao' => '065', 'nome' => 'Parada 65 - Padre Cabral', 'endereco_completo' => 'Rua Padre Cabral']);
-        Parada::create(['cod_identificacao' => '066', 'nome' => 'Parada 66 - Padre Cabral', 'endereco_completo' => 'Rua Padre Cabral']);
+        Parada::create(['cod_identificacao' => '035', 'nome' => 'Parada 35 - Rua Copacabana', 'endereco_completo' => 'Rua Cobacabana ']);
+        Parada::create(['cod_identificacao' => '036', 'nome' => 'Parada 36 - Rua Copacabana', 'endereco_completo' => 'Rua Copacabana']);
+        Parada::create(['cod_identificacao' => '037', 'nome' => 'Parada 37 - Rua Copacabana', 'endereco_completo' => 'Rua Copacabana']);
+        Parada::create(['cod_identificacao' => '038', 'nome' => 'Parada 38 - Rua Vinte de Janeiro', 'endereco_completo' => 'Rua Vinte de Janeiro']);
+        Parada::create(['cod_identificacao' => '039', 'nome' => 'Parada 39 - Rua Vinte de Janeiro', 'endereco_completo' => 'Rua Vinte de Janeiro']);
+        Parada::create(['cod_identificacao' => '040', 'nome' => 'Parada 40 - Rua Barão de Souza Leão', 'endereco_completo' => 'Rua Barão de Souza Leão']);
+        Parada::create(['cod_identificacao' => '041', 'nome' => 'Parada 41 - Rua Barão de Souza Leão', 'endereco_completo' => 'Rua Barão de Souza Leão']);
+        Parada::create(['cod_identificacao' => '042', 'nome' => 'Parada 42 - Rua Barão de Souza Leão', 'endereco_completo' => 'Rua Barão de Souza Leão']);
+        Parada::create(['cod_identificacao' => '043', 'nome' => 'Parada 43 - Rua Barão de Souza Leão', 'endereco_completo' => 'Rua Barão de Souza Leão']);
+        Parada::create(['cod_identificacao' => '044', 'nome' => 'Parada 44 - Rua Barão de Souza Leão', 'endereco_completo' => 'Rua Barão de Souza Leão']);
+        Parada::create(['cod_identificacao' => '045', 'nome' => 'Parada 45 - Av. Mascarenhas de Morais (Leste)', 'endereco_completo' => 'Avenida Mascarenhas de Morais (Leste)']);
+        Parada::create(['cod_identificacao' => '046', 'nome' => 'Parada 46 - Av. Mascarenhas de Morais (Leste)', 'endereco_completo' => 'Avenida Mascarenhas de Morais (Leste)']);
+        Parada::create(['cod_identificacao' => '047', 'nome' => 'Parada 47 - Av. Mascarenhas de Morais (Leste)', 'endereco_completo' => 'Avenida Mascarenhas de Morais (Leste)']);
+        Parada::create(['cod_identificacao' => '048', 'nome' => 'Parada 48 - Av. Mascarenhas de Morais (Leste)', 'endereco_completo' => 'Avenida Mascarenhas de Morais (Leste)']);
+        Parada::create(['cod_identificacao' => '049', 'nome' => 'Parada 49 - Av. Mascarenhas de Morais (Oeste)', 'endereco_completo' => 'Avenida Mascarenhas de Morais (Oeste)']);
+        Parada::create(['cod_identificacao' => '050', 'nome' => 'Parada 50 - Av. Mascarenhas de Morais (Oeste)', 'endereco_completo' => 'Avenida Mascarenhas de Morais (Oeste)']);
+        Parada::create(['cod_identificacao' => '051', 'nome' => 'Parada 51 - Avenida Ministro Salgado Filho', 'endereco_completo' => 'Praça Ministro Salgado Filho']);
+        Parada::create(['cod_identificacao' => '052', 'nome' => 'Parada 52 - Avenida Ministro Salgado Filho', 'endereco_completo' => 'Praça Ministro Salgado Filho']);
+        Parada::create(['cod_identificacao' => '053', 'nome' => 'Parada 53 - Rua Dez de Julho', 'endereco_completo' => 'Rua Dez de Julho']);
+        Parada::create(['cod_identificacao' => '054', 'nome' => 'Parada 54 - Rua Dez de Julho', 'endereco_completo' => 'Rua Dez de Julho']);
+        Parada::create(['cod_identificacao' => '055', 'nome' => 'Parada 55 - Rua Dez de Julho', 'endereco_completo' => 'Rua Dez de Julho']);
+        Parada::create(['cod_identificacao' => '056', 'nome' => 'Parada 56 - Rua Dez de Julho', 'endereco_completo' => 'Rua Dez de Julho']);
+        Parada::create(['cod_identificacao' => '057', 'nome' => 'Parada 57 - Rua Dez de Julho', 'endereco_completo' => 'Rua Dez de Julho']);
+        Parada::create(['cod_identificacao' => '058', 'nome' => 'Parada 58 - Avenida Vinte de Janeiro', 'endereco_completo' => 'Avenida Vinte de Janeiro']);
+        Parada::create(['cod_identificacao' => '059', 'nome' => 'Parada 59 - Avenida Vinte de Janeiro', 'endereco_completo' => 'Avenida Vinte de Janeiro']);
+        Parada::create(['cod_identificacao' => '060', 'nome' => 'Parada 60 - Avenida João Cardoso Ayres', 'endereco_completo' => 'Avenida João Cardoso Ayres']);
+        Parada::create(['cod_identificacao' => '061', 'nome' => 'Parada 61 - Avenida João Cardoso Ayres', 'endereco_completo' => 'Avenida João Cardoso Ayres']);
+        Parada::create(['cod_identificacao' => '062', 'nome' => 'Parada 62 - Avenida João Cardoso Ayres', 'endereco_completo' => 'Avenida João Cardoso Ayres']);
+        Parada::create(['cod_identificacao' => '063', 'nome' => 'Parada 63 - Rua Sá e Souza', 'endereco_completo' => 'Rua Sá e Souza']);
+        Parada::create(['cod_identificacao' => '064', 'nome' => 'Parada 64 - Rua Sá e Souza', 'endereco_completo' => 'Rua Sá e Souza']);
+        Parada::create(['cod_identificacao' => '065', 'nome' => 'Parada 65 - Rua Padre Cabral', 'endereco_completo' => 'Rua Padre Cabral']);
+        Parada::create(['cod_identificacao' => '066', 'nome' => 'Parada 66 - Rua Padre Cabral', 'endereco_completo' => 'Rua Padre Cabral']);
     }
 }
 
