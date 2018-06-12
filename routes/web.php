@@ -48,11 +48,9 @@ Route::get('onibus-agora', 'OnibusAgoraController@create');
 Route::get('/resultado-agora', 'OnibusAgoraController@store');
 Route::resource('agora', 'OnibusAgoraController');
 
-Route::get('onibus-itinerario', function() {
-    return view('negocio.onibus-itinerario');
-});
-
-Route::get('/teste-seeders-view', 'TesteController@get');
+Route::get('onibus-itinerario', 'OnibusItinerarioController@create');
+Route::get('/resultado-itinerario', 'OnibusItinerarioController@store');
+Route::resource('itinerario', 'OnibusItinerarioController');
 
 Auth::routes();
 

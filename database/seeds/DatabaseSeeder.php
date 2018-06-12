@@ -37,8 +37,8 @@ class OnibusSeeder extends Seeder
     {
         DB::table('onibus')->delete();
 
-        Onibus::create(['nome' => 'Ônibus 01 - Aeroporto(opcional)', 'marca' => 'Mercedes Benz']);
-        Onibus::create(['nome' => 'Ônibus 02 - Aeroporto(opcional)', 'marca' => 'Volkswagen']);
+        Onibus::create(['nome' => 'Ônibus 01 - Aeroporto (opcional)', 'marca' => 'Mercedes Benz']);
+        Onibus::create(['nome' => 'Ônibus 02 - Aeroporto (opcional)', 'marca' => 'Volkswagen']);
         Onibus::create(['nome' => 'Ônibus 03 - Jardim São Paulo (Abdias de Carvalho)', 'marca' => 'Scania']);
         Onibus::create(['nome' => 'Ônibus 04 - Jardim São Paulo (Abdias de Carvalho)', 'marca' => 'Volkswagen']);
     }

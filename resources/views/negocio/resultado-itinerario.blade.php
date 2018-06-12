@@ -7,80 +7,27 @@
 @stop
 
 @section('conteudo')
-
-
 <!-- Header -->
 <div class="w3-container container-top-page" id="showcase">
   <h1 class="w3-x-jumbo"><b>Localizar Ônibus</b></h1>
-  <h1 class="w3-xxlarge w3-text" id="top-page"><b>Trajeto</b></h1>
+  <h1 class="w3-xxlarge w3-text" id="top-page"><b>Por Linha</b></h1>
   <hr class="w3-round">
 </div>
 
-<!-- Form -->
-<div class="form-page">
-  <form class="w3-container" action="{{route ('trajeto.store')}}" method="post">
+<br>
 
-    <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
-
-    <div class="form-parada">
-    <label class="w3-text"><b>Selecione a Parada A</b></label>
-    <div class="form-group-select">
-      <div class="custom-select">
-        <select name="paradaA">
-        @foreach($paradas as $parada)
-        <option value="{{ $parada->id }}">
-          {{ $parada->nome }}</option> 
-        @endforeach
-        </select>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-parada">
-    <label class="w3-text"><b>Selecione a Parada B</b></label>
-    <div class="form-group-select">
-      <div class="custom-select">
-      <select name="paradaB">
-        @foreach($paradas as $parada)
-        <option value="{{ $parada->id }}">
-          {{ $parada->nome }}</option> 
-        @endforeach
-        </select>
-      </div>
-    </div>
-  </div>
-
-  <button class="w3-btn w3-blue" id="btn-page" type="text">Confirmar</button>
-
-  <div class="help-tip">
-    <p>Localizar o ônibus pelo seu trajeto, passando como referência duas paradas. O resultado será as linhas que passam pelo trajeto selecionado.</p>
-  </div>
-
-  <br>
-  <br>
-  <br>
-  RESULTADO<br>
-  As seguintes linhas passam pelo trajeto selecionado:
-  <br>
-  • AEROPORTO<br>
-  • AEROPORTO (OPCIONAL)<br>
-  • AGUAS COMPRIDAS<br>
-  <br>
-
-  Clique em alguma linha acima para verificar o seu itinerário completo
-
-  </form>
-</div>
-
-<!-- Padding -->
-<div class="w3-light-grey w3-container w3-padding-24"><p class="w3-right">Powered by Wizzle &copy</p></div>
+<b>Os seguintes ônibus estão atualmente neste trajeto da linha selecionada:</b>
+@foreach ($arrayOnibus as $onibus)
+  <p>{{ $onibus['nome'] }}</p>
+@endforeach
+  
 
 <style>
-
+  
 /* --------------- START OF HELP TIP --------------- */
 .help-tip{
   position: relative;
-  top: -281px;
+  top: -347px;
   right: -135px;
   text-align: center;
   background-color: #BCDBEA;
@@ -169,9 +116,8 @@
   0% { opacity:0; }
   100% { opacity:100%; }
 }
+
 /* --------------- END OF HELP TIP --------------- */
-
 </style>
-
 
 @stop

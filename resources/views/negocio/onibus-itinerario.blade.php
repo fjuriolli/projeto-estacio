@@ -11,55 +11,40 @@
 
 <!-- Header -->
 <div class="w3-container container-top-page" id="showcase">
-  <h1 class="w3-x-jumbo"><b>Localizar</b></h1>
-  <h1 class="w3-xxlarge w3-text" id="top-page"><b>Ônibus</b></h1>
+  <h1 class="w3-x-jumbo"><b>Localizar Ônibus</b></h1>
+  <h1 class="w3-xxlarge w3-text" id="top-page"><b>Linha</b></h1>
   <hr class="w3-round">
 </div>
 
 <!-- Form -->
 <div class="form-page">
-  <form class="w3-container" action="/adiciona-anel" method="post">
+  <form class="w3-container" action="{{route ('itinerario.store')}}" method="post">
 
   <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
 
   <div class="form-parada">
-    <label class="w3-text"><b>Selecione a Parada em que você está</b></label>
+    <label class="w3-text"><b>Selecione a Parada</b></label>
     <div class="form-group-select">
       <div class="custom-select">
-        <select>
-        <option value="0">010089 - Jequitinhonha - Boa Viagem</option>
-        <option value="1">010056 - Domingos Ferreira - Pina</option>
-        <option value="2">010043 - Jacy - Imbiribeira</option>
-        <option value="3">010078 - Domingos Ferreira - Boa Viagem</option>
-        <option value="4">010001 - Herculano Bandeira - Pina</option>
-        <option value="5">010012 - Castelo Branco - Candeias</option>
-        <option value="6">010023 - Morais - Pina</option>
+        <select name="parada">
+        @foreach($paradas as $parada)
+        <option value="{{ $parada->id }}">
+          {{ $parada->nome }}</option> 
+        @endforeach
         </select>
       </div>
     </div>
   </div>
 
   <div class="custom-select" style="width:200px;">
-    <label class="w3-text"><b>Selecione uma Linha:</b></label>
-    <select>
-      <option value="0">AEROPORTO</option>
-      <option value="1">AEROPORTO (OPCIONAL)</option>
-      <option value="2">AGUAS COMPRIDAS</option>
-      <option value="3">BRASILIA TEIMOSA</option>
-      <option value="4">SETÚBAL</option>
-      <option value="4">VILA DO IPSEP</option>
-      <option value="4">JORDÃO ALTO</option>
-    </select>
-  </div>
-
-  <div class="custom-select" style="width:200px;">
-    <label class="w3-text"><b>Selecione um Itinerário:</b></label>
-    <select>
-      <option value="0">Principal</option>
-      <option value="1">Via Cohab</option>
-      <option value="2">Via Rosário</option>
-    </select>
-  </div>
+      <label class="w3-text"><b>Seleciona uma Linha:</b></label>
+      <select name="linha">
+      @foreach($linhas as $linha)
+      <option value="{{ $linha->id }}">
+        {{ $linha->nome }}</option> 
+      @endforeach
+      </select>
+    </div>
 
   <button class="w3-btn w3-blue" id="btn-page" type="text">Localizar</button>
 
@@ -86,8 +71,8 @@
 /* --------------- START OF HELP TIP --------------- */
 .help-tip{
   position: relative;
-  top: -347px;
-  right: -135px;
+  top: -280px;
+  right: -105px;
   text-align: center;
   background-color: #BCDBEA;
   border-radius: 50%;
