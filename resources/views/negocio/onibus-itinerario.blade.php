@@ -22,20 +22,6 @@
 
   <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
 
-  <div class="form-parada">
-    <label class="w3-text"><b>Selecione a Parada</b></label>
-    <div class="form-group-select">
-      <div class="custom-select">
-        <select name="parada">
-        @foreach($paradas as $parada)
-        <option value="{{ $parada->id }}">
-          {{ $parada->nome }}</option> 
-        @endforeach
-        </select>
-      </div>
-    </div>
-  </div>
-
   <div class="custom-select" style="width:200px;">
       <label class="w3-text"><b>Seleciona uma Linha:</b></label>
       <select name="linha">
@@ -71,7 +57,7 @@
 /* --------------- START OF HELP TIP --------------- */
 .help-tip{
   position: relative;
-  top: -280px;
+  top: -215px;
   right: -105px;
   text-align: center;
   background-color: #BCDBEA;

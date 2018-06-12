@@ -17,14 +17,26 @@
 
 <br>
 @if ( $linhaA == $linhaB )
-  <h3> As seguintes linhas passam pelo trajeto selecionado: </h3>
-  <h5><a href="/detalhes-trajetoa"> - {{$linhaA}} </a></h5>
+  <b> As seguintes linhas passam pelo trajeto selecionado: </b></br></br>
+  <b>Nome da Linha:</b> {{$nomeLinhaA}}<br>
+  <b>Classificação:</b> {{$classificacaoLinhaA}}<br>
+  <b>Anel:</b> {{$nomeAnelLinhaA}}<br>
+  <b>Tarifa:</b> R$ {{$tarifaAnelLinhaA}}<br>
   
-    
+  
 @else
-  <h3> As seguintes linhas passam pelo trajeto selecionado: </h3>
-  <h5><a href="/detalhes-trajetoa"> - {{$linhaA}} </a></h5></h5>
-  <h5><a href=""> - {{$linhaB}} </a></h5></h5>
+  <b>As seguintes linhas passam pelo trajeto selecionado: </b></br></br>
+  <b>• Nome da Linha:</b> {{$nomeLinhaA}}<br>
+  <b>Classificação:</b> {{$classificacaoLinhaA}}<br>
+  <b>Anel:</b> {{$nomeAnelLinhaA}}<br>
+  <b>Tarifa:</b> R$ {{$tarifaAnelLinhaA}}<br>
+  <br>
+  <br>
+  <b>• Nome da Linha:</b> {{$nomeLinhaB}}<br>
+  <b>Classificação:</b> {{$classificacaoLinhaB}}<br>
+  <b>Anel:</b> {{$nomeAnelLinhaB}}<br>
+  <b>Tarifa:</b> R$ {{$tarifaAnelLinhaB}}<br>
+
 @endif
 
 <style>

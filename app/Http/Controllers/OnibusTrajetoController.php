@@ -64,8 +64,24 @@ class OnibusTrajetoController extends Controller
             // dd($pegarLogradourosB[0]->id);
             array_push($arrayLogradourosB, array("id" => $pegarLogradourosB[0]->id, "nome" => $pegarLogradourosB[0]->nome, "bairro" => $pegarLogradourosB[0]->bairro, "municipio" => $pegarLogradourosB[0]->municipio));
         }
+
+        $pegarAnelLinhaA = DB::table('aneis')->where('id', '=', $pegarLinhaA[0]->anel_id)->get()->all();
+        $pegarAnelLinhaB = DB::table('aneis')->where('id', '=', $pegarLinhaB[0]->anel_id)->get()->all();
+
+        //informações detalhadas Linha A
+        $nomeLinhaA = $pegarLinhaA[0]->nome;
+        $classificacaoLinhaA = $pegarLinhaA[0]->classificacao;
+        $nomeAnelLinhaA = $pegarAnelLinhaA[0]->nome;
+        $tarifaAnelLinhaA = $pegarAnelLinhaA[0]->tarifa;
+
+        //informações detalhadas Linha B
+        $nomeLinhaB = $pegarLinhaB[0]->nome;
+        $classificacaoLinhaB = $pegarLinhaB[0]->classificacao;
+        $nomeAnelLinhaB = $pegarAnelLinhaB[0]->nome;
+        $tarifaAnelLinhaB = $pegarAnelLinhaB[0]->tarifa;
         
-        return view('negocio.resultado-trajeto', compact('linhaA', 'linhaB'));
+        return view('negocio.resultado-trajeto', compact('linhaA', 'linhaB', 'nomeLinhaA', 'classificacaoLinhaA', 'nomeAnelLinhaA', 'tarifaAnelLinhaA',
+        'nomeLinhaB', 'classificacaoLinhaB', 'nomeAnelLinhaB', 'tarifaAnelLinhaB'));
         return $this->detalhesa($arrayLogradourosA, $arrayLogradourosB);
         
     }

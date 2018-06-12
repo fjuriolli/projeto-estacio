@@ -50,8 +50,8 @@ class LinhaSeeder extends Seeder
     {
         DB::table('linhas')->delete();
 
-        Linha::create(['nome' => 'Jardim São Paulo (Abdias de Carvalho)', 'classificacao' => 'Circular']);
-        Linha::create(['nome' => 'Aeroporto (Opcional)', 'classificacao' => 'Circular']);
+        Linha::create(['nome' => 'Jardim São Paulo (Abdias de Carvalho)', 'classificacao' => 'Circular', 'anel_id' => 1]);
+        Linha::create(['nome' => 'Aeroporto (Opcional)', 'classificacao' => 'Circular', 'anel_id' => 2]);
     }   
 }
 
@@ -76,10 +76,10 @@ class AnelSeeder extends Seeder
     {
         DB::table('aneis')->delete();
 
-        Anel::create(['nome' => 'Tarifa A', 'tarifa' => '3.20']);
-        Anel::create(['nome' => 'Tarifa B', 'tarifa' => '4.40']);
+        Anel::create(['nome' => 'Tarifa A', 'tarifa' => '3.25']);
+        Anel::create(['nome' => 'Tarifa B', 'tarifa' => '4.45']);
         Anel::create(['nome' => 'Tarifa D', 'tarifa' => '3.45']);
-        Anel::create(['nome' => 'Tarifa G', 'tarifa' => '2.10']);
+        Anel::create(['nome' => 'Tarifa G', 'tarifa' => '2.15']);
     }
 }
 
