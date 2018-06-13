@@ -37,17 +37,6 @@
     <div class="help-tip">
     <p>Localizar a parada na qual o ônibus está atualmente, basta selecionar a linha que o mesmo pertence. O resultado será a parada onde o mesmo está atualmente e sua previsão de retorno para a garagem.</p>
     </div>
-
-  <br>
-  <br>
-  <br>
-  RESULTADO<br>
-  O ônibus da linha selecionada encontra-se na parada X
-  <br>
-  <br>
-  Sua previsão de retorno para a garagem é de X minutos
-  <br>
-
   </form>
 </div>
 

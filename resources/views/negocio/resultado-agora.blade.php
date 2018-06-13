@@ -20,14 +20,14 @@
 <br>
 <b>Parada atual:</b> {{$paradaInicial1}}
 <br>
-<b>Tempo para voltar a garagem:</b> {{ $tempoTotal1 }} minutos
+<b>Tempo para voltar a garagem:</b> {{ $tempoFormatado1 }}
 <br>
 <br>
 <b>Onibus:</b> {{$nomeDoOnibus2}}
 <br>
 <b>Parada atual:</b> {{$paradaInicial2}}
 <br>
-<b>Tempo para voltar a garagem:</b> {{ $tempoTotal2 }} minutos
+<b>Tempo para voltar a garagem:</b> {{ $tempoFormatado2 }}
   
 
 <style>

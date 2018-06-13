@@ -67,10 +67,49 @@ class OnibusAgoraController extends Controller
             $tempoTotal2 += $arrayParadas[$i]["tempo"];
         }
 
+        //função converter horas em minutos
+        function convertToHoursMins($time) 
+        {
+            $hours = floor($time / 60);
+            $minutes = ($time % 60);
+
+            if ($minutes == 0) {
+                if ($hours == 1) {
+                    $output_format = '%02d Hora ';
+                } else {
+                    $output_format = '%02d Horas ';
+                }
+                $hoursToMinutes = sprintf($output_format, $hours);
+
+            } else if ($hours == 0){
+                if ($minutes < 10) {
+                    $minutes = '0' . $minutes;
+                }
+                if ($minutes == 1){
+                    $output_format  = ' %02d Minuto ';
+                } else {
+                    $output_format  = ' %02d Minutos ';
+                }
+                $hoursToMinutes = sprintf($output_format,  $minutes);
+            } else {
+                if ($hours == 1) {
+                    $output_format = '%02d Hora %02d Minutos';
+                } else {
+                    $output_format = '%02d Horas %02d Minutos';
+                }
+                $hoursToMinutes = sprintf($output_format, $hours, $minutes);
+            }
+            return $hoursToMinutes;
+        }
+
+        print_r($tempoTotal1);
+        $tempoFormatado1 = convertToHoursMins($tempoTotal1);
+        $tempoFormatado2 = convertToHoursMins($tempoTotal2);
+
         //exportando variáveis para a view
         $nomeDoOnibus1 = $arrayOnibus[0]['nome'];
         $nomeDoOnibus2 = $arrayOnibus[1]['nome'];
 
-        return view('negocio.resultado-agora', compact('tempoTotal1', 'tempoTotal2', 'nomeDoOnibus1', 'nomeDoOnibus2', 'paradaInicial1', 'paradaInicial2'));
+        return view('negocio.resultado-agora', compact('tempoFormatado1', 'tempoFormatado2', 'nomeDoOnibus1', 'nomeDoOnibus2', 'paradaInicial1', 'paradaInicial2'));
     }
 }

@@ -51,15 +51,6 @@
   <div class="help-tip">
     <p>Localizar o ônibus em tempo real pelo itinerário, de acordo com a parada na qual o usuário está atualmente. O resultado será a parada atual onde o ônibus se encontra e a previsão de chegada na parada selecionada pelo usuário.</p>
   </div>
-
-  <br><br><br>
-  RESULTADO<br>
-  O ônibus selecionado encontra-se na parada X
-  <br><br>
-  • A previsão de chegada na sua localidade é de 2:49min
-  <br>
-  Clique no botão abaixo para atualizar as informações da previsão
-
   </form>
 </div>
 
@@ -71,7 +62,7 @@
 /* --------------- START OF HELP TIP --------------- */
 .help-tip{
   position: relative;
-  top: -215px;
+  top: -278px;
   right: -105px;
   text-align: center;
   background-color: #BCDBEA;

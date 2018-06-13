@@ -55,20 +55,6 @@
   <div class="help-tip">
     <p>Localizar o ônibus pelo seu trajeto, passando como referência duas paradas. O resultado será as linhas que passam pelo trajeto selecionado.</p>
   </div>
-
-  <br>
-  <br>
-  <br>
-  RESULTADO<br>
-  As seguintes linhas passam pelo trajeto selecionado:
-  <br>
-  • AEROPORTO<br>
-  • AEROPORTO (OPCIONAL)<br>
-  • AGUAS COMPRIDAS<br>
-  <br>
-
-  Clique em alguma linha acima para verificar o seu itinerário completo
-
   </form>
 </div>
 
