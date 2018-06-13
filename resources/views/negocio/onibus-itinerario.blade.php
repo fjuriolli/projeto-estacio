@@ -22,6 +22,20 @@
 
   <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
 
+  <div class="form-parada">
+    <label class="w3-text"><b>Selecione a Parada</b></label>
+     <div class="form-group-select">
+      <div class="custom-select">
+        <select name="parada">
+        @foreach($paradas as $parada)
+        <option value="{{ $parada->id }}">
+          {{ $parada->nome }}</option> 
+        @endforeach
+        </select>
+      </div>
+     </div>
+   </div>
+
   <div class="custom-select" style="width:200px;">
       <label class="w3-text"><b>Seleciona uma Linha:</b></label>
       <select name="linha">
