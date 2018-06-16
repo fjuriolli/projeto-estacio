@@ -15,20 +15,27 @@
 </div>
 
 <br>
+A linha selecionada contém os seguintes ônibus em trajeto:<br><br>
 
-<b>Onibus:</b> {{$nomeDoOnibus1}}
-<br>
-<b>Parada atual:</b> {{$paradaInicial1}}
-<br>
-<b>Tempo para voltar a garagem:</b> {{ $tempoFormatado1 }}
-<br>
-<br>
-<b>Onibus:</b> {{$nomeDoOnibus2}}
-<br>
-<b>Parada atual:</b> {{$paradaInicial2}}
-<br>
-<b>Tempo para voltar a garagem:</b> {{ $tempoFormatado2 }}
-  
+@foreach($selectTabelaLog as $log)
+
+  <b>Parada Atual:</b> {{ $log->nome }}<br>
+  <b>Endereço:</b> {{ $log->endereco_completo }}<br>
+  <b>Onibus:</b> {{ $log->onibus_nome }}<br>
+  <b>Previsão para voltar a garagem:</b> {{ $log->tempo }} minutos<br><br>
+
+@endforeach
+
+
+<div class="form-page">
+  <form class="w3-container" action="{{ action('OnibusAgoraController@atualizarOnibus') }}" method="get">
+
+    <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
+
+    <button class="w3-btn w3-blue" id="btn-page" type="text">Atualizar</button>
+
+  </form>
+</div>
 
 <style>
   

@@ -12,7 +12,7 @@ use App\Models\Onibus;
 
 class OnibusAgoraController extends Controller
 {
-    public function create()
+    public function mostrarFormulario()
     {
         $linhas = Linha::get()->all();
         return view('negocio.onibus-agora', compact('linhas'));
@@ -29,7 +29,7 @@ class OnibusAgoraController extends Controller
         foreach ($linhaSelect as $onibusLinha) {
             $onibusSelect = DB::table('onibus')->where('id', '=', $onibusLinha->onibus_id)->get()->all();
             array_push($arrayOnibus, array("id" => $onibusSelect[0]->id, "nome" => $onibusSelect[0]->nome));
-        }          
+        }
 
         //converter o id da linha que veio no request para int
         $linhaInt = intval($linhaRequest);
@@ -49,67 +49,43 @@ class OnibusAgoraController extends Controller
             foreach ($paradasIdSelect as $paradas) {
                 $paradasSelect = DB::table('paradas')->where('id', '=', $paradas->parada_id)->get()->all();
 
-                array_push($arrayParadas, array("id" => $paradasSelect[0]->id, "nome" => $paradasSelect[0]->nome, "endereco_completo" => $paradasSelect[0]->endereco_completo, "tempo" => rand(5, 12)));
+                array_push($arrayParadas, array("id" => $paradasSelect[0]->id, "nome" => $paradasSelect[0]->nome, "endereco_completo" => $paradasSelect[0]->endereco_completo, "tempo" => rand(4, 9)));
             }
         }
 
-        $indiceParadaInicial1 = rand(0, count($arrayParadas) - 1);
-        $paradaInicial1 = $arrayParadas[$indiceParadaInicial1]['nome'];
-        $tempoTotal1 = 0;
-        for ($i = $indiceParadaInicial1; $i < count($arrayParadas); ++$i) {
-            $tempoTotal1 += $arrayParadas[$i]["tempo"];
+        $somaTempoTotalDoTrajeto = 0;
+        foreach($arrayParadas as $num => $values) {
+            $somaTempoTotalDoTrajeto += $values[ 'tempo' ];
         }
 
-        $indiceParadaInicial2 = rand(0, count($arrayParadas) - 1);
-        $paradaInicial2 = $arrayParadas[$indiceParadaInicial2]['nome'];
-        $tempoTotal2 = 0;
-        for ($i = $indiceParadaInicial2; $i < count($arrayParadas); ++$i) {
-            $tempoTotal2 += $arrayParadas[$i]["tempo"];
+        //limpar a tabela antes do insert para não ter duplicidade
+        DB::table('logs')->truncate();
+
+        foreach ($arrayOnibus as $onibus) {
+            $insertTabelaLog = DB::table('logs')->insert(
+                ['id_parada' => $arrayParadas[0]['id'],
+                 'nome' => $arrayParadas[0]['nome'],
+                 'endereco_completo' => $arrayParadas[0]['endereco_completo'],
+                 'tempo' => $somaTempoTotalDoTrajeto,
+                 'onibus_id' => $onibus['id'],
+                 'onibus_nome' => $onibus['nome']
+                 ]
+            );
         }
+        //testar insert na tela de log
+        $selectTabelaLog = DB::table('logs')->get()->all();
+        // dd($selectTabelaLog);
 
-        //função converter horas em minutos
-        function convertToHoursMins($time) 
-        {
-            $hours = floor($time / 60);
-            $minutes = ($time % 60);
+        return view('negocio.resultado-agora', compact('selectTabelaLog'));
+        
+    }
 
-            if ($minutes == 0) {
-                if ($hours == 1) {
-                    $output_format = '%02d Hora ';
-                } else {
-                    $output_format = '%02d Horas ';
-                }
-                $hoursToMinutes = sprintf($output_format, $hours);
+    public function voltarPagina() {
+        return redirect()->route('/onibus-agora');
+    }
 
-            } else if ($hours == 0){
-                if ($minutes < 10) {
-                    $minutes = '0' . $minutes;
-                }
-                if ($minutes == 1){
-                    $output_format  = ' %02d Minuto ';
-                } else {
-                    $output_format  = ' %02d Minutos ';
-                }
-                $hoursToMinutes = sprintf($output_format,  $minutes);
-            } else {
-                if ($hours == 1) {
-                    $output_format = '%02d Hora %02d Minutos';
-                } else {
-                    $output_format = '%02d Horas %02d Minutos';
-                }
-                $hoursToMinutes = sprintf($output_format, $hours, $minutes);
-            }
-            return $hoursToMinutes;
-        }
-
-        print_r($tempoTotal1);
-        $tempoFormatado1 = convertToHoursMins($tempoTotal1);
-        $tempoFormatado2 = convertToHoursMins($tempoTotal2);
-
-        //exportando variáveis para a view
-        $nomeDoOnibus1 = $arrayOnibus[0]['nome'];
-        $nomeDoOnibus2 = $arrayOnibus[1]['nome'];
-
-        return view('negocio.resultado-agora', compact('tempoFormatado1', 'tempoFormatado2', 'nomeDoOnibus1', 'nomeDoOnibus2', 'paradaInicial1', 'paradaInicial2'));
+    public function atualizarOnibus(Request $request)
+    {
+        return view('negocio.atualizar-onibus-agora');
     }
 }

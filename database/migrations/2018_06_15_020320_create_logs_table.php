@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOnibusParadaTable extends Migration
+class CreateLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateOnibusParadaTable extends Migration
      */
     public function up()
     {
-        Schema::create('onibus_parada', function (Blueprint $table) {
+        Schema::create('logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('onibus_id')->unsigned();
-            $table->integer('parada_id')->unsigned();
-            $table->foreign('onibus_id')->references('id')->on('onibus');
-            $table->foreign('parada_id')->references('id')->on('paradas');
+            $table->integer('id_parada');
+            $table->string('nome');
+            $table->string('endereco_completo');
+            $table->integer('tempo');
+            $table->integer('onibus_id');
+            $table->string('onibus_nome');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateOnibusParadaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('onibus_parada');
+        Schema::dropIfExists('logs');
     }
 }
