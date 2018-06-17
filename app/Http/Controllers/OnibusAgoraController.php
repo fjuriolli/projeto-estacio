@@ -86,10 +86,8 @@ class OnibusAgoraController extends Controller
             array_push($arrayOnibus, array("id" => $onibusSelect[0]->id, "nome" => $onibusSelect[0]->nome));
         }
 
-        
         //pegar a parada atual de acordo com o nome do onibus
         $selectPegarParadaAtual = DB::table('logs')->orderBy('created_at', 'desc')->where('onibus_nome', '=', $arrayOnibus[0]['nome'])->get()->first();
-
 
         //insert terceira parada
         if ($selectPegarParadaAtual->id_parada == 2) {
@@ -196,7 +194,6 @@ class OnibusAgoraController extends Controller
         session()->put('arrayOnibus', $arrayOnibus);
 
         return view('negocio.resultado-agora', compact('selectPegarParadaAtual'));
-
     }
 
     public function atualizarOnibus(Request $request)
@@ -223,7 +220,7 @@ class OnibusAgoraController extends Controller
 
         //insert quarta parada
         if ($selectPegarParadaAtual->id_parada == 3) {
-
+            
             $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
 
             //insert nova parada
@@ -329,6 +326,14 @@ class OnibusAgoraController extends Controller
         $selectTabelaLog = DB::table('logs')->get()->all();
         
         return view('negocio.atualizar-onibus-agora', compact('selectPegarParadaAtual'));
+    }
 
+    public function voltarParaConsulta(Request $request)
+    {
+        $linhas = Linha::get()->all();
+
+        return redirect()->action(
+            'OnibusAgoraController@mostrarFormulario'
+        );
     }
 }

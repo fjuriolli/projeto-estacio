@@ -7,6 +7,9 @@
 @stop
 
 @section('conteudo')
+
+<meta http-equiv="refresh" content="3"/>
+
 <!-- Header -->
 <div class="w3-container container-top-page" id="showcase">
   <h1 class="w3-x-jumbo"><b>Localizar Ônibus</b></h1>
@@ -16,12 +19,15 @@
 
 <br>
 
-@if ( $selectPegarParadaAtual->id_parada == 8 || $selectPegarParadaAtual->id_parada == 18  )
+@if ($selectPegarParadaAtual->id_parada == 8 || $selectPegarParadaAtual->id_parada == 18)
 <div class="w3-container">
   <div style="margin-top: 15px;background-color: #E0F0D7" class="w3-panel w3-round-large">
     <h3 style="color: #457D46">Chegou!</h3>
     <p style="color: #629361">A porra do ônibus voltou para a garagem.</p>
   </div>
+  <form class="w3-container" action="{{ action('OnibusAgoraController@voltarParaConsulta') }}" method="get">
+    <button class="w3-btn w3-blue" id="btn-page" type="text">Voltar</button>
+  </form>
 </div>
 @else
 A linha selecionada contém os seguintes ônibus em trajeto:<br><br>
@@ -30,15 +36,16 @@ A linha selecionada contém os seguintes ônibus em trajeto:<br><br>
   <b>Endereço:</b> {{ $selectPegarParadaAtual->endereco_completo }}<br>
   <b>Onibus:</b> {{ $selectPegarParadaAtual->onibus_nome }}<br>
   <b>Previsão para voltar a garagem:</b> {{ $selectPegarParadaAtual->tempo }} minutos<br><br>
-@endif
 
-<div class="form-page">
+  <div class="form-page">
   <form class="w3-container" action="{{ action('OnibusAgoraController@atualizarOnibus') }}" method="get">
 
     <button class="w3-btn w3-blue" id="btn-page" type="text">Atualizar</button>
 
   </form>
 </div>
+
+@endif
 
 <style>
   

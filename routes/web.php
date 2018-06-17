@@ -47,6 +47,7 @@ Route::resource('trajeto', 'OnibusTrajetoController');
 Route::get('/formulario-agora', 'OnibusAgoraController@mostrarFormulario');
 Route::get('/onibus-agora', 'OnibusAgoraController@andarOnibus');
 Route::get('/resultado-agora', 'OnibusAgoraController@atualizarOnibus');
+Route::get('/atualizar-onibus-agora', 'OnibusAgoraController@voltarParaConsulta');
 
 Route::get('onibus-itinerario', 'OnibusItinerarioController@create');
 Route::get('/resultado-itinerario', 'OnibusItinerarioController@store');

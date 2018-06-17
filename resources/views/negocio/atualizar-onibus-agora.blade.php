@@ -8,6 +8,8 @@
 
 @section('conteudo')
 
+<meta http-equiv="refresh" content="3"/>
+
 <!-- Header -->
 <div class="w3-container container-top-page" id="showcase">
   <h1 class="w3-x-jumbo"><b>Localizar Ônibus</b></h1>
@@ -24,6 +26,9 @@ A linha selecionada contém os seguintes ônibus em trajeto:<br><br>
 <b>Onibus:</b> {{ $selectPegarParadaAtual->onibus_nome }}<br>
 <b>Previsão para voltar a garagem:</b> {{ $selectPegarParadaAtual->tempo }} minutos<br><br>
 
+<form class="w3-container" action="{{ action('OnibusAgoraController@voltarParaConsulta') }}" method="get">
+  <button class="w3-btn w3-blue" id="btn-page" type="text">Voltar</button>
+</form>
 
 <style>
   
@@ -122,5 +127,7 @@ A linha selecionada contém os seguintes ônibus em trajeto:<br><br>
 
 /* --------------- END OF HELP TIP --------------- */
 </style>
+
+<script>
 
 @stop

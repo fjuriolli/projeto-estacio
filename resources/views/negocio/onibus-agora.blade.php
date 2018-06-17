@@ -8,7 +8,6 @@
 
 @section('conteudo')
 
-
 <!-- Header -->
 <div class="w3-container container-top-page" id="showcase">
   <h1 class="w3-x-jumbo"><b>Controle de Frota</b></h1>
@@ -142,6 +141,5 @@
 
 /* --------------- END OF HELP TIP --------------- */
 </style>
-
 
 @stop
