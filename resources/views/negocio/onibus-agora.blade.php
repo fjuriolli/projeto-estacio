@@ -18,7 +18,7 @@
 
 <!-- Form -->
 <div class="form-page">
-  <form class="w3-container" action="{{ action('OnibusAgoraController@store') }}" method="get">
+  <form class="w3-container" action="{{ action('OnibusAgoraController@andarOnibus') }}" method="get">
 
     <div class="custom-select" style="width:200px;">
       <label class="w3-text"><b>Selecione uma Linha:</b></label>

@@ -72,13 +72,7 @@ class OnibusAgoraController extends Controller
         return view('negocio.onibus-agora', compact('linhas'));
     }
 
-
-
-
-
-
-
-    public function store(Request $request)
+    public function andarOnibus(Request $request)
     {
         $linhaRequest = $request->input('linha');
 
@@ -145,7 +139,7 @@ class OnibusAgoraController extends Controller
         //chegou na garagem
         if ($selectPegarParadaAtual->id_parada == 8) {
 
-            // do nothing
+            //do nothing
         }
 
         //insert décima segunda
@@ -204,17 +198,6 @@ class OnibusAgoraController extends Controller
         return view('negocio.resultado-agora', compact('selectPegarParadaAtual'));
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
     public function atualizarOnibus(Request $request)
     {
