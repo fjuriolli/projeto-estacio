@@ -13,6 +13,8 @@ class Anel extends Model
         'tarifa'
     ];
 
+    public $timestamps = false;
+
     public function linhas()
     {
         return $this->belongsTo('App\Models\Linha');

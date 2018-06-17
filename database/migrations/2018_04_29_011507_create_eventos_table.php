@@ -17,7 +17,6 @@ class CreateEventosTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->float('duracao');
-            $table->timestamps();
         });
     }
 

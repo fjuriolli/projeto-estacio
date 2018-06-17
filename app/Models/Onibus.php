@@ -14,6 +14,8 @@ class Onibus extends Model
         'parada_atual'
     ];
 
+    public $timestamps = false;
+
     public function linhas()
     {
         return $this->belongsToMany('App\Models\Linha');

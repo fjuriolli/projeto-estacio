@@ -13,6 +13,8 @@ class Evento extends Model
         'duracao'
     ];
 
+    public $timestamps = false;
+
     public function linhas()
     {
         return $this->belongsTo('App\Models\Linha');

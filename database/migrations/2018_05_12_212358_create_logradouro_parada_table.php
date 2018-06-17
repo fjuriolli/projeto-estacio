@@ -19,7 +19,6 @@ class CreateLogradouroParadaTable extends Migration
             $table->integer('parada_id')->unsigned();
             $table->foreign('logradouro_id')->references('id')->on('logradouros');
             $table->foreign('parada_id')->references('id')->on('paradas');
-            $table->timestamps();
         });
     }
 

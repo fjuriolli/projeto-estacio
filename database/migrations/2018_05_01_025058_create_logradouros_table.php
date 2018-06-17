@@ -18,7 +18,6 @@ class CreateLogradourosTable extends Migration
             $table->string('nome');
             $table->string('bairro');
             $table->string('municipio');
-            $table->timestamps();
         });
     }
 

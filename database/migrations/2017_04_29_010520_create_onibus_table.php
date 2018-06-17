@@ -18,7 +18,6 @@ class CreateOnibusTable extends Migration
             $table->string('nome');
             $table->string('marca');
             $table->string('parada_atual')->nullable();
-            $table->timestamps();
         });
     }
 

@@ -19,7 +19,6 @@ class CreateItinerarioLogradouroTable extends Migration
             $table->integer('logradouro_id')->unsigned();
             $table->foreign('itinerario_id')->references('id')->on('itinerarios');
             $table->foreign('logradouro_id')->references('id')->on('logradouros');
-            $table->timestamps();
         });
     }
 

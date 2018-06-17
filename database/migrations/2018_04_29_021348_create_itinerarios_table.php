@@ -23,8 +23,6 @@ class CreateItinerariosTable extends Migration
             $table->foreign('linha_id')->references('id')
                 ->on('linhas')
                 ->onDelete('cascade');
-                
-            $table->timestamps();
         });
     }
 

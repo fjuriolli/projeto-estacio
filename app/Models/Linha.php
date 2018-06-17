@@ -14,6 +14,8 @@ class Linha extends Model
         'classificacao',
     ];
 
+    public $timestamps = false;
+
     public function eventos()
     {
         return $this->hasOne('App\Models\Evento'); 

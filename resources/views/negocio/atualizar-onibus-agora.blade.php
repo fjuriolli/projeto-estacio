@@ -7,6 +7,7 @@
 @stop
 
 @section('conteudo')
+
 <!-- Header -->
 <div class="w3-container container-top-page" id="showcase">
   <h1 class="w3-x-jumbo"><b>Localizar Ônibus</b></h1>
@@ -15,17 +16,14 @@
 </div>
 
 <br>
- <h1> Atualizado </h1>
 
-<div class="form-page">
-  <form class="w3-container" action="{{ action('OnibusAgoraController@voltarPagina') }}" method="get">
+A linha selecionada contém os seguintes ônibus em trajeto:<br><br>
 
-    <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
+<b>Parada Atual:</b> {{ $selectPegarParadaAtual->nome }}<br>
+<b>Endereço:</b> {{ $selectPegarParadaAtual->endereco_completo }}<br>
+<b>Onibus:</b> {{ $selectPegarParadaAtual->onibus_nome }}<br>
+<b>Previsão para voltar a garagem:</b> {{ $selectPegarParadaAtual->tempo }} minutos<br><br>
 
-    <button class="w3-btn w3-blue" id="btn-page" type="text">Voltar</button>
-
-  </form>
-</div>
 
 <style>
   

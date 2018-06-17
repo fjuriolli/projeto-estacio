@@ -17,7 +17,6 @@ class CreateAneisTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->float('tarifa');
-            $table->timestamps();
         });
     }
 

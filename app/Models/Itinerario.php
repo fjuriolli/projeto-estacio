@@ -16,6 +16,8 @@ class Itinerario extends Model
         'nome'
     ];
 
+    public $timestamps = false;
+
     public function linhas()
     {
         return $this->hasOne('App\Models\Linha'); 

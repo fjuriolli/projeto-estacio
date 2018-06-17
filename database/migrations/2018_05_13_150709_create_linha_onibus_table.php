@@ -19,7 +19,6 @@ class CreateLinhaOnibusTable extends Migration
             $table->integer('onibus_id')->unsigned();
             $table->foreign('linha_id')->references('id')->on('linhas');
             $table->foreign('onibus_id')->references('id')->on('onibus');
-            $table->timestamps();
         });
     }
 

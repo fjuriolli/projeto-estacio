@@ -14,6 +14,8 @@ class Logradouro extends Model
         'municipio'
     ];
 
+    public $timestamps = false;
+
     public function paradas()
     {
         return $this->belongsToMany('App\Models\Parada', 'logradouro_parada'); 

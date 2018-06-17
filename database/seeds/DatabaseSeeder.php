@@ -38,9 +38,7 @@ class OnibusSeeder extends Seeder
         DB::table('onibus')->delete();
 
         Onibus::create(['nome' => 'Ônibus 01 - Aeroporto (opcional)', 'marca' => 'Mercedes Benz']);
-        Onibus::create(['nome' => 'Ônibus 02 - Aeroporto (opcional)', 'marca' => 'Volkswagen']);
-        Onibus::create(['nome' => 'Ônibus 03 - Jardim São Paulo (Abdias de Carvalho)', 'marca' => 'Scania']);
-        Onibus::create(['nome' => 'Ônibus 04 - Jardim São Paulo (Abdias de Carvalho)', 'marca' => 'Volkswagen']);
+        Onibus::create(['nome' => 'Ônibus 02 - Jardim São Paulo (Abdias de Carvalho)', 'marca' => 'Volkswagen']);
     }
 }
 
@@ -50,8 +48,8 @@ class LinhaSeeder extends Seeder
     {
         DB::table('linhas')->delete();
 
-        Linha::create(['nome' => 'Jardim São Paulo (Abdias de Carvalho)', 'classificacao' => 'Circular', 'anel_id' => 1]);
         Linha::create(['nome' => 'Aeroporto (Opcional)', 'classificacao' => 'Circular', 'anel_id' => 2]);
+        Linha::create(['nome' => 'Jardim São Paulo (Abdias de Carvalho)', 'classificacao' => 'Circular', 'anel_id' => 1]);
     }   
 }
 
@@ -62,10 +60,8 @@ class OnibusLinhaSeeder extends Seeder
         DB::table('linha_onibus')->delete();
 
         DB::table('linha_onibus')->insert(array(
-            array('linha_id' => 1, 'onibus_id' => 3),
-            array('linha_id' => 1, 'onibus_id' => 4),
-            array('linha_id' => 2, 'onibus_id' => 1),
-            array('linha_id' => 2, 'onibus_id' => 2)
+            array('linha_id' => 1, 'onibus_id' => 1),
+            array('linha_id' => 2, 'onibus_id' => 2),
         ));
     }   
 }
@@ -103,27 +99,27 @@ class ParadaSeeder extends Seeder
     {
         DB::table('paradas')->delete();
 
-        Parada::create(['cod_identificacao' => '001', 'nome' => 'Parada 1 - Estação Tejipió', 'endereco_completo' => 'Estação de Metrô Tejipió']);
-        Parada::create(['cod_identificacao' => '002', 'nome' => 'Parada 2 - Estação Tejipió', 'endereco_completo' => 'Estação de Metrô Tejipió']);
-        Parada::create(['cod_identificacao' => '003', 'nome' => 'Parada 3 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '004', 'nome' => 'Parada 4 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '005', 'nome' => 'Parada 5 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '006', 'nome' => 'Parada 6 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '007', 'nome' => 'Parada 7 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '008', 'nome' => 'Parada 8 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '009', 'nome' => 'Parada 9 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '010', 'nome' => 'Parada 10 - Avenida Liberdade', 'endereco_completo' => 'Avenida Liberdade']);
+        Parada::create(['cod_identificacao' => '001', 'nome' => 'Parada 1 - Avenida Liberdade', 'endereco_completo' => 'Avenida Liberdade']);
+        Parada::create(['cod_identificacao' => '002', 'nome' => 'Parada 2 - Avenida Leandro Barreto', 'endereco_completo' => 'Avenida Leandro Barreto']);
+        Parada::create(['cod_identificacao' => '003', 'nome' => 'Parada 3 - Avenida Leandro Barreto', 'endereco_completo' => 'Avenida Leandro Barreto']);
+        Parada::create(['cod_identificacao' => '004', 'nome' => 'Parada 4 - Viaduto Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
+        Parada::create(['cod_identificacao' => '005', 'nome' => 'Parada 5 - Viaduto Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
+        Parada::create(['cod_identificacao' => '006', 'nome' => 'Parada 6 - Viaduto Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
+        Parada::create(['cod_identificacao' => '007', 'nome' => 'Parada 7 - Avenida São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
+        Parada::create(['cod_identificacao' => '008', 'nome' => 'Parada 8 - Avenida São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
+        Parada::create(['cod_identificacao' => '009', 'nome' => 'Parada 9 - Avenida São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
+        Parada::create(['cod_identificacao' => '010', 'nome' => 'Parada 10 - Rua Aníbal Portela', 'endereco_completo' => 'Rua Aníbal Portela']);
 
-        Parada::create(['cod_identificacao' => '011', 'nome' => 'Parada 11 - Avenida Liberdade', 'endereco_completo' => 'Avenida Liberdade']);
-        Parada::create(['cod_identificacao' => '012', 'nome' => 'Parada 12 - Avenida Leandro Barreto', 'endereco_completo' => 'Avenida Leandro Barreto']);
-        Parada::create(['cod_identificacao' => '013', 'nome' => 'Parada 13 - Avenida Leandro Barreto', 'endereco_completo' => 'Avenida Leandro Barreto']);
-        Parada::create(['cod_identificacao' => '014', 'nome' => 'Parada 14 - Viaduto Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
-        Parada::create(['cod_identificacao' => '015', 'nome' => 'Parada 15 - Viaduto Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
-        Parada::create(['cod_identificacao' => '016', 'nome' => 'Parada 16 - Viaduto Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
-        Parada::create(['cod_identificacao' => '017', 'nome' => 'Parada 17 - Avenida São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
-        Parada::create(['cod_identificacao' => '018', 'nome' => 'Parada 18 - Avenida São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
-        Parada::create(['cod_identificacao' => '019', 'nome' => 'Parada 19 - Avenida São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
-        Parada::create(['cod_identificacao' => '020', 'nome' => 'Parada 20 - Rua Aníbal Portela', 'endereco_completo' => 'Rua Aníbal Portela']);
+        Parada::create(['cod_identificacao' => '011', 'nome' => 'Parada 11 - Estação Tejipió', 'endereco_completo' => 'Estação de Metrô Tejipió']);
+        Parada::create(['cod_identificacao' => '012', 'nome' => 'Parada 12 - Estação Tejipió', 'endereco_completo' => 'Estação de Metrô Tejipió']);
+        Parada::create(['cod_identificacao' => '013', 'nome' => 'Parada 13 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '014', 'nome' => 'Parada 14 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '015', 'nome' => 'Parada 15 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '016', 'nome' => 'Parada 16 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '017', 'nome' => 'Parada 17 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '018', 'nome' => 'Parada 18 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '019', 'nome' => 'Parada 19 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '020', 'nome' => 'Parada 20 - Avenida Liberdade', 'endereco_completo' => 'Avenida Liberdade']);
     }
 }
 
@@ -132,17 +128,6 @@ class LogradouroSeeder extends Seeder
     public function run()
     {
         DB::table('logradouros')->delete();
-
-        Logradouro::create(['nome' => 'ESTAÇÃO DE METRÔ TEJIPIÓ', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
-        Logradouro::create(['nome' => 'RUA PADRE IBIAPINA', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
-        Logradouro::create(['nome' => 'AVENIDA LIBERDADE', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
-        Logradouro::create(['nome' => 'RUA LEANDRO BARRETO', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
-        Logradouro::create(['nome' => 'VIADUTO DE JARDIM SÃO PAULO', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
-        Logradouro::create(['nome' => 'AVENIDA SÃO PAULO', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
-        Logradouro::create(['nome' => 'RUA ANÍBAL PORTELA', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
-        Logradouro::create(['nome' => 'RODOVIA BR-101', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
-        Logradouro::create(['nome' => 'VIA DE ACESSO À AVENIDA ABDIAS DE CARVALHO', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
-        Logradouro::create(['nome' => 'AVENIDA ENGENHEIRO ABDIAS DE CARVALHO', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
 
         Logradouro::create(['nome' => 'RUA COPACABANA', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife']);
         Logradouro::create(['nome' => 'AVENIDA VINTE DE JANEIRO', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife']);
@@ -154,6 +139,17 @@ class LogradouroSeeder extends Seeder
         Logradouro::create(['nome' => 'AVENIDA VINTE DE JANEIRO', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife']);
         Logradouro::create(['nome' => 'RUA JOÃO CARDOSO AYRES', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife']);
         Logradouro::create(['nome' => 'RUA SÁ E SOUZA', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife']);
+
+        Logradouro::create(['nome' => 'ESTAÇÃO DE METRÔ TEJIPIÓ', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'RUA PADRE IBIAPINA', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'AVENIDA LIBERDADE', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'RUA LEANDRO BARRETO', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'VIADUTO DE JARDIM SÃO PAULO', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'AVENIDA SÃO PAULO', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'RUA ANÍBAL PORTELA', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'RODOVIA BR-101', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'VIA DE ACESSO À AVENIDA ABDIAS DE CARVALHO', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
+        Logradouro::create(['nome' => 'AVENIDA ENGENHEIRO ABDIAS DE CARVALHO', 'bairro' => 'Madalena', 'municipio' => 'Recife']);
     }
 }
 
@@ -196,8 +192,9 @@ class ItinerarioSeeder extends Seeder
     {
         DB::table('itinerarios')->delete();
 
-        Itinerario::create(['nome' => 'Principal', 'bairro' => 'Madalena', 'municipio' => 'Recife', 'linha_id' => '1']);
-        Itinerario::create(['nome' => 'Principal', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife', 'linha_id' => '2']);
+        Itinerario::create(['nome' => 'Principal', 'bairro' => 'Boa Viagem', 'municipio' => 'Recife', 'linha_id' => '1']);
+        Itinerario::create(['nome' => 'Principal', 'bairro' => 'Madalena', 'municipio' => 'Recife', 'linha_id' => '2']);
+        
     }   
 }
 

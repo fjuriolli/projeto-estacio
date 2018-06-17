@@ -15,22 +15,25 @@
 </div>
 
 <br>
+
+@if ( $selectPegarParadaAtual->id_parada == 8 || $selectPegarParadaAtual->id_parada == 18  )
+<div class="w3-container">
+  <div style="margin-top: 15px;background-color: #E0F0D7" class="w3-panel w3-round-large">
+    <h3 style="color: #457D46">Chegou!</h3>
+    <p style="color: #629361">A porra do ônibus voltou para a garagem.</p>
+  </div>
+</div>
+@else
 A linha selecionada contém os seguintes ônibus em trajeto:<br><br>
 
-@foreach($selectTabelaLog as $log)
-
-  <b>Parada Atual:</b> {{ $log->nome }}<br>
-  <b>Endereço:</b> {{ $log->endereco_completo }}<br>
-  <b>Onibus:</b> {{ $log->onibus_nome }}<br>
-  <b>Previsão para voltar a garagem:</b> {{ $log->tempo }} minutos<br><br>
-
-@endforeach
-
+  <b>Parada Atual:</b> {{ $selectPegarParadaAtual->nome }}<br>
+  <b>Endereço:</b> {{ $selectPegarParadaAtual->endereco_completo }}<br>
+  <b>Onibus:</b> {{ $selectPegarParadaAtual->onibus_nome }}<br>
+  <b>Previsão para voltar a garagem:</b> {{ $selectPegarParadaAtual->tempo }} minutos<br><br>
+@endif
 
 <div class="form-page">
   <form class="w3-container" action="{{ action('OnibusAgoraController@atualizarOnibus') }}" method="get">
-
-    <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
 
     <button class="w3-btn w3-blue" id="btn-page" type="text">Atualizar</button>
 

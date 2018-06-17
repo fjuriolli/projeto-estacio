@@ -28,7 +28,6 @@ class CreateLinhasTable extends Migration
                 ->on('eventos')
                 ->onDelete('cascade');
 
-            $table->timestamps();
         });
     }
 
