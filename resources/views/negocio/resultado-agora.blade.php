@@ -19,7 +19,7 @@
 
 <br>
 
-@if ($selectPegarParadaAtual->id_parada == 8 || $selectPegarParadaAtual->id_parada == 18)
+@if ($selectPegarParadaAtual->tempo <= 10)
 <div class="w3-container">
   <div style="margin-top: 15px;background-color: #E0F0D7" class="w3-panel w3-round-large">
     <h3 style="color: #457D46">Chegou!</h3>
