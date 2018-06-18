@@ -27,7 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call('LogradouroParadaSeeder');
         $this->call('ItinerarioSeeder');
         $this->call('ItinerarioLogradouroSeeder');
-        $this->call('OnibusLinhaSeeder');
     }
 }
 
@@ -48,21 +47,8 @@ class LinhaSeeder extends Seeder
     {
         DB::table('linhas')->delete();
 
-        Linha::create(['nome' => 'Aeroporto (Opcional)', 'classificacao' => 'Circular', 'anel_id' => 2]);
-        Linha::create(['nome' => 'Jardim São Paulo (Abdias de Carvalho)', 'classificacao' => 'Circular', 'anel_id' => 1]);
-    }   
-}
-
-class OnibusLinhaSeeder extends Seeder
-{
-    public function run()
-    {
-        DB::table('linha_onibus')->delete();
-
-        DB::table('linha_onibus')->insert(array(
-            array('linha_id' => 1, 'onibus_id' => 1),
-            array('linha_id' => 2, 'onibus_id' => 2),
-        ));
+        Linha::create(['nome' => 'Aeroporto (Opcional)', 'classificacao' => 'Circular', 'onibus_id' => 1, 'anel_id' => 2]);
+        Linha::create(['nome' => 'Jardim São Paulo', 'classificacao' => 'Circular', 'onibus_id' => 2, 'anel_id' => 1]);
     }   
 }
 
@@ -99,27 +85,27 @@ class ParadaSeeder extends Seeder
     {
         DB::table('paradas')->delete();
 
-        Parada::create(['cod_identificacao' => '001', 'nome' => 'Parada 1 - Avenida Liberdade', 'endereco_completo' => 'Avenida Liberdade']);
-        Parada::create(['cod_identificacao' => '002', 'nome' => 'Parada 2 - Avenida Leandro Barreto', 'endereco_completo' => 'Avenida Leandro Barreto']);
-        Parada::create(['cod_identificacao' => '003', 'nome' => 'Parada 3 - Avenida Leandro Barreto', 'endereco_completo' => 'Avenida Leandro Barreto']);
-        Parada::create(['cod_identificacao' => '004', 'nome' => 'Parada 4 - Viaduto Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
-        Parada::create(['cod_identificacao' => '005', 'nome' => 'Parada 5 - Viaduto Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
-        Parada::create(['cod_identificacao' => '006', 'nome' => 'Parada 6 - Viaduto Jardim São Paulo', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
-        Parada::create(['cod_identificacao' => '007', 'nome' => 'Parada 7 - Avenida São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
-        Parada::create(['cod_identificacao' => '008', 'nome' => 'Parada 8 - Avenida São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
-        Parada::create(['cod_identificacao' => '009', 'nome' => 'Parada 9 - Avenida São Paulo', 'endereco_completo' => 'Avenida São Paulo']);
-        Parada::create(['cod_identificacao' => '010', 'nome' => 'Parada 10 - Rua Aníbal Portela', 'endereco_completo' => 'Rua Aníbal Portela']);
+        Parada::create(['cod_identificacao' => '001', 'nome' => 'Parada 1 - Avenida Liberdade - Aeroporto (Opcional)', 'endereco_completo' => 'Avenida Liberdade']);
+        Parada::create(['cod_identificacao' => '002', 'nome' => 'Parada 2 - Avenida Leandro Barreto - Aeroporto (Opcional)', 'endereco_completo' => 'Avenida Leandro Barreto']);
+        Parada::create(['cod_identificacao' => '003', 'nome' => 'Parada 3 - Avenida Leandro Barreto - Aeroporto (Opcional)', 'endereco_completo' => 'Avenida Leandro Barreto']);
+        Parada::create(['cod_identificacao' => '004', 'nome' => 'Parada 4 - Viaduto Jardim São Paulo - Aeroporto (Opcional)', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
+        Parada::create(['cod_identificacao' => '005', 'nome' => 'Parada 5 - Viaduto Jardim São Paulo - Aeroporto (Opcional)', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
+        Parada::create(['cod_identificacao' => '006', 'nome' => 'Parada 6 - Viaduto Jardim São Paulo - Aeroporto (Opcional)', 'endereco_completo' => 'Viaduto Jardim São Paulo']);
+        Parada::create(['cod_identificacao' => '007', 'nome' => 'Parada 7 - Avenida São Paulo - Aeroporto (Opcional)', 'endereco_completo' => 'Avenida São Paulo']);
+        Parada::create(['cod_identificacao' => '008', 'nome' => 'Parada 8 - Avenida São Paulo - Aeroporto (Opcional)', 'endereco_completo' => 'Avenida São Paulo']);
+        Parada::create(['cod_identificacao' => '009', 'nome' => 'Parada 9 - Avenida São Paulo - Aeroporto (Opcional)', 'endereco_completo' => 'Avenida São Paulo']);
+        Parada::create(['cod_identificacao' => '010', 'nome' => 'Parada 10 - Rua Aníbal Portela - Aeroporto (Opcional)', 'endereco_completo' => 'Rua Aníbal Portela']);
 
-        Parada::create(['cod_identificacao' => '011', 'nome' => 'Parada 11 - Estação Tejipió', 'endereco_completo' => 'Estação de Metrô Tejipió']);
-        Parada::create(['cod_identificacao' => '012', 'nome' => 'Parada 12 - Estação Tejipió', 'endereco_completo' => 'Estação de Metrô Tejipió']);
-        Parada::create(['cod_identificacao' => '013', 'nome' => 'Parada 13 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '014', 'nome' => 'Parada 14 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '015', 'nome' => 'Parada 15 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '016', 'nome' => 'Parada 16 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '017', 'nome' => 'Parada 17 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '018', 'nome' => 'Parada 18 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '019', 'nome' => 'Parada 19 - Rua Padre Ibiapina', 'endereco_completo' => 'Rua Padre Ibiapina']);
-        Parada::create(['cod_identificacao' => '020', 'nome' => 'Parada 20 - Avenida Liberdade', 'endereco_completo' => 'Avenida Liberdade']);
+        Parada::create(['cod_identificacao' => '011', 'nome' => 'Parada 11 - Estação Tejipió - Jardim São Paulo', 'endereco_completo' => 'Estação de Metrô Tejipió']);
+        Parada::create(['cod_identificacao' => '012', 'nome' => 'Parada 12 - Estação Tejipió - Jardim São Paulo', 'endereco_completo' => 'Estação de Metrô Tejipió']);
+        Parada::create(['cod_identificacao' => '013', 'nome' => 'Parada 13 - Rua Padre Ibiapina - Jardim São Paulo', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '014', 'nome' => 'Parada 14 - Rua Padre Ibiapina - Jardim São Paulo', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '015', 'nome' => 'Parada 15 - Rua Padre Ibiapina - Jardim São Paulo', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '016', 'nome' => 'Parada 16 - Rua Padre Ibiapina - Jardim São Paulo', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '017', 'nome' => 'Parada 17 - Rua Padre Ibiapina - Jardim São Paulo', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '018', 'nome' => 'Parada 18 - Rua Padre Ibiapina - Jardim São Paulo', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '019', 'nome' => 'Parada 19 - Rua Padre Ibiapina - Jardim São Paulo', 'endereco_completo' => 'Rua Padre Ibiapina']);
+        Parada::create(['cod_identificacao' => '020', 'nome' => 'Parada 20 - Avenida Liberdade - Jardim São Paulo', 'endereco_completo' => 'Avenida Liberdade']);
     }
 }
 

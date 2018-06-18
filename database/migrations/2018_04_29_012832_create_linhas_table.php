@@ -17,6 +17,7 @@ class CreateLinhasTable extends Migration
             $table->increments('id');
             $table->integer('anel_id')->unsigned()->nullable();
             $table->integer('evento_id')->unsigned()->nullable();
+            $table->integer('onibus_id')->unsigned()->nullable();
             $table->string('nome');
             $table->string('classificacao');
 
@@ -24,8 +25,12 @@ class CreateLinhasTable extends Migration
                 ->on('aneis')
                 ->onDelete('cascade');
 
-                $table->foreign('evento_id')->references('id')
+            $table->foreign('evento_id')->references('id')
                 ->on('eventos')
+                ->onDelete('cascade');
+
+            $table->foreign('onibus_id')->references('id')
+                ->on('onibus')
                 ->onDelete('cascade');
 
         });

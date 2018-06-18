@@ -18,7 +18,7 @@ class Onibus extends Model
 
     public function linhas()
     {
-        return $this->belongsToMany('App\Models\Linha');
+        return $this->belongsTo('App\Models\Linha');
     }
 
     public function paradas()

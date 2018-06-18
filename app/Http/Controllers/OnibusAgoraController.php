@@ -21,7 +21,9 @@ class OnibusAgoraController extends Controller
         foreach ($linhas as $linha) {
 
             //pegar o id dos onibus
-            $linhaSelect = DB::table('linha_onibus')->select('onibus_id')->where('linha_id', '=', $linha->id)->get()->all();
+            // $linhaSelect = DB::table('linha_onibus')->select('onibus_id')->where('linha_id', '=', $linha->id)->get()->all();
+            $linhaSelect = DB::table('linhas')->select('onibus_id')->where('onibus_id', '=', $linha->id)->get()->all();
+
 
             $arrayOnibus = [];
             foreach ($linhaSelect as $onibusLinha) {
@@ -71,12 +73,13 @@ class OnibusAgoraController extends Controller
         return view('negocio.onibus-agora', compact('linhas'));
     }
 
-    public function andarOnibus(Request $request)
+    public function andarOnibusAgora(Request $request)
     {
         $linhaRequest = $request->input('linha');
 
         //pegar o id dos onibus
-        $linhaSelect = DB::table('linha_onibus')->select('onibus_id')->where('linha_id', '=', $linhaRequest)->get()->all();
+        // $linhaSelect = DB::table('linha_onibus')->select('onibus_id')->where('linha_id', '=', $linhaRequest)->get()->all();
+        $linhaSelect = DB::table('linhas')->select('onibus_id')->where('onibus_id', '=', $linhaRequest)->get()->all();
 
         //pegar o onibus de cada linha e joga-los em um array
         $arrayOnibus = [];

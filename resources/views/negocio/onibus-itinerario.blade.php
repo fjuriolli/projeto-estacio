@@ -18,9 +18,7 @@
 
 <!-- Form -->
 <div class="form-page">
-  <form class="w3-container" action="{{route ('itinerario.store')}}" method="post">
-
-  <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
+<form class="w3-container" action="{{ action('OnibusItinerarioController@andarOnibusItinerario') }}" method="get">
 
   <div class="form-parada">
     <label class="w3-text"><b>Selecione a Parada</b></label>
