@@ -114,8 +114,8 @@ class OnibusAgoraController extends Controller
         //pegar a parada atual de acordo com o nome do onibus
         $selectPegarParadaAtual = DB::table('logs')->orderBy('created_at', 'desc')->where('onibus_nome', '=', $arrayOnibus[0]['nome'])->get()->first();
 
-        //problema aqui!!!! executando varias vezes o codigo abaixo
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
+        //pegar a proxima parada
+        $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
 
         //insert nova parada
         $insertTabelaLog = Log::firstOrCreate(
@@ -135,7 +135,7 @@ class OnibusAgoraController extends Controller
     {
         $selectPegarParadaAtual = $request->session()->get('selectPegarParadaAtual');
 
-        return view('resultado-agora', ['selectPegarParadaAtual' => $selectPegarParadaAtual, 'luckyNumber' => $luckyNumber]);
+        return view('negocio.resultado-agora', ['selectPegarParadaAtual' => $selectPegarParadaAtual]);
     }
 
     public function voltarParaConsulta(Request $request)
