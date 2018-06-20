@@ -88,264 +88,54 @@ class OnibusAgoraController extends Controller
             array_push($arrayOnibus, array("id" => $onibusSelect[0]->id, "nome" => $onibusSelect[0]->nome));
         }
 
+        //pegar o itinerario da linha passando como parâmetro o request da linha
+        $itinerarioSelect = DB::table('itinerarios')->where('linha_id', '=', $linhaRequest)->get()->all();
+
+        //pegar todos os logradouros passando como parâmetro o id do itinerario
+        $logradourosSelect = DB::table('itinerario_logradouro')->where('itinerario_id', '=', $itinerarioSelect[0]->id)->get()->all();
+
+        //pegar os ids das paradas passando como parâmetro os ids dos logradouros e jogar essas informacoes no array abaixo
+        $arrayParadas = [];
+        foreach ($logradourosSelect as $paradasId) {
+            $paradasIdSelect = DB::table('logradouro_parada')->where('logradouro_id', '=', $paradasId->logradouro_id)->get()->all();
+        
+            //pegar todas as paradas
+            foreach ($paradasIdSelect as $paradas) {
+                $paradasSelect = DB::table('paradas')->where('id', '=', $paradas->parada_id)->get()->all();
+                array_push($arrayParadas, array(
+                    "id" => $paradasSelect[0]->id, 
+                    "nome" => $paradasSelect[0]->nome, 
+                    "endereco_completo" => $paradasSelect[0]->endereco_completo,
+                    "tempo" => 8)
+                );
+            }
+        }
+
         //pegar a parada atual de acordo com o nome do onibus
         $selectPegarParadaAtual = DB::table('logs')->orderBy('created_at', 'desc')->where('onibus_nome', '=', $arrayOnibus[0]['nome'])->get()->first();
 
-        //insert terceira parada
-        if ($selectPegarParadaAtual->id_parada == 2 && $selectPegarParadaAtual->tempo > 10) {
-
+        //problema aqui!!!! executando varias vezes o codigo abaixo
             $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
 
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        } 
+        //insert nova parada
+        $insertTabelaLog = Log::firstOrCreate(
+        ['id_parada'=> $selectPegarProximaParada->id,
+        'nome' => $selectPegarProximaParada->nome,
+        'endereco_completo' => $selectPegarProximaParada->endereco_completo,
+        'tempo' => $selectPegarParadaAtual->tempo - 10,
+        'onibus_nome' => $arrayOnibus[0]['nome']
+        ]);
 
-        //insert quinta parada
-        if ($selectPegarParadaAtual->id_parada == 4 && $selectPegarParadaAtual->tempo > 10) {
+        $request->session()->flash('selectPegarParadaAtual', $selectPegarParadaAtual);
 
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        //insert setima parada
-        if ($selectPegarParadaAtual->id_parada == 6 && $selectPegarParadaAtual->tempo > 10) {
-
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        //chegou na garagem
-        if ($selectPegarParadaAtual->id_parada == 8 && $selectPegarParadaAtual->tempo > 10) {
-
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        //insert décima segunda
-        if ($selectPegarParadaAtual->id_parada == 12 && $selectPegarParadaAtual->tempo > 10) {
-
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        //insert décima quarta
-        if ($selectPegarParadaAtual->id_parada == 14 && $selectPegarParadaAtual->tempo > 10) {
-
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        //insert décima sexta
-        if ($selectPegarParadaAtual->id_parada == 16 && $selectPegarParadaAtual->tempo > 10) {
-
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        //chegou na garagem
-        if ($selectPegarParadaAtual->id_parada == 18 && $selectPegarParadaAtual->tempo > 10) {
-
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        session()->put('arrayOnibus', $arrayOnibus);
-
-        return view('negocio.resultado-agora', compact('selectPegarParadaAtual'));
+        return redirect()->action('OnibusAgoraController@mostrarViewResultadoAgora');
     }
 
-    public function atualizarOnibus(Request $request)
+    public function mostrarViewResultadoAgora(Request $request)
     {
-        $arrayOnibus = $request->session()->get('arrayOnibus'); 
+        $selectPegarParadaAtual = $request->session()->get('selectPegarParadaAtual');
 
-        //pegar a parada atual de acordo com o nome do onibus
-        $selectPegarParadaAtual = DB::table('logs')->orderBy('created_at', 'desc')->where('onibus_nome', '=', $arrayOnibus[0]['nome'])->get()->first();
-
-         //insert segunda parada
-         if ($selectPegarParadaAtual->id_parada == 1 && $selectPegarParadaAtual->tempo > 10) {
-
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        //insert quarta parada
-        if ($selectPegarParadaAtual->id_parada == 3 && $selectPegarParadaAtual->tempo > 10) {
-            
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        //insert sexta parada
-        if ($selectPegarParadaAtual->id_parada == 5 && $selectPegarParadaAtual->tempo > 10) {
-
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        //insert oitava parada
-        if ($selectPegarParadaAtual->id_parada == 7 && $selectPegarParadaAtual->tempo > 10) {
-
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        //insert décima primeira
-        if ($selectPegarParadaAtual->id_parada == 11 && $selectPegarParadaAtual->tempo > 10) {
-
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        //insert décima terceira
-        if ($selectPegarParadaAtual->id_parada == 13 && $selectPegarParadaAtual->tempo > 10) {
-
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        //insert décima quinta
-        if ($selectPegarParadaAtual->id_parada == 15 && $selectPegarParadaAtual->tempo > 10) {
-
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-
-        //insert décima sétima
-        if ($selectPegarParadaAtual->id_parada == 17 && $selectPegarParadaAtual->tempo > 10) {
-
-            $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
-
-            //insert nova parada
-            $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $arrayOnibus[0]['nome']
-            ]);
-        }
-        
-        $selectTabelaLog = DB::table('logs')->get()->all();
-        
-        return view('negocio.atualizar-onibus-agora', compact('selectPegarParadaAtual'));
+        return view('resultado-agora', ['selectPegarParadaAtual' => $selectPegarParadaAtual, 'luckyNumber' => $luckyNumber]);
     }
 
     public function voltarParaConsulta(Request $request)
