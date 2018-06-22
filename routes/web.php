@@ -50,6 +50,10 @@ Route::get('/resultado-agora', 'OnibusAgoraController@mostrarViewResultadoAgora'
 Route::get('/atualizar-onibus-agora', 'OnibusAgoraController@voltarParaConsulta');
 
 Route::get('/formulario-movimentar', 'MovimentarOnibusController@mostrarFormularioMovimentar');
+Route::get('/movimentar-onibus', 'MovimentarOnibusController@movimentarOnibus');
+Route::get('/resultado-movimentar', 'MovimentarOnibusController@mostrarViewResultadoMovimentar');
+Route::get('/atualizar-onibus-agora', 'MovimentarOnibusController@voltarParaConsultaMovimentar');
+
 
 Route::get('/formulario-itinerario', 'OnibusItinerarioController@mostrarFormulario');
 Route::get('/onibus-itinerario', 'OnibusItinerarioController@andarOnibusItinerario');

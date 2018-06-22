@@ -10,42 +10,38 @@
 
 <!-- Header -->
 <div class="w3-container container-top-page" id="showcase">
-  <h1 class="w3-x-jumbo"><b>Movimentar</b></h1>
-  <h1 class="w3-xxlarge w3-text" id="top-page"><b>Ônibus</b></h1>
+  <h1 class="w3-x-jumbo"><b>Localizar Ônibus</b></h1>
+  <h1 class="w3-xxlarge w3-text" id="top-page"><b>Controle de Frota</b></h1>
   <hr class="w3-round">
 </div>
 
-<!-- Form -->
-<div class="form-page">
-  <form class="w3-container" action="{{ action('MovimentarOnibusController@movimentarOnibus') }}" method="get">
+<br>
 
-    <div class="custom-select" style="width:200px;">
-      <label class="w3-text"><b>Selecione um Ônibus:</b></label>
-      <select name="onibus">
-      @foreach($onibusTodos as $onibus)
-      <option value="{{ $onibus->id }}">
-        {{ $onibus->nome }}</option> 
-      @endforeach
-      </select>
-    </div>
-
-    <button class="w3-btn w3-blue" id="btn-page" type="text">Movimentar</button>
-
-    <div class="help-tip">
-    <p>Localizar a parada na qual o ônibus está atualmente, basta selecionar a linha que o mesmo pertence. O resultado será a parada onde o mesmo está atualmente e sua previsão de retorno para a garagem.</p>
-    </div>
+@if (Session::get('selectPegarParadaAtual')->tempo  <= 10)
+<div class="w3-container">
+  <div style="margin-top: 15px;background-color: #E0F0D7" class="w3-panel w3-round-large">
+    <h3 style="color: #457D46">Chegou!</h3>
+    <p style="color: #629361">O ônibus voltou para a garagem</p>
+  </div>
+  <form class="w3-container" action="{{ action('MovimentarOnibusController@voltarParaConsultaMovimentar') }}" method="get">
+    <button class="w3-btn w3-blue" id="btn-page" type="text">Voltar</button>
   </form>
 </div>
+@else
+<h1> Onibus Movimentado </h1>
 
-<!-- Padding -->
-<div class="w3-light-grey w3-container w3-padding-24"><p class="w3-right">Powered by Wizzle &copy</p></div>
+<form class="w3-container" action="{{ action('MovimentarOnibusController@voltarParaConsultaMovimentar') }}" method="get">
+  <button class="w3-btn w3-blue" id="btn-page" type="text">Voltar</button>
+</form>
+
+@endif
 
 <style>
-
+  
 /* --------------- START OF HELP TIP --------------- */
 .help-tip{
   position: relative;
-  top: -215px;
+  top: -347px;
   right: -135px;
   text-align: center;
   background-color: #BCDBEA;
@@ -55,10 +51,6 @@
   font-size: 14px;
   line-height: 26px;
   cursor: default;
-}
-
-#btn-page2{
-  right: 20px;
 }
 
 .help-tip:before{

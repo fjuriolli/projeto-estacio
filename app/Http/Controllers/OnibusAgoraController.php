@@ -89,7 +89,6 @@ class OnibusAgoraController extends Controller
         foreach ($linhaSelect as $key => $onibusLinha) {
             $onibusSelect = DB::table('onibus')->where('linha_id', '=', $onibusLinha->linha_id)->get()->all();
             array_push($arrayOnibus, array("id" => $onibusSelect[$key]->id, "nome" => $onibusSelect[$key]->nome));
-            print_r($onibusSelect[$key]->nome);
         }
 
         //pegar o itinerario da linha passando como parâmetro o request da linha
