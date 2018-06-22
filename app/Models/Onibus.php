@@ -11,14 +11,15 @@ class Onibus extends Model
     protected $fillable = [
         'nome',
         'marca',
-        'parada_atual'
+        'parada_atual',
+        'linha_id'
     ];
 
     public $timestamps = false;
 
     public function linhas()
     {
-        return $this->belongsTo('App\Models\Linha');
+        return $this->hasMany('App\Models\Linha');
     }
 
     public function paradas()

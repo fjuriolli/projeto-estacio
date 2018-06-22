@@ -18,12 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call('OnibusSeeder');
         $this->call('AnelSeeder');
+        $this->call('LinhaSeeder');
+        $this->call('OnibusSeeder');
         $this->call('EventoSeeder');
         $this->call('ParadaSeeder');
         $this->call('LogradouroSeeder');
-        $this->call('LinhaSeeder');
         $this->call('LogradouroParadaSeeder');
         $this->call('ItinerarioSeeder');
         $this->call('ItinerarioLogradouroSeeder');
@@ -36,8 +36,14 @@ class OnibusSeeder extends Seeder
     {
         DB::table('onibus')->delete();
 
-        Onibus::create(['nome' => 'Ônibus 01 - Aeroporto (opcional)', 'marca' => 'Mercedes Benz']);
-        Onibus::create(['nome' => 'Ônibus 02 - Jardim São Paulo (Abdias de Carvalho)', 'marca' => 'Volkswagen']);
+        Onibus::create(['nome' => 'Ônibus 01 - Aeroporto (opcional)', 'marca' => 'Mercedes Benz', 'linha_id' => 1]);
+        Onibus::create(['nome' => 'Ônibus 02 - Aeroporto (opcional)', 'marca' => 'Volkswagen', 'linha_id' => 1]);
+        Onibus::create(['nome' => 'Ônibus 03 - Aeroporto (opcional)', 'marca' => 'Mercedes Benz', 'linha_id' => 1]);
+
+        Onibus::create(['nome' => 'Ônibus 04 - Jardim São Paulo', 'marca' => 'Volkswagen', 'linha_id' => 2]);
+        Onibus::create(['nome' => 'Ônibus 05 - Jardim São Paulo', 'marca' => 'Mercedes Benz', 'linha_id' => 2]);
+        Onibus::create(['nome' => 'Ônibus 06 - Jardim São Paulo', 'marca' => 'Volkswagen', 'linha_id' => 2]);
+
     }
 }
 
@@ -47,8 +53,8 @@ class LinhaSeeder extends Seeder
     {
         DB::table('linhas')->delete();
 
-        Linha::create(['nome' => 'Aeroporto (Opcional)', 'classificacao' => 'Circular', 'onibus_id' => 1, 'anel_id' => 2]);
-        Linha::create(['nome' => 'Jardim São Paulo', 'classificacao' => 'Circular', 'onibus_id' => 2, 'anel_id' => 1]);
+        Linha::create(['nome' => 'Aeroporto (Opcional)', 'classificacao' => 'Circular', 'anel_id' => 2]);
+        Linha::create(['nome' => 'Jardim São Paulo', 'classificacao' => 'Circular', 'anel_id' => 1]);
     }   
 }
 

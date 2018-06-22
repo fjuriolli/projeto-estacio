@@ -11,8 +11,7 @@ class Linha extends Model
         'anel_id',
         'evento_id',
         'nome',
-        'classificacao',
-        'onibus_id'
+        'classificacao'
     ];
 
     public $timestamps = false;
@@ -34,6 +33,6 @@ class Linha extends Model
 
     public function onibus()
     {
-        return $this->hasMany('App\Models\Onibus');
+        return $this->belongsTo('App\Models\Onibus');
     }
 }

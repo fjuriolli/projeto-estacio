@@ -49,6 +49,8 @@ Route::get('/onibus-agora', 'OnibusAgoraController@andarOnibusAgora');
 Route::get('/resultado-agora', 'OnibusAgoraController@mostrarViewResultadoAgora');
 Route::get('/atualizar-onibus-agora', 'OnibusAgoraController@voltarParaConsulta');
 
+Route::get('/formulario-movimentar', 'MovimentarOnibusController@mostrarFormularioMovimentar');
+
 Route::get('/formulario-itinerario', 'OnibusItinerarioController@mostrarFormulario');
 Route::get('/onibus-itinerario', 'OnibusItinerarioController@andarOnibusItinerario');
 Route::get('/resultado-itinerario', 'OnibusItinerarioController@store');

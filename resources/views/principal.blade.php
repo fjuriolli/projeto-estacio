@@ -19,6 +19,7 @@
   </div>
   <div class="w3-bar-block">
     <a class="w3-bar-item w3-button w3-hover-white" href="#">Home</a> 
+    <a class="w3-bar-item w3-button w3-hover-white" href="/formulario-movimentar">Movimentar Ônibus!</a> 
     <a class="w3-bar-item w3-button w3-hover-white" href="/formulario-agora">Ônibus Agora!</a> 
     <a class="w3-bar-item w3-button w3-hover-white" href="/formulario-itinerario">Ônibus p/ Itinerário</a> 
     <a class="w3-bar-item w3-button w3-hover-white" href="onibus-trajeto">Ônibus Trajetos</a> 

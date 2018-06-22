@@ -21,15 +21,16 @@ class OnibusAgoraController extends Controller
         foreach ($linhas as $linha) {
 
             //pegar o id dos onibus
-            // $linhaSelect = DB::table('linha_onibus')->select('onibus_id')->where('linha_id', '=', $linha->id)->get()->all();
-            $linhaSelect = DB::table('linhas')->select('onibus_id')->where('onibus_id', '=', $linha->id)->get()->all();
+            $linhaSelect = DB::table('onibus')->select('linha_id')->where('linha_id', '=', $linha->id)->get()->all();
 
-
+            //pegar o onibus de cada linha e joga-los em um array
             $arrayOnibus = [];
-            foreach ($linhaSelect as $onibusLinha) {
-                $onibusSelect = DB::table('onibus')->where('id', '=', $onibusLinha->onibus_id)->get()->all();
-                array_push($arrayOnibus, array("id" => $onibusSelect[0]->id, "nome" => $onibusSelect[0]->nome));
-            }    
+            foreach ($linhaSelect as $key => $onibusLinha) {
+                $onibusSelect = DB::table('onibus')->where('linha_id', '=', $onibusLinha->linha_id)->get()->all();
+                array_push($arrayOnibus, array("id" => $onibusSelect[$key]->id, "nome" => $onibusSelect[$key]->nome));
+                // print_r($onibusSelect[$key]->nome);
+            }
+
             //pegar o itinerario da linha passando como parâmetro o request da linha
             $itinerarioSelect = DB::table('itinerarios')->where('linha_id', '=', $linha->id)->get()->all();
 
@@ -59,16 +60,19 @@ class OnibusAgoraController extends Controller
                 $somaTempoTotalDoTrajeto += $values[ 'tempo' ];
             }
 
-            //inserir no banco as paradas iniciais de todas as linhas
-            $primeiroIndexArrayParadas = key($arrayParadas);
-            $insertTabelaLog = Log::updateOrCreate(
-                ['id_parada' => $arrayParadas[$primeiroIndexArrayParadas]['id'],
-                'nome' => $arrayParadas[$primeiroIndexArrayParadas]['nome'],
-                'endereco_completo' => $arrayParadas[$primeiroIndexArrayParadas]['endereco_completo'],
-                'onibus_nome' => $arrayOnibus[0]['nome'],
-                'tempo' => $somaTempoTotalDoTrajeto]
-            );
-        }
+            foreach ($arrayOnibus as $key => $onibus) {
+                //inserir no banco as paradas iniciais de todas as linhas
+                $primeiroIndexArrayParadas = key($arrayParadas);
+                $insertTabelaLog = Log::updateOrCreate(
+                    ['id_parada' => $arrayParadas[$primeiroIndexArrayParadas]['id'],
+                    'nome' => $arrayParadas[$primeiroIndexArrayParadas]['nome'],
+                    'endereco_completo' => $arrayParadas[$primeiroIndexArrayParadas]['endereco_completo'],
+                    'onibus_nome' => $arrayOnibus[$key]['nome'],
+                    'onibus_id' => $arrayOnibus[$key]['id'],
+                    'tempo' => $somaTempoTotalDoTrajeto]
+                );
+            }
+        }     
         
         return view('negocio.onibus-agora', compact('linhas'));
     }
@@ -78,14 +82,14 @@ class OnibusAgoraController extends Controller
         $linhaRequest = $request->input('linha');
 
         //pegar o id dos onibus
-        // $linhaSelect = DB::table('linha_onibus')->select('onibus_id')->where('linha_id', '=', $linhaRequest)->get()->all();
-        $linhaSelect = DB::table('linhas')->select('onibus_id')->where('onibus_id', '=', $linhaRequest)->get()->all();
+        $linhaSelect = DB::table('onibus')->select('linha_id')->where('linha_id', '=', $linhaRequest)->get()->all();
 
         //pegar o onibus de cada linha e joga-los em um array
         $arrayOnibus = [];
-        foreach ($linhaSelect as $onibusLinha) {
-            $onibusSelect = DB::table('onibus')->where('id', '=', $onibusLinha->onibus_id)->get()->all();
-            array_push($arrayOnibus, array("id" => $onibusSelect[0]->id, "nome" => $onibusSelect[0]->nome));
+        foreach ($linhaSelect as $key => $onibusLinha) {
+            $onibusSelect = DB::table('onibus')->where('linha_id', '=', $onibusLinha->linha_id)->get()->all();
+            array_push($arrayOnibus, array("id" => $onibusSelect[$key]->id, "nome" => $onibusSelect[$key]->nome));
+            print_r($onibusSelect[$key]->nome);
         }
 
         //pegar o itinerario da linha passando como parâmetro o request da linha
@@ -112,7 +116,7 @@ class OnibusAgoraController extends Controller
         }
 
         //pegar a parada atual de acordo com o nome do onibus
-        $selectPegarParadaAtual = DB::table('logs')->orderBy('created_at', 'desc')->where('onibus_nome', '=', $arrayOnibus[0]['nome'])->get()->first();
+        $selectPegarParadaAtual = DB::table('logs')->orderBy('created_at', 'desc')->where('onibus_id', '=', $arrayOnibus[0]['id'])->get()->first();
 
         //pegar a proxima parada
         $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
@@ -123,7 +127,8 @@ class OnibusAgoraController extends Controller
         'nome' => $selectPegarProximaParada->nome,
         'endereco_completo' => $selectPegarProximaParada->endereco_completo,
         'tempo' => $selectPegarParadaAtual->tempo - 10,
-        'onibus_nome' => $arrayOnibus[0]['nome']
+        'onibus_nome' => $arrayOnibus[0]['nome'],
+        'onibus_id' => $arrayOnibus[0]['id']
         ]);
 
         $request->session()->flash('selectPegarParadaAtual', $selectPegarParadaAtual);

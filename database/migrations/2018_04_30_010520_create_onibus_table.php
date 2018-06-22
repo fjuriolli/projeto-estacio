@@ -15,9 +15,14 @@ class CreateOnibusTable extends Migration
     {
         Schema::create('onibus', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('linha_id')->unsigned();
             $table->string('nome');
             $table->string('marca');
             $table->string('parada_atual')->nullable();
+
+            $table->foreign('linha_id')->references('id')
+                ->on('linhas')
+                ->onDelete('cascade');
         });
     }
 

@@ -21,6 +21,7 @@ class CreateLogsTable extends Migration
             $table->integer('id_linha')->nullable();
             $table->integer('tempo')->nullable();
             $table->string('onibus_nome')->nullable();
+            $table->string('onibus_id')->nullable();
             $table->timestamps();
         });
     }
