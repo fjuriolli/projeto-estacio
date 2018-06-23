@@ -15,5 +15,6 @@ class Log extends Model
         'tempo',
         'onibus_id',
         'onibus_nome',
+        'linha_id'
     ];
 }

@@ -28,7 +28,7 @@ class MovimentarOnibusController extends Controller
             $arrayOnibus = [];
             foreach ($linhaSelect as $key => $onibusLinha) {
                 $onibusSelect = DB::table('onibus')->where('linha_id', '=', $onibusLinha->linha_id)->get()->all();
-                array_push($arrayOnibus, array("id" => $onibusSelect[$key]->id, "nome" => $onibusSelect[$key]->nome));
+                array_push($arrayOnibus, array("id" => $onibusSelect[$key]->id, "nome" => $onibusSelect[$key]->nome, "linha_id" => $linha->id));
             }
 
             //pegar o itinerario da linha passando como parâmetro o request da linha
@@ -69,7 +69,8 @@ class MovimentarOnibusController extends Controller
                     'endereco_completo' => $arrayParadas[$primeiroIndexArrayParadas]['endereco_completo'],
                     'onibus_nome' => $arrayOnibus[$key]['nome'],
                     'onibus_id' => $arrayOnibus[$key]['id'],
-                    'tempo' => $somaTempoTotalDoTrajeto]
+                    'tempo' => $somaTempoTotalDoTrajeto,
+                    'linha_id' => $arrayOnibus[$key]['linha_id']]
                 );
             }
         }
@@ -115,15 +116,20 @@ class MovimentarOnibusController extends Controller
         //pegar a proxima parada
         $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
 
-        //insert nova parada
-        $insertTabelaLog = Log::firstOrCreate(
-            ['id_parada'=> $selectPegarProximaParada->id,
-            'nome' => $selectPegarProximaParada->nome,
-            'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-            'tempo' => $selectPegarParadaAtual->tempo - 10,
-            'onibus_nome' => $linhaSelect->nome,
-            'onibus_id' => $linhaSelect->id
-            ]);
+        if ($selectPegarParadaAtual->tempo == 0) {
+            //do nothing
+        } else {
+            //insert nova parada
+            $insertTabelaLog = Log::firstOrCreate(
+                ['id_parada'=> $selectPegarProximaParada->id,
+                'nome' => $selectPegarProximaParada->nome,
+                'endereco_completo' => $selectPegarProximaParada->endereco_completo,
+                'tempo' => $selectPegarParadaAtual->tempo - 10,
+                'onibus_nome' => $linhaSelect->nome,
+                'onibus_id' => $linhaSelect->id,
+                'linha_id' => $selectPegarParadaAtual->linha_id
+                ]);
+        }
 
         $request->session()->flash('selectPegarParadaAtual', $selectPegarParadaAtual);
 

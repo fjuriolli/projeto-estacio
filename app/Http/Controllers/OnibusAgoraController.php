@@ -14,7 +14,7 @@ use App\Models\Log;
 class OnibusAgoraController extends Controller
 {
     //função com o objetivo de pegar todas as paradas iniciais de todas as linhas e salvá-las no banco de dados como a parada inicial
-    public function mostrarFormulario(Request $request)
+    public function mostrarFormularioAgora(Request $request)
     {
         $linhas = Linha::get()->all();
 
@@ -27,7 +27,7 @@ class OnibusAgoraController extends Controller
             $arrayOnibus = [];
             foreach ($linhaSelect as $key => $onibusLinha) {
                 $onibusSelect = DB::table('onibus')->where('linha_id', '=', $onibusLinha->linha_id)->get()->all();
-                array_push($arrayOnibus, array("id" => $onibusSelect[$key]->id, "nome" => $onibusSelect[$key]->nome));
+                array_push($arrayOnibus, array("id" => $onibusSelect[$key]->id, "nome" => $onibusSelect[$key]->nome, "linha_id" => $linha->id));
                 // print_r($onibusSelect[$key]->nome);
             }
 
@@ -69,7 +69,8 @@ class OnibusAgoraController extends Controller
                     'endereco_completo' => $arrayParadas[$primeiroIndexArrayParadas]['endereco_completo'],
                     'onibus_nome' => $arrayOnibus[$key]['nome'],
                     'onibus_id' => $arrayOnibus[$key]['id'],
-                    'tempo' => $somaTempoTotalDoTrajeto]
+                    'tempo' => $somaTempoTotalDoTrajeto,
+                    'linha_id' => $arrayOnibus[$key]['linha_id']]
                 );
             }
         }     
@@ -114,25 +115,22 @@ class OnibusAgoraController extends Controller
             }
         }
 
+        foreach ($arrayOnibus as $onibus) {
+            $selectPegarParadaAtual = DB::table('logs')->orderBy('created_at', 'desc')->where('onibus_id', '=', $arrayOnibus[0]['id'])->get()->first();
+            echo "<br>";
+            print_r($selectPegarParadaAtual);
+            echo "<br>";
+        }
+        die;
         //pegar a parada atual de acordo com o nome do onibus
-        $selectPegarParadaAtual = DB::table('logs')->orderBy('created_at', 'desc')->where('onibus_id', '=', $arrayOnibus[0]['id'])->get()->first();
+        
+        // dd($selectPegarParadaAtual);
 
-        //pegar a proxima parada
-        $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
+        // $request->session()->flash('selectPegarParadaAtual', $selectPegarParadaAtual);
 
-        //insert nova parada
-        $insertTabelaLog = Log::firstOrCreate(
-        ['id_parada'=> $selectPegarProximaParada->id,
-        'nome' => $selectPegarProximaParada->nome,
-        'endereco_completo' => $selectPegarProximaParada->endereco_completo,
-        'tempo' => $selectPegarParadaAtual->tempo - 10,
-        'onibus_nome' => $arrayOnibus[0]['nome'],
-        'onibus_id' => $arrayOnibus[0]['id']
-        ]);
+        // return redirect()->action('OnibusAgoraController@mostrarViewResultadoAgora');
 
-        $request->session()->flash('selectPegarParadaAtual', $selectPegarParadaAtual);
-
-        return redirect()->action('OnibusAgoraController@mostrarViewResultadoAgora');
+        return view('negocio.resultado-agora', compact('selectPegarParadaAtual', 'arrayOnibus'));
     }
 
     public function mostrarViewResultadoAgora(Request $request)
@@ -142,12 +140,12 @@ class OnibusAgoraController extends Controller
         return view('negocio.resultado-agora', ['selectPegarParadaAtual' => $selectPegarParadaAtual]);
     }
 
-    public function voltarParaConsulta(Request $request)
+    public function voltarParaConsultaAgora(Request $request)
     {
         $linhas = Linha::get()->all();
 
         return redirect()->action(
-            'OnibusAgoraController@mostrarFormulario'
+            'OnibusAgoraController@mostrarFormularioAgora'
         );
     }
 }

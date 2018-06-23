@@ -18,7 +18,7 @@ class CreateLogsTable extends Migration
             $table->integer('id_parada');
             $table->string('nome')->nullable();
             $table->string('endereco_completo')->nullable();
-            $table->integer('id_linha')->nullable();
+            $table->string('linha_id')->nullable();
             $table->integer('tempo')->nullable();
             $table->string('onibus_nome')->nullable();
             $table->string('onibus_id')->nullable();

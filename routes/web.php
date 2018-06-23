@@ -44,15 +44,15 @@ Route::get('/resultado-trajeto', 'OnibusTrajetoController@store');
 Route::get('/detalhes-trajetoa', 'OnibusTrajetoController@detalhesa');
 Route::resource('trajeto', 'OnibusTrajetoController');
 
-Route::get('/formulario-agora', 'OnibusAgoraController@mostrarFormulario');
+Route::get('/formulario-agora', 'OnibusAgoraController@mostrarFormularioAgora');
 Route::get('/onibus-agora', 'OnibusAgoraController@andarOnibusAgora');
 Route::get('/resultado-agora', 'OnibusAgoraController@mostrarViewResultadoAgora');
-Route::get('/atualizar-onibus-agora', 'OnibusAgoraController@voltarParaConsulta');
+Route::get('/atualizar-onibus-agora', 'OnibusAgoraController@voltarParaConsultaAgora');
 
 Route::get('/formulario-movimentar', 'MovimentarOnibusController@mostrarFormularioMovimentar');
 Route::get('/movimentar-onibus', 'MovimentarOnibusController@movimentarOnibus');
 Route::get('/resultado-movimentar', 'MovimentarOnibusController@mostrarViewResultadoMovimentar');
-Route::get('/atualizar-onibus-agora', 'MovimentarOnibusController@voltarParaConsultaMovimentar');
+Route::get('/movimentar-onibus-agora', 'MovimentarOnibusController@voltarParaConsultaMovimentar');
 
 
 Route::get('/formulario-itinerario', 'OnibusItinerarioController@mostrarFormulario');
