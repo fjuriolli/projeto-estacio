@@ -13,22 +13,23 @@ use App\Models\Log;
 
 class OnibusItinerarioController extends Controller
 {
-    public function mostrarFormulario(Request $request)
+    public function mostrarFormularioItinerario(Request $request)
     {
         $linhas = Linha::get()->all();
 
         foreach ($linhas as $linha) {
 
             //pegar o id dos onibus
-            // $linhaSelect = DB::table('linha_onibus')->select('onibus_id')->where('linha_id', '=', $linha->id)->get()->all();
-            $linhaSelect = DB::table('linhas')->select('onibus_id')->where('onibus_id', '=', $linha->id)->get()->all();
+            $linhaSelect = DB::table('onibus')->select('linha_id')->where('linha_id', '=', $linha->id)->get()->all();
 
-
+            //pegar o onibus de cada linha e joga-los em um array
             $arrayOnibus = [];
-            foreach ($linhaSelect as $onibusLinha) {
-                $onibusSelect = DB::table('onibus')->where('id', '=', $onibusLinha->onibus_id)->get()->all();
-                array_push($arrayOnibus, array("id" => $onibusSelect[0]->id, "nome" => $onibusSelect[0]->nome));
-            }    
+            foreach ($linhaSelect as $key => $onibusLinha) {
+                $onibusSelect = DB::table('onibus')->where('linha_id', '=', $onibusLinha->linha_id)->get()->all();
+                array_push($arrayOnibus, array("id" => $onibusSelect[$key]->id, "nome" => $onibusSelect[$key]->nome, "linha_id" => $linha->id));
+                // print_r($onibusSelect[$key]->nome);
+            }
+
             //pegar o itinerario da linha passando como parâmetro o request da linha
             $itinerarioSelect = DB::table('itinerarios')->where('linha_id', '=', $linha->id)->get()->all();
 
@@ -58,36 +59,137 @@ class OnibusItinerarioController extends Controller
                 $somaTempoTotalDoTrajeto += $values[ 'tempo' ];
             }
 
-            //inserir no banco as paradas iniciais de todas as linhas
-            $primeiroIndexArrayParadas = key($arrayParadas);
-            $insertTabelaLog = Log::updateOrCreate(
-                ['id_parada' => $arrayParadas[$primeiroIndexArrayParadas]['id'],
-                'nome' => $arrayParadas[$primeiroIndexArrayParadas]['nome'],
-                'endereco_completo' => $arrayParadas[$primeiroIndexArrayParadas]['endereco_completo'],
-                'onibus_nome' => $arrayOnibus[0]['nome'],
-                'tempo' => $somaTempoTotalDoTrajeto]
-            );
-        }
+            foreach ($arrayOnibus as $key => $onibus) {
+                //inserir no banco as paradas iniciais de todas as linhas
+                $primeiroIndexArrayParadas = key($arrayParadas);
+                $insertTabelaLog = Log::updateOrCreate(
+                    ['id_parada' => $arrayParadas[$primeiroIndexArrayParadas]['id'],
+                    'nome' => $arrayParadas[$primeiroIndexArrayParadas]['nome'],
+                    'endereco_completo' => $arrayParadas[$primeiroIndexArrayParadas]['endereco_completo'],
+                    'onibus_nome' => $arrayOnibus[$key]['nome'],
+                    'onibus_id' => $arrayOnibus[$key]['id'],
+                    'tempo' => $somaTempoTotalDoTrajeto,
+                    'linha_id' => $arrayOnibus[$key]['linha_id']]
+                );
+            }
+        }     
 
         $paradas = Parada::get()->all();
-
+        
         return view('negocio.onibus-itinerario', compact('linhas', 'paradas'));
     }
 
-    public function andarOnibusItinerario(Request $request)
+    public function localizarOnibusItinerario(Request $request)
     {
-        $parada = $request->input('parada');
-        $linha = $request->input('linha');
+        $paradaRequest = $request->input('parada');
+        $linhaRequest = $request->input('linha');
 
         //pegar o id dos onibus
-        $linhaSelect = DB::table('linha_onibus')->select('onibus_id')->where('linha_id', '=', $linha)->get()->all();
+        $linhaSelect = DB::table('onibus')->select('linha_id')->where('linha_id', '=', $linhaRequest)->get()->all();
 
+        //pegar o onibus de cada linha e joga-los em um array
         $arrayOnibus = [];
-        foreach ($linhaSelect as $onibusLinha) {
-            $onibusSelect = DB::table('onibus')->where('id', '=', $onibusLinha->onibus_id)->get()->all();
-            array_push($arrayOnibus, array("id" => $onibusSelect[0]->id, "nome" => $onibusSelect[0]->nome));
+        foreach ($linhaSelect as $key => $onibusLinha) {
+            $onibusSelect = DB::table('onibus')->where('linha_id', '=', $onibusLinha->linha_id)->get()->all();
+            array_push($arrayOnibus, array("id" => $onibusSelect[$key]->id, "nome" => $onibusSelect[$key]->nome));
         }
 
+        //pegar as informações atuais de cada onibus na tabela de logs, mandar elas pra um array de nome arrayInformacoes, pra ele ser exibido na view
+        $arrayInformacoes = [];
+        foreach ($arrayOnibus as $key => $informacao) {
+            $selectPegarParadaAtual = DB::table('logs')->orderBy('created_at', 'desc')->where('onibus_id', '=', $arrayOnibus[$key]['id'])->get()->first();
+            array_push($arrayInformacoes, array(
+                "id_parada" => $selectPegarParadaAtual->id,
+                "nome" => $selectPegarParadaAtual->nome, 
+                "tempo" => $selectPegarParadaAtual->tempo,
+                "endereco_completo" => $selectPegarParadaAtual->endereco_completo,
+                "onibus_nome" => $selectPegarParadaAtual->onibus_nome)
+            );
+        }
+
+        // colocar uma limitação, se o cliente escolher uma parada que não pertence a tal linha
+        // se parada tiver a linha, ok, caso contrario, mensagem de erro
+
+        //pegar o itinerario da linha passando como parâmetro o request da linha
+        $itinerarioSelect = DB::table('itinerarios')->where('linha_id', '=', $linhaRequest)->get()->all();
+        
+        //pegar todos os logradouros passando como parâmetro o id do itinerario
+        $logradourosSelect = DB::table('itinerario_logradouro')->where('itinerario_id', '=', $itinerarioSelect[0]->id)->get()->all();
+        
+        //pegar os ids das paradas passando como parâmetro os ids dos logradouros e jogar essas informacoes no array abaixo
+        $arrayParadas = [];
+
+        foreach ($logradourosSelect as $paradasId) {
+            $paradasIdSelect = DB::table('logradouro_parada')->where('logradouro_id', '=', $paradasId->logradouro_id)->get()->all();
+        
+            $paradasPresenteEmLinha = false;
+            //pegar todas as paradas
+            foreach ($paradasIdSelect as $paradas) {
+                $paradasSelect = DB::table('paradas')->where('id', '=', $paradas->parada_id)->get()->all();
+                array_push($arrayParadas, array(
+                    "id" => $paradasSelect[0]->id, 
+                    "nome" => $paradasSelect[0]->nome, 
+                    "endereco_completo" => $paradasSelect[0]->endereco_completo,
+                    "tempo" => 8)
+                );
+            }
+        }
+
+        //lógica para checar se a parada que vem do request está presente na linha que também vem do request
+        //caso não esteja presente, vai ser exibido uma mensagem de erro 
+        $keys = [];
+        for ($i = 0; $i < count($arrayParadas); $i++) {
+            if (in_array($paradaRequest, $arrayParadas[$i])) {
+                array_push($keys, $i);
+            }
+        }
+        if (!empty($keys)) {
+            return "true";
+        } else {
+            return view('negocio.erro-itinerario');
+        }
+        die; 
+
+        
+        foreach ($arrayInformacoes as $key => $informacao) {
+            if ($informacao['id_parada'] == $paradaRequest) {
+                print_r("parada atual no banco: " . $informacao['id_parada']);
+                echo "<br>";
+                print_r("parada do cliente request: " .$paradaRequest);
+                echo "<br>";
+                die("IGUAIS, TEMPO NORMAL");
+            } elseif ($informacao['id_parada'] > $paradaRequest) {
+                print_r("parada atual no banco: " . $informacao['id_parada']);
+                echo "<br>";
+                print_r("parada do cliente request: " .$paradaRequest);
+                echo "<br>";
+                die("TA NA FRENTE, AUMENTA O TEMPO AE CARAI");
+            } elseif ($informacao['id_parada'] < $paradaRequest) {
+                print_r("parada atual no banco: " . $informacao['id_parada']);
+                echo "<br>";
+                print_r("parada do cliente request: " .$paradaRequest);
+                echo "<br>";
+               die("NORMAL, SEGUE O NORMALS");
+            }
+        }
+        die;
         return view('negocio.resultado-itinerario', compact('arrayOnibus'));
+    }
+
+    public function mostrarViewResultadoItinerario(Request $request)
+    {
+        $selectPegarParadaAtual = $request->session()->get('selectPegarParadaAtual');
+
+        return view('negocio.resultado-itinerario', ['selectPegarParadaAtual' => $selectPegarParadaAtual]);
+    }
+
+    public function voltarParaConsultaItinerario(Request $request)
+    {
+        $linhas = Linha::get()->all();
+        $paradas = Parada::get()->all();
+
+        return redirect()->action(
+            'OnibusItinerarioController@mostrarFormularioItinerario'
+        );
     }
 }

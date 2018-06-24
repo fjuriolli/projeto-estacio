@@ -78,7 +78,7 @@ class OnibusAgoraController extends Controller
         return view('negocio.onibus-agora', compact('linhas'));
     }
 
-    public function andarOnibusAgora(Request $request)
+    public function localizarOnibusAgora(Request $request)
     {
         $linhaRequest = $request->input('linha');
 

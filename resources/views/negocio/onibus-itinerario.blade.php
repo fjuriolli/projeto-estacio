@@ -18,7 +18,7 @@
 
 <!-- Form -->
 <div class="form-page">
-<form class="w3-container" action="{{ action('OnibusItinerarioController@andarOnibusItinerario') }}" method="get">
+<form class="w3-container" action="{{ action('OnibusItinerarioController@localizarOnibusItinerario') }}" method="get">
 
   <div class="form-parada">
     <label class="w3-text"><b>Selecione a Parada</b></label>

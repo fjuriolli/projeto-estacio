@@ -7,42 +7,26 @@
 @stop
 
 @section('conteudo')
-
 <!-- Header -->
 <div class="w3-container container-top-page" id="showcase">
-  <h1 class="w3-x-jumbo"><b>Controle de Frota</b></h1>
-  <h1 class="w3-xxlarge w3-text" id="top-page"><b>Ônibus</b></h1>
+  <h1 class="w3-x-jumbo"><b>Localizar Ônibus</b></h1>
+  <h1 class="w3-xxlarge w3-text" id="top-page"><b>Por Linha</b></h1>
   <hr class="w3-round">
 </div>
-
-<!-- Form -->
-<div class="form-page">
-  <form class="w3-container" action="{{ action('OnibusAgoraController@localizarOnibusAgora') }}" method="get">
-
-    <div class="custom-select" style="width:200px;">
-      <label class="w3-text"><b>Selecione uma Linha:</b></label>
-      <select name="linha">
-      @foreach($linhas as $linha)
-      <option value="{{ $linha->id }}">
-        {{ $linha->nome }}</option> 
-      @endforeach
-      </select>
-    </div>
-
-    <button class="w3-btn w3-blue" id="btn-page" type="text">Localizar</button>
-
-    <div class="help-tip">
-    <p>Localizar a parada na qual o ônibus está atualmente, basta selecionar a linha que o mesmo pertence. O resultado será a parada onde o mesmo está atualmente e sua previsão de retorno para a garagem.</p>
-    </div>
+  
+<div class="w3-container">
+  <div class="error">Erro! A parada selecionada não faz parte desta linha. Por favor, selecione outra.</div>
+  <form class="w3-container" action="{{ action('OnibusItinerarioController@voltarParaConsultaItinerario') }}" method="get">
+    <button class="w3-btn w3-blue" id="btn-page" type="text">Voltar</button>
   </form>
 </div>
 
 <style>
-
+  
 /* --------------- START OF HELP TIP --------------- */
 .help-tip{
   position: relative;
-  top: -215px;
+  top: -347px;
   right: -135px;
   text-align: center;
   background-color: #BCDBEA;
@@ -52,10 +36,6 @@
   font-size: 14px;
   line-height: 26px;
   cursor: default;
-}
-
-#btn-page2{
-  right: 20px;
 }
 
 .help-tip:before{
@@ -115,7 +95,27 @@
   -webkit-animation: fadeIn 0.3s ease-in-out;
   animation: fadeIn 0.3s ease-in-out;
       z-index: 999;
-  }
+}
+
+.info, .success, .warning, .error, .validation {
+  border: 1px solid;
+  margin: 10px 0px;
+  padding: 15px 10px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+
+.success {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  background-image: url("/images/ok.png");
+}
+
+.error {
+  color: #D8000C;
+  background-color: #FFBABA;
+  background-image:  url("/images/cancel.png");
+}
 
 /* CSS animation */
 
