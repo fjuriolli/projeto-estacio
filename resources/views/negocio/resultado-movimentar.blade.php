@@ -11,7 +11,7 @@
 <!-- Header -->
 <div class="w3-container container-top-page" id="showcase">
   <h1 class="w3-x-jumbo"><b>Localizar Ônibus</b></h1>
-  <h1 class="w3-xxlarge w3-text" id="top-page"><b>Controle de Frota</b></h1>
+  <h1 class="w3-xxlarge w3-text" id="top-page"><b>Movimentar Ônibus</b></h1>
   <hr class="w3-round">
 </div>
 
@@ -19,16 +19,15 @@
 
 @if (Session::get('selectPegarParadaAtual')->tempo  <= 10)
 <div class="w3-container">
-  <div style="margin-top: 15px;background-color: #E0F0D7" class="w3-panel w3-round-large">
-    <h3 style="color: #457D46">Chegou!</h3>
-    <p style="color: #629361">O ônibus voltou para a garagem</p>
-  </div>
+  <div class="error">O ônibus encontra-se na garagem e não pode ser movimentado neste momento</div>
   <form class="w3-container" action="{{ action('MovimentarOnibusController@voltarParaConsultaMovimentar') }}" method="get">
     <button class="w3-btn w3-blue" id="btn-page" type="text">Voltar</button>
   </form>
 </div>
 @else
-<h1> Onibus Movimentado </h1>
+<div class="w3-container">
+  <div class="success">O ônibus foi movimentado com sucesso</div>
+</div>
 
 <form class="w3-container" action="{{ action('MovimentarOnibusController@voltarParaConsultaMovimentar') }}" method="get">
   <button class="w3-btn w3-blue" id="btn-page" type="text">Voltar</button>
@@ -111,6 +110,26 @@
   animation: fadeIn 0.3s ease-in-out;
       z-index: 999;
   }
+
+.info, .success, .warning, .error, .validation {
+  border: 1px solid;
+  margin: 10px 0px;
+  padding: 15px 10px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+
+.success {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  background-image: url("/images/ok.png");
+}
+
+.error {
+  color: #D8000C;
+  background-color: #FFBABA;
+  background-image:  url("/images/cancel.png");
+}
 
 /* CSS animation */
 

@@ -19,14 +19,24 @@
 
 
 
-@foreach ($arrayOnibus as $onibus) 
+@foreach ($arrayInformacoes as $informacao) 
 
-<b>Parada Atual:</b> {{ $selectPegarParadaAtual->nome }}<br>
-<b>Endereço:</b> {{ $selectPegarParadaAtual->endereco_completo }}<br>
-<b>Ônibus:</b> {{ $selectPegarParadaAtual->onibus_nome }}<br>
-<b>Previsão para voltar a garagem:</b> {{ $selectPegarParadaAtual->tempo }} minutos<br><br>
+@if ($informacao['tempo'] <= 10)
+  <b>Parada Atual:</b> Garagem<br>
+@else
+  <b>Parada Atual:</b> {{ $informacao['nome'] }}<br>
+@endif
 
+<b>Endereço:</b> {{ $informacao['endereco_completo'] }}<br>
+<b>Ônibus:</b> {{ $informacao['onibus_nome'] }}<br>
+@if ($informacao['tempo'] <= 10)
+  <b style="color:red;">O ônibus encontra-se na garagem. Aguarde sua saída.</b><br><br>
+@else
+  <b>Previsão para voltar a garagem:</b> {{ $informacao['tempo'] }} minutos<br><br>
+@endif
 @endforeach
+
+
 
 <form class="w3-container" action="{{ action('OnibusAgoraController@voltarParaConsultaAgora') }}" method="get">
   <button class="w3-btn w3-blue" id="btn-page" type="text">Voltar</button>

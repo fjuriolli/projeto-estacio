@@ -115,22 +115,20 @@ class OnibusAgoraController extends Controller
             }
         }
 
-        foreach ($arrayOnibus as $onibus) {
-            $selectPegarParadaAtual = DB::table('logs')->orderBy('created_at', 'desc')->where('onibus_id', '=', $arrayOnibus[0]['id'])->get()->first();
-            echo "<br>";
-            print_r($selectPegarParadaAtual);
-            echo "<br>";
+        //pegar as informações atuais de cada onibus na tabela de logs, mandar elas pra um array de nome arrayInformacoes, pra ele ser exibido na view
+        $arrayInformacoes = [];
+        foreach ($arrayOnibus as $key => $informacao) {
+            $selectPegarParadaAtual = DB::table('logs')->orderBy('created_at', 'desc')->where('onibus_id', '=', $arrayOnibus[$key]['id'])->get()->first();
+            array_push($arrayInformacoes, array(
+                "id_parada" => $selectPegarParadaAtual->id,
+                "nome" => $selectPegarParadaAtual->nome, 
+                "tempo" => $selectPegarParadaAtual->tempo,
+                "endereco_completo" => $selectPegarParadaAtual->endereco_completo,
+                "onibus_nome" => $selectPegarParadaAtual->onibus_nome)
+            );
         }
-        die;
-        //pegar a parada atual de acordo com o nome do onibus
-        
-        // dd($selectPegarParadaAtual);
 
-        // $request->session()->flash('selectPegarParadaAtual', $selectPegarParadaAtual);
-
-        // return redirect()->action('OnibusAgoraController@mostrarViewResultadoAgora');
-
-        return view('negocio.resultado-agora', compact('selectPegarParadaAtual', 'arrayOnibus'));
+        return view('negocio.resultado-agora', compact('selectPegarParadaAtual', 'arrayInformacoes'));
     }
 
     public function mostrarViewResultadoAgora(Request $request)

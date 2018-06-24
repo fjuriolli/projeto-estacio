@@ -40,7 +40,4 @@
   </form>
 </div>
 
-<!-- Padding -->
-<div class="w3-light-grey w3-container w3-padding-24"><p class="w3-right">Powered by Wizzle &copy</p></div>
-
 @stop
