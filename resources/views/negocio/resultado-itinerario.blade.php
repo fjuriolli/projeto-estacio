@@ -16,11 +16,21 @@
 
 <br>
 
-<b>Os seguintes ônibus estão atualmente neste trajeto da linha selecionada:</b>
-@foreach ($arrayOnibus as $onibus)
-  <p>{{ $onibus['nome'] }}</p>
-@endforeach
-  
+Segue abaixo as informações do ônibus mais perto de você: <br><br>
+
+@if ($selectPegarParadaAtual->tempo <= 10)
+  <b>Parada Atual:</b> Garagem<br>
+@else
+  <b>Parada Atual:</b> {{ $selectPegarParadaAtual->nome }}<br>
+@endif
+
+<b>Endereço:</b> {{ $selectPegarParadaAtual->endereco_completo }}<br>
+<b>Ônibus:</b> {{ $selectPegarParadaAtual->onibus_nome }}<br>
+@if ($selectPegarParadaAtual->tempo <= 10)
+  <b style="color:red;">O ônibus encontra-se na garagem. Aguarde sua saída.</b><br><br>
+@else
+<b>Previsão para chegar na parada em que você está:</b> {{ $contadorNovoTempo }} minutos<br><br>
+@endif
 
 <style>
   

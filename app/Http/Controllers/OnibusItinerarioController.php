@@ -48,7 +48,7 @@ class OnibusItinerarioController extends Controller
                         "id" => $paradasSelect[0]->id, 
                         "nome" => $paradasSelect[0]->nome, 
                         "endereco_completo" => $paradasSelect[0]->endereco_completo,
-                        "tempo" => 8)
+                        "tempo" => 10)
                     );
                 }
             }
@@ -99,16 +99,13 @@ class OnibusItinerarioController extends Controller
         foreach ($arrayOnibus as $key => $informacao) {
             $selectPegarParadaAtual = DB::table('logs')->orderBy('created_at', 'desc')->where('onibus_id', '=', $arrayOnibus[$key]['id'])->get()->first();
             array_push($arrayInformacoes, array(
-                "id_parada" => $selectPegarParadaAtual->id,
+                "id_parada" => $selectPegarParadaAtual->id_parada,
                 "nome" => $selectPegarParadaAtual->nome, 
                 "tempo" => $selectPegarParadaAtual->tempo,
                 "endereco_completo" => $selectPegarParadaAtual->endereco_completo,
                 "onibus_nome" => $selectPegarParadaAtual->onibus_nome)
             );
         }
-
-        // colocar uma limitação, se o cliente escolher uma parada que não pertence a tal linha
-        // se parada tiver a linha, ok, caso contrario, mensagem de erro
 
         //pegar o itinerario da linha passando como parâmetro o request da linha
         $itinerarioSelect = DB::table('itinerarios')->where('linha_id', '=', $linhaRequest)->get()->all();
@@ -130,13 +127,14 @@ class OnibusItinerarioController extends Controller
                     "id" => $paradasSelect[0]->id, 
                     "nome" => $paradasSelect[0]->nome, 
                     "endereco_completo" => $paradasSelect[0]->endereco_completo,
-                    "tempo" => 8)
+                    "tempo" => 10)
                 );
             }
         }
 
         //lógica para checar se a parada que vem do request está presente na linha que também vem do request
         //caso não esteja presente, vai ser exibido uma mensagem de erro 
+
         $keys = [];
         for ($i = 0; $i < count($arrayParadas); $i++) {
             if (in_array($paradaRequest, $arrayParadas[$i])) {
@@ -144,37 +142,41 @@ class OnibusItinerarioController extends Controller
             }
         }
         if (!empty($keys)) {
-            return "true";
+
+            $selectPegarParadaAtual = DB::table('logs')->orderBy('tempo', 'asc')->where('linha_id', '=', $linhaRequest)->get()->first();
+
+            if ($paradaRequest > $selectPegarParadaAtual->id_parada) {
+
+                $novoTempo = [];
+
+                for ($i = $selectPegarParadaAtual->id_parada; $i < $paradaRequest; $i++) {
+                    array_push($novoTempo, array(
+                        "vezes" => $i
+                    ));
+                }
+
+                $contadorNovoTempo = count($novoTempo) * 10;
+
+                return view('negocio.resultado-itinerario', compact('selectPegarParadaAtual', 'contadorNovoTempo'));
+
+            } elseif ($paradaRequest == $selectPegarParadaAtual->id_parada) {
+                return view('negocio.resultado-itinerario-parada-igual');
+
+            } elseif ($paradaRequest < $selectPegarParadaAtual->id_parada) {
+                $arrayTempo = [80, 90, 100, 110];
+                $somaNovoTempo = $arrayTempo[array_rand($arrayTempo)];
+
+                return view('negocio.resultado-itinerario-tempo', compact('selectPegarParadaAtual', 'somaNovoTempo'));
+            }
+
         } else {
             return view('negocio.erro-itinerario');
         }
-        die; 
-
-        
-        foreach ($arrayInformacoes as $key => $informacao) {
-            if ($informacao['id_parada'] == $paradaRequest) {
-                print_r("parada atual no banco: " . $informacao['id_parada']);
-                echo "<br>";
-                print_r("parada do cliente request: " .$paradaRequest);
-                echo "<br>";
-                die("IGUAIS, TEMPO NORMAL");
-            } elseif ($informacao['id_parada'] > $paradaRequest) {
-                print_r("parada atual no banco: " . $informacao['id_parada']);
-                echo "<br>";
-                print_r("parada do cliente request: " .$paradaRequest);
-                echo "<br>";
-                die("TA NA FRENTE, AUMENTA O TEMPO AE CARAI");
-            } elseif ($informacao['id_parada'] < $paradaRequest) {
-                print_r("parada atual no banco: " . $informacao['id_parada']);
-                echo "<br>";
-                print_r("parada do cliente request: " .$paradaRequest);
-                echo "<br>";
-               die("NORMAL, SEGUE O NORMALS");
-            }
-        }
-        die;
-        return view('negocio.resultado-itinerario', compact('arrayOnibus'));
     }
+
+    //$informacao['id_parada'] = parada na qual o onibus está
+    //$paradaRequest = parada onde o cliente está
+
 
     public function mostrarViewResultadoItinerario(Request $request)
     {

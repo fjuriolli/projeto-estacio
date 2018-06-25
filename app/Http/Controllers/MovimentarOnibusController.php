@@ -49,7 +49,7 @@ class MovimentarOnibusController extends Controller
                         "id" => $paradasSelect[0]->id, 
                         "nome" => $paradasSelect[0]->nome, 
                         "endereco_completo" => $paradasSelect[0]->endereco_completo,
-                        "tempo" => 8)
+                        "tempo" => 10)
                     );
                 }
             }
@@ -105,7 +105,7 @@ class MovimentarOnibusController extends Controller
                     "id" => $paradasSelect[0]->id, 
                     "nome" => $paradasSelect[0]->nome, 
                     "endereco_completo" => $paradasSelect[0]->endereco_completo,
-                    "tempo" => 8)
+                    "tempo" => 10)
                 );
             }
         }
