@@ -33,7 +33,10 @@ Segue abaixo as informações do ônibus mais perto de você: <br><br>
   <b>Previsão para chegar na parada em que você está:</b> {{ $somaNovoTempo }} minutos<br><br>
 @endif
 
-  
+<form class="w3-container" action="{{ action('OnibusItinerarioController@voltarParaConsultaItinerario') }}" method="get">
+    <button class="w3-btn w3-blue" id="btn-page" type="text">Voltar</button>
+</form>
+
 
 <style>
   
