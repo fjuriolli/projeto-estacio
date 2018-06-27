@@ -28,12 +28,12 @@
   <div class="w3-dropdown-hover">
     <button class="w3-button w3-hover-white">Cadastro <i class="fa fa-caret-down"></i></button>
     <div class="w3-dropdown-content w3-bar-block">
-      <a class="w3-bar-item w3-button w3-hover" href="/cadastro-anel">Anel</a>
-      <a class="w3-bar-item w3-button w3-hover" href="/cadastro-itinerario">Itinerário</a>
-      <a class="w3-bar-item w3-button w3-hover" href="/cadastro-linha">Linha</a>
-      <a class="w3-bar-item w3-button w3-hover" href="/cadastro-logradouro">Logradouro</a>
-      <a class="w3-bar-item w3-button w3-hover" href="/cadastro-onibus">Ônibus</a>
-      <a class="w3-bar-item w3-button w3-hover" href="/cadastro-parada">Parada</a>
+      <a class="w3-bar-item w3-button w3-hover" href="{{action('AnelController@novo')}}">Anel</a>
+      <a class="w3-bar-item w3-button w3-hover" href="{{action('ItinerarioController@novo')}}">Itinerário</a>
+      <a class="w3-bar-item w3-button w3-hover" href="{{action('LinhaController@novo')}}">Linha</a>
+      <a class="w3-bar-item w3-button w3-hover" href="{{action('LogradouroController@novo')}}">Logradouro</a>
+      <a class="w3-bar-item w3-button w3-hover" href="{{action('OnibusController@novo')}}">Ônibus</a>
+      <a class="w3-bar-item w3-button w3-hover" href="{{action('ParadaController@novo')}}">Parada</a>
     </div>
   </div>
 </nav>
@@ -46,9 +46,6 @@
 <!-- End page content -->
 </div>
 
-<script>
-
-</script>
-
 </body>
+
 </html>

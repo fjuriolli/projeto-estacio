@@ -18,7 +18,7 @@
 
 <!-- Form -->
 <div class="form-page">
-  <form class="w3-container" action="{{route ('onibus.store')}}" method="post">
+  <form class="w3-container" action="/onibus/adiciona" method="post">
 
     <input name="_token" type="hidden" value=" {{ csrf_token() }} "/>
 
@@ -32,8 +32,40 @@
       <input name="marca" class="w3-input w3-border" type="text">
     </div>
 
+    <div class="form-parada">
+    <label class="w3-text"><b>Selecione a Linha:</b></label>
+    <div class="form-group-select">
+      <div class="custom-select">
+        <select name="linha_id">
+        @foreach($linhas as $linha)
+        <option value="{{ $linha->id }}">
+        {{ $linha->nome }}</option>
+        @endforeach
+        </select>
+      </div>
+    </div>
+  </div>
+
     <button class="w3-btn w3-blue" id="btn-page" type="submit">Cadastrar</button>
   </form>
+
+  <div class="form-page">
+    <form class="w3-containerBtt" action="{{ action('OnibusController@lista')}}" method="get">
+      <button class="w3-btn w3-blue" id="btn-page2" type="submit">Listar</button>
+    </form>
+  </div>
+
 </div>
+
+<style>
+
+.w3-containerBtt {
+  position: relative;
+  padding: 15px;
+  bottom: 76px;
+  left: 130px;
+}
+
+</style>
 
 @stop

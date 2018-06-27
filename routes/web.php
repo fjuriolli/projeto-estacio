@@ -15,29 +15,46 @@ Route::get('/', function () {
     return view('principal');
 });
 
-Route::get('/cadastro-itinerario', 'ItinerarioController@create');
-Route::post('/registro-sucesso', 'ItinerarioController@store');
-Route::resource('itinerario', 'ItinerarioController');
+Route::get('/itinerarios', 'ItinerarioController@lista');
+Route::get('/itinerarios/mostra/{id}', 'ItinerarioController@mostra')->where('id', '[0-9]+');
+Route::get('/itinerarios/remove/{id}', 'ItinerarioController@remove')->where('id', '[0-9]+');
+Route::post('/itinerarios/adiciona', 'ItinerarioController@adiciona');
+Route::get('/itinerarios/novo', 'ItinerarioController@novo');
 
-Route::get('/cadastro-parada', 'ParadaController@create');
-Route::post('/registro-sucesso', 'ParadaController@store');
-Route::resource('parada', 'ParadaController');
+Route::get('/paradas', 'ParadaController@lista');
+Route::get('/paradas/mostra/{id}', 'ParadaController@mostra')->where('id', '[0-9]+');
+Route::get('/paradas/remove/{id}', 'ParadaController@remove')->where('id', '[0-9]+');
+Route::post('/paradas/adiciona', 'ParadaController@adiciona');
+Route::get('/paradas/novo', 'ParadaController@novo');
 
-Route::get('/cadastro-anel', 'AnelController@create');
-Route::post('/registro-sucesso', 'AnelController@store');
-Route::resource('anel', 'AnelController');
+
+Route::get('/aneis', 'AnelController@lista');
+Route::get('/aneis/mostra/{id}', 'AnelController@mostra')->where('id', '[0-9]+');
+Route::get('/aneis/remove/{id}', 'AnelController@remove')->where('id', '[0-9]+');
+Route::post('/aneis/adiciona', 'AnelController@adiciona');
+Route::get('/aneis/novo', 'AnelController@novo');
+
+Route::get('/linhas', 'LinhaController@lista');
+Route::get('/linhas/mostra/{id}', 'LinhaController@mostra')->where('id', '[0-9]+');
+Route::get('/linhas/remove/{id}', 'LinhaController@remove')->where('id', '[0-9]+');
+Route::post('/linhas/adiciona', 'LinhaController@adiciona');
+Route::get('/linhas/novo', 'LinhaController@novo');
 
 Route::get('/cadastro-linha', 'LinhaController@create');
 Route::post('/registro-sucesso', 'LinhaController@store');
 Route::resource('linha', 'LinhaController');
 
-Route::get('/cadastro-logradouro', 'LogradouroController@create');
-Route::post('/registro-sucesso', 'LogradouroController@store');
-Route::resource('logradouro', 'LogradouroController');
+Route::get('/logradouros', 'LogradouroController@lista');
+Route::get('/logradouros/mostra/{id}', 'LogradouroController@mostra')->where('id', '[0-9]+');
+Route::get('/logradouros/remove/{id}', 'LogradouroController@remove')->where('id', '[0-9]+');
+Route::post('/logradouros/adiciona', 'LogradouroController@adiciona');
+Route::get('/logradouros/novo', 'LogradouroController@novo');
 
-Route::get('cadastro-onibus', 'OnibusController@create');
-Route::post('/registro-sucesso', 'OnibusController@store');
-Route::resource('onibus', 'OnibusController');
+Route::get('/onibus', 'OnibusController@lista');
+Route::get('/onibus/mostra/{id}', 'OnibusController@mostra')->where('id', '[0-9]+');
+Route::get('/onibus/remove/{id}', 'OnibusController@remove')->where('id', '[0-9]+');
+Route::post('/onibus/adiciona', 'OnibusController@adiciona');
+Route::get('/onibus/novo', 'OnibusController@novo');
 
 Route::get('onibus-trajeto', 'OnibusTrajetoController@create');
 Route::get('/resultado-trajeto', 'OnibusTrajetoController@store');
