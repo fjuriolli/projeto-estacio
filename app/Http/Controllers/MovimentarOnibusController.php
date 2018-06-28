@@ -117,7 +117,7 @@ class MovimentarOnibusController extends Controller
         $selectPegarProximaParada = DB::table('paradas')->where('id', '=', $selectPegarParadaAtual->id_parada +1)->get()->first();
 
         //checar se o onibus ja chegou na garagem, caso positivo, parar de inserir no banco de dados a movimentação do mesmo
-        if ($selectPegarParadaAtual->tempo == 0) {
+        if ($selectPegarParadaAtual->tempo == 10) {
             //do nothing
         } else {
             //insert nova parada

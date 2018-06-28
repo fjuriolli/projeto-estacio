@@ -60,4 +60,29 @@
 
 @endif
 
+<style>
+
+.info, .success, .warning, .error, .validation {
+  border: 1px solid;
+  margin: 10px 0px;
+  padding: 15px 10px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+
+.success {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  background-image: url("/images/ok.png");
+}
+
+.error {
+  color: #D8000C;
+  background-color: #FFBABA;
+  background-image:  url("/images/cancel.png");
+}
+
+</style>
+
+
 @stop

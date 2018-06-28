@@ -145,6 +145,17 @@ class OnibusItinerarioController extends Controller
 
             $selectPegarParadaAtual = DB::table('logs')->orderBy('tempo', 'asc')->where('linha_id', '=', $linhaRequest)->get()->first();
 
+
+            if ($selectPegarParadaAtual->tempo = 10) {
+
+                $selectPegarParadaAtual = Log::whereNotIn('onibus_id', [$selectPegarParadaAtual->onibus_id])
+                                            ->orderBy('tempo', 'asc')
+                                            ->where('linha_id', '=', $linhaRequest)->get()->first();
+
+            } else {
+                $selectPegarParadaAtual = DB::table('logs')->orderBy('tempo', 'asc')->where('linha_id', '=', $linhaRequest)->get()->first();
+            }    
+
             if ($paradaRequest > $selectPegarParadaAtual->id_parada) {
 
                 $novoTempo = [];
@@ -157,6 +168,9 @@ class OnibusItinerarioController extends Controller
 
                 $contadorNovoTempo = count($novoTempo) * 10;
 
+                return view('negocio.resultado-itinerario', compact('selectPegarParadaAtual', 'contadorNovoTempo'));
+
+            } elseif ($paradaRequest == $selectPegarParadaAtual->id_parada && $selectPegarParadaAtual->tempo == 10) {
                 return view('negocio.resultado-itinerario', compact('selectPegarParadaAtual', 'contadorNovoTempo'));
 
             } elseif ($paradaRequest == $selectPegarParadaAtual->id_parada) {

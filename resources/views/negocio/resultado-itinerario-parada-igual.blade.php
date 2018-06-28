@@ -15,9 +15,9 @@
 </div>
 
 <br>
-
-  O ônibus deve estar chegando na sua parada em alguns intantes!
   <form class="w3-container" action="{{ action('OnibusItinerarioController@voltarParaConsultaItinerario') }}" method="get">
+    O ônibus deve estar chegando na sua parada em alguns intantes!
+    <br>
     <button class="w3-btn w3-blue" id="btn-page" type="text">Voltar</button>
   </form>
 

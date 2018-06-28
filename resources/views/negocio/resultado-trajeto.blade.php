@@ -15,6 +15,7 @@
   <hr class="w3-round">
 </div>
 
+<form class="w3-container" action="{{action('OnibusItinerarioController@mostrarFormularioItinerario')}}" method="get">
 <br>
 @if ( $linhaA == $linhaB )
   <b> As seguintes linhas passam pelo trajeto selecionado: </b></br></br>
@@ -22,8 +23,13 @@
   <b>Classificação:</b> {{$classificacaoLinhaA}}<br>
   <b>Anel:</b> {{$nomeAnelLinhaA}}<br>
   <b>Tarifa:</b> R$ {{$tarifaAnelLinhaA}}<br>
+
+<br>
+<b> Caso queira localizar uma linha específica, clique no botão abaixo </b>
+<br>  
+<button class="w3-btn w3-blue" id="btn-page" type="text">Localizar</button>
   
-  
+
 @else
   <b>As seguintes linhas passam pelo trajeto selecionado: </b></br></br>
   <b>• Nome da Linha:</b> {{$nomeLinhaA}}<br>
@@ -37,7 +43,13 @@
   <b>Anel:</b> {{$nomeAnelLinhaB}}<br>
   <b>Tarifa:</b> R$ {{$tarifaAnelLinhaB}}<br>
 
+  <br>
+  <b> Caso queira localizar uma linha específica, clique no botão abaixo </b>
+  <br>
+  <button class="w3-btn w3-blue" id="btn-page" type="text">Localizar</button>
+
 @endif
+</form>
 
 <style>
   

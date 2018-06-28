@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Itinerario;
 use App\Models\Linha;
 use App\Models\Logradouro;
@@ -22,11 +23,23 @@ class ItinerarioController extends Controller
     {
         $itinerario = Itinerario::find($id);
 
+        $logradourosSelect = DB::table('itinerario_logradouro')->where('itinerario_id', '=', $itinerario->id)->get()->all();
+        // dd($logradourosSelect);
+
+        $arrayLogradouros = [];
+        foreach ($logradourosSelect as $logradouro) {
+            $logradouros = DB::table('logradouros')->where('id', '=', $logradouro->id)->get()->all();
+            foreach ($logradouros as $logradouro) {
+                array_push($arrayLogradouros, array("id" => $logradouro->id, "nome" => $logradouro->nome, "bairro" => $logradouro->bairro, "municipio" => $logradouro->municipio));
+            }
+            
+        }
+
         if (empty($itinerario)) {
             return "Este itinerario não existe";
         }
 
-        return view('cadastro.itinerario-detalhes')->with('a', $itinerario);
+        return view('cadastro.itinerario-detalhes', compact('arrayLogradouros'))->with('a', $itinerario);
     }
 
     public function adiciona(Request $request)
