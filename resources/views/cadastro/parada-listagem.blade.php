@@ -13,7 +13,7 @@
 <!-- Header -->
 <div class="w3-container container-top-page" id="showcase">
   <h1 class="w3-x-jumbo"><b>Listagem</b></h1>
-  <h1 class="w3-xxlarge w3-text" id="top-page"><b>Ônibus</b></h1>
+  <h1 class="w3-xxlarge w3-text" id="top-page"><b>Paradas</b></h1>
   <hr class="w3-round">
 </div>
 

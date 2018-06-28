@@ -165,7 +165,7 @@ class LogradouroParadaSeeder extends Seeder
 
             array('logradouro_id' => 11, 'parada_id' => 11),
             array('logradouro_id' => 12, 'parada_id' => 12),
-            array('logradouro_id' => 13, 'parada_id' => 12),
+            array('logradouro_id' => 13, 'parada_id' => 13),
             array('logradouro_id' => 14, 'parada_id' => 14),
             array('logradouro_id' => 15, 'parada_id' => 15),
             array('logradouro_id' => 16, 'parada_id' => 16),
