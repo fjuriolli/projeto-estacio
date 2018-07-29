@@ -1,4 +1,4 @@
-# projeto-estacio
+# wizzle
 
 Projeto acadêmico para a faculdade Estácio do Recife.
 
